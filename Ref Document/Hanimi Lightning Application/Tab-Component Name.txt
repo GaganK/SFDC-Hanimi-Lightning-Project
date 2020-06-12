@@ -1,0 +1,38 @@
+Application Name: "CDL - Application Evaluation - Manager"
+
+Tab Name: Application Assignment
+Component: applicationAssignmentsCmp
+
+
+Tab Name: Individual Pre-Interview Evaluation
+Component: myAppevaluationcmp
+
+Tab Name: Team Pre-Interview Evaluation
+Component: evaluationSummaryScorecmp
+
+Tab Name: Team Evaluation and Ranking
+Component: evaluationSumScoreRankCmp
+
+Tab Name: Cross Site Matching and Final Interview
+Component: CrossSiteMatchingAndFinalInterview
+
+Tab Name: 
+Component: 
+
+Tab Name: 
+Component: 
+
+Tab Name: 
+Component: 
+
+Tab Name: 
+Component: 
+
+Tab Name: 
+Component: 
+
+Tab Name: 
+Component: 
+
+Tab Name: 
+Component: 

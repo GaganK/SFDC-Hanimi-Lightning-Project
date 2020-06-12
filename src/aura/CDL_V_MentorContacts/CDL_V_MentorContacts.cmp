@@ -1,0 +1,252 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"
+    controller="CDL_V_MentorContactsController">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <ltng:require styles="{!$Resource.cssresource+'/css-resources/css/style.css'}" />
+    <ltng:require styles="{!$Resource.fontIcon+'/font-icons/css/font-awesome.min.css'}" />
+
+    <aura:attribute name="allMentorContacts" type="object" />
+    <aura:attribute name="mentorContacts" type="object" />
+    <aura:attribute name="selectedMentor" type="object" />
+    <aura:attribute name="searchTerm" type="String" default="" />
+    <aura:attribute name="isProcessing" type="boolean" default="true" />
+    <aura:attribute name="loadPage" type="boolean" default="false" />
+    <aura:attribute name="allSites" type="List" default="[]" />
+    <aura:attribute name="filteredSites" type="List" default="[]" />
+    <aura:attribute name="allStreams" type="List" default="[]" />
+    <aura:attribute name="filteredStreams" type="List" default="[]" />
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+    <aura:attribute name="showFullBio" type="boolean" default="false" />
+    
+    <aura:method name="searchAction" action="{!c.onSearch}" />
+    
+    <aura:attribute name="pageSize" type="Integer" default="24" />
+    <aura:attribute name="currentPageNumber" type="Integer" default="1" />
+    <aura:attribute name="maxPageNumber" type="Integer" default="1" />
+
+    <aura:attribute name="isSendEmail" type="boolean" default="false" />
+    <aura:attribute name="emailSubject" type="string" default="" />
+    <aura:attribute name="emailBody" type="string" default="" />
+    <aura:attribute name="typeOfRequests" type="List" default="[]" />
+    <aura:attribute name="selectedRequests" type="List" default="[]" />
+
+    <aura:handler name="change" value="{!v.currentPageNumber}"	action="{!c.renderPage}" />
+
+    <div class="slds-text-heading_large pageTitle">CDL Mentors</div>
+
+    <aura:if isTrue="{!v.loadPage}">
+        <div class="sldx-box">
+            <div class="slds-grid slds-wrap slds-grid_align-left">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12 slds-p-around_x-small">
+                    <lightning:input aura:id="gSearch" placeholder="Search this list..." type="search"
+                        label="Search" value="{!v.searchTerm}" tabindex="0" onchange="{!c.onSearch}"
+                    />
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12 slds-p-around_x-small">
+                    <c:MultiselectDropdown aura:id="childCmpSite" ValueList= "{!v.allSites}" uniqueName="Site" label="Filter by Site" parent="{!this}" /> 
+                    <div style="min-height: 40px;">
+                        <aura:iteration items="{!v.filteredSites}" var="filteredSite" indexVar="filteredSiteIndex">
+                            {!filteredSite}<aura:if isTrue="{!filteredSiteIndex != v.filteredSites.length - 1}">,&nbsp;</aura:if>
+                        </aura:iteration>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12 slds-p-around_x-small">
+                    <c:MultiselectDropdown ValueList= "{!v.allStreams}" uniqueName="Stream" label="Filter by Stream" parent="{!this}" />
+                    <div style="min-height: 40px;">
+                        <aura:iteration items="{!v.filteredStreams}" var="filteredStream" indexVar="filteredStreamIndex">
+                            {!filteredStream}<aura:if isTrue="{!filteredStreamIndex != v.filteredStreams.length - 1}">,&nbsp;</aura:if>
+                        </aura:iteration>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-grid slds-wrap slds-grid_align-left">
+            <aura:iteration items="{!v.mentorContacts}" var="mentorContact" indexVar="mentorIndex">
+                <div
+                    class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 slds-p-around_medium">
+                    <a onclick="{!c.onOpenModal}" data-record="{!mentorIndex}" label="{!mentorIndex}">
+                        <article class="slds-card mentor-contact-block">
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size_1-of-3 slds-m-around_x-small image-div">
+                                    <figure class="slds-image slds-image--card">
+                                        <a href="javascript:void(0);" >
+                                            <img src="{!mentorContact.strPhotoURL}" />
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="slds-col slds-size_2-of-3 slds-p-vertical_medium"
+                                    style="color: black;font-family: 'Tw Cen MT'!important;">
+                                    <div class="slds-text-heading_large contactName">
+                                        {!mentorContact.objContact.Name}
+                                        <aura:if isTrue="{!not(empty(mentorContact.strContactRoles))}">
+                                            <span class="slds-text-heading_small">
+                                                ({!mentorContact.strContactRoles})
+                                            </span>
+                                        </aura:if>
+                                    </div>
+                                    <div class="slds-text-heading_small">
+                                        {!mentorContact.objContact.Title}
+                                    </div>
+                                    <div class="slds-text-heading_small">
+                                        {!mentorContact.objContact.Account.Name}
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+            </aura:iteration>
+        </div>
+        <aura:if isTrue="{!not(empty(v.mentorContacts))}">
+            <div class="sldx-box slds-align_absolute-center">
+                <div class="slds-button-group" role="group">
+                    <button onclick="{!c.firstPage}" class="slds-button slds-button--neutral">
+                        First
+                    </button>
+                    <button onclick="{!c.prevPage}" class="slds-button slds-button--neutral">
+                        Prev
+                    </button>
+                    <button class="slds-button slds-button--neutral">
+                        {!v.currentPageNumber} / {!v.maxPageNumber}
+                    </button>
+                    <button onclick="{!c.nextPage}" class="slds-button slds-button--neutral">
+                        Next
+                    </button>
+                    <button onclick="{!c.lastPage}" class="slds-button slds-button--neutral">
+                        Last
+                    </button>
+                </div>
+            </div>
+        </aura:if>
+    </aura:if>
+
+    <aura:if isTrue="{!v.isProcessing}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--small" role="alert">
+                <span class="slds-assistive-text">Loading...</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+
+    <!-- modal popup -->
+    <aura:if isTrue="{!v.isModalOpen}">
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-clearfix">
+                        <div class="slds-float_right">
+                            <lightning:buttonIcon iconName="utility:close" onclick="{! c.onCloseModal }"
+                                alternativeText="close" variant="brand" />
+                        </div>
+                    </div>
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-3 slds-m-around_x-small image-modal-div">
+                            <figure class="slds-image slds-image--card">
+                                <a href="javascript:void(0);">
+                                    <img src="{!v.selectedMentor.strPhotoURL}" />
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="slds-col slds-size_2-of-3 slds-p-vertical_medium"
+                            style="color: black;font-family: 'Tw Cen MT'!important;">
+                            <div class="slds-text-heading_large contactName">
+                                {!v.selectedMentor.objContact.Name}&nbsp;
+                                <div style="cursor:pointer;display:inline;" onclick="{!c.openSendEmailModel}">
+                                    <lightning:icon iconName="standard:email" alternativeText="Email" title="Email" size="small"/>
+                                </div>
+                            </div>
+                            <div class="slds-text-heading_small">
+                                {!v.selectedMentor.objContact.Title}
+                            </div>
+                            <div class="slds-text-heading_small">
+                                {!v.selectedMentor.objContact.Account.Name}
+                            </div>
+                            <div class="slds-text-heading_small" style="color: #e82076;">
+                                {!v.selectedMentor.strContactRoles}
+                            </div>
+                            <div class="slds-text-heading_small">
+                                {!v.selectedMentor.objContact.Site_and_Stream__c}
+                            </div>
+                             <div class="slds-text-heading_small">
+                                <p>&nbsp;</p>
+                            </div>
+                            <div class="slds-text-heading_small">
+                                
+                                <aura:if isTrue="{!v.showFullBio}" >
+                                     {!v.selectedMentor.objContact.Biodata__c}
+                                     &nbsp; <a href="" onclick="{!c.showShortBioAction}" class="slds-button" style="line-height: normal !important;">less...</a>
+                                    <aura:set attribute="else">
+                                       {!v.selectedMentor.strShortBio}  
+                                       <aura:if isTrue="{!v.selectedMentor.objContact.Biodata__c.length > 290}" >
+                                           &nbsp; <a href="" onclick="{!c.showFullBioAction}" class="slds-button" style="line-height: normal !important;">more...</a>
+                                       </aura:if>
+                                    </aura:set>  
+                                </aura:if>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-grid">
+                        &nbsp;
+                    </div>
+                    <div class="slds-grid">
+                        <div id="hands" class="slds-col">
+                            <c:CDL_ColumnChartComponent uniqueName="Stream" labelset="{!v.selectedMentor.lstStreamVentures}"
+                                 dataset="{!v.selectedMentor.countStreamVentures}" mentorId="{!v.selectedMentor.objContact.Id}"
+                                 mode="modal" yaxeslabel="# of Ventures" xaxeslabel="Stream" chartTitle="Number of Ventures per Stream" />
+                        </div>
+                        <div id="streams" class="slds-col">
+                            
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <aura:if isTrue="{!v.isSendEmail}">
+       <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container" style="height: auto;width:50% !important;">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{!c.closeSendEmailModel}"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" >
+                        <p style="color: rgba(156, 27, 83, 1) !important;">Contact Mentor</p>
+                    </h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-form-element" style="margin-left:10%;margin-right:10%">
+                        <div class="slds-form-element__control">
+                            <lightning:input label="Subject" name="subject" value="{!v.emailSubject}" placeholder="Subject" />
+                        </div>
+                        <label class="slds-form-element__label" for="form-element-01">Message</label>
+                        <div class="slds-form-element__control">
+                            <lightning:inputRichText label="Message" value="{!v.emailBody}" placeholder=""/>
+                            <p>Please note that by sending this message you are sharing your email address with the recipient.</p>
+                        </div>
+                        <div class="slds-form-element__control">
+                            <lightning:checkboxGroup options="{!v.typeOfRequests}" value="{!v.selectedRequests}"/>
+                        </div>
+                    </div>
+                </div> 
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{!c.closeSendEmailModel}"/>
+                    <lightning:button variant="brand" label="Send Email" onclick="{!c.sendEmailAction}" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

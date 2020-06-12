@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT">
+<aura:attribute name="selectedEval" type="Evaluation__c[]"/>
+<aura:attribute name="selectedApps" type="Application__c[]"/>
+</aura:event>

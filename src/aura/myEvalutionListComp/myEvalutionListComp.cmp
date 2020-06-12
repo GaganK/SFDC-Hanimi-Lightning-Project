@@ -1,0 +1,369 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" 
+                access="global" 
+                controller="myevaluationListController">
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="recordId" type="String"/>
+     <aura:attribute name="selectedEvaluationId" type="string" />
+    <aura:attribute name="allData" type="List"/>
+    <aura:attribute name="currentPageNumber" type="Integer" default="1"/>
+    <aura:attribute name="pageSize" type="Integer" default="7"/>
+    <aura:attribute name="totalPages" type="Integer" default="0"/>
+    <aura:attribute name="pageList" type="List"/>
+    <aura:attribute name="InitialCDLSitePrefMap" type="Map"/>
+     <aura:attribute name="selectedInitialCDLSitePref" type="string" />
+     <aura:attribute name="StreamPotentialMap" type="Map"/>
+     <aura:attribute name="selectedStreamPotential" type="string" />
+     <aura:attribute name="ApplicationStageMap" type="Map"/>
+     <aura:attribute name="selectedApplicationStage" type="string" />
+     <aura:attribute name="ApplicationOwnerMap" type="Map"/>
+     <aura:attribute name="selectedApplicationOwnerId" type="string" />
+     <aura:attribute name="StreamPotentialList" type="List" default="[]"/>
+    <aura:attribute name="selectedStreamPotentialList" type="List" default="[]"/>
+     <aura:attribute name="numberOfApplicants" type="Integer" default="0"/>
+	 <aura:attribute name="showSpinner" type="Boolean" default="false" />
+      <aura:attribute name="analysisReportMap" type="Map"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="createdDate" type="Date" default=""/>
+      <aura:attribute name="contacts" type="Contact[]" />
+    <!-- You must define keyField as 'Id' to save the record back in Salesforce
+ 'onsave' attribute will executed when user clicks on save button -->
+     <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner />
+    </aura:if>
+    <lightning:card>
+       <h1> <p style="font-size: large;color: rgba(156, 27, 83, 1) !important;">My Evaluations</p></h1>
+        <lightning:layout multipleRows="true" horizontalAlign="center">
+            <aura:if isTrue="{!v.isModalOpen}">
+                <!-- Modal/Popup Box starts here-->
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container" style="height: 460px;width:50% !important;">
+                        <!-- Modal/Popup Box Header Starts here-->
+                        <header class="slds-modal__header">
+                            <lightning:buttonIcon iconName="utility:close"
+                                                  onclick="{! c.closeModel }"
+                                                  alternativeText="close"
+                                                  variant="bare-inverse"
+                                                  class="slds-modal__close"/>
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" ><p style="color: rgba(156, 27, 83, 1) !important;">Evaluation Filters</p></h2>
+                        </header>
+                        <!--Modal/Popup Box Body Starts here-->
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                               <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-3">
+                           <lightning:select aura:id="InitialCDLSitePrefPicklist" value="{!v.selectedInitialCDLSitePref}"  name="InitialCDLSitePrefPicklist" label="Initial CDL Site Preference">
+                        <option value="">--None--</option>
+                        <aura:iteration items="{!v.InitialCDLSitePrefMap}" var="ind" indexVar="key">
+                            <option text="{!ind.value}" value="{!ind.key}" selected="{!ind.key==v.selectedInitialCDLSitePref}" />
+                        </aura:iteration>
+                    </lightning:select> 
+                          </div>
+                          <div class="slds-col slds-size_1-of-3"  style="padding-left:10px;width: max-content;">
+                                <lightning:select aura:id="applicationStage" value="{!v.selectedApplicationStage}"  name="applicationStagePicklist" label="Application Stage">
+                             <option value="">--None--</option>
+                             <aura:iteration items="{!v.ApplicationStageMap}" var="ind" indexVar="key">
+                                 <option text="{!ind.value}" value="{!ind.key}" selected="{!ind.key==v.selectedApplicationStage}" />
+                             </aura:iteration>
+                         </lightning:select> 
+                               </div>
+                               <div class="slds-col slds-size_1-of-3"  style="padding-left:10px;width: max-content;">
+                                    <lightning:select aura:id="applicationOwnerid" value="{!v.selectedApplicationOwnerId}"  name="applicationOwnerPicklist" label="Application Owner">
+                                 <option value="">--None--</option>
+                                 <aura:iteration items="{!v.ApplicationOwnerMap}" var="ind" indexVar="key">
+                                     <option text="{!ind.value}" value="{!ind.key}" selected="{!ind.key==v.selectedApplicationOwnerId}" />
+                                 </aura:iteration>
+                             </lightning:select> 
+                                   </div>
+                       
+                         
+                     </div>
+					  <div class="slds-grid">
+					      <div class="slds-col slds-size_1-of-3" style="padding-left:10px;width: max-content;">
+    
+                               <lightning:dualListbox aura:id="StreamPotentialPicklist"
+                                   name="StreamPotential"
+                                   label="Stream Potential"
+                                   options="{!v.StreamPotentialList }"
+                                   value="{!v.selectedStreamPotentialList}"
+                                   size="3"
+                                   /> 
+                          </div>
+                          <div class="slds-col slds-size_1-of-3" style="padding-left:10px;width: max-content;">
+                                <ui:inputDate aura:id="expdate" label="Created Date" class="field" value="{!v.createdDate}" displayDatePicker="true" /> 
+                         </div>
+					  </div>
+                        </div>
+                        <!--Modal/Popup Box Footer Starts here-->
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral"
+                                              label="Cancel"
+                                              title="Cancel"
+                                              onclick="{! c.closeModel }"/>
+                           <lightning:button variant="brand" label="Submit" onclick="{!c.getEvaluationRecords}" />
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+            <lightning:layoutItem padding="around-small" size="12">
+                  <!--  <lightning:buttonIcon iconName="utility:filterList"
+                                              onclick="{! c.openModel }"
+                                              alternativeText="openFilter"
+                                              class="filtericon"/><br/>-->
+                <lightning:datatable
+                                     aura:id="evaluationDataTable"
+                                     columns="{! v.columns }"
+                                     data="{! v.data }"
+                                     keyField="Id" maxRowSelection="1"
+                                     hideCheckboxColumn="false" onrowselection="{! c.updateSelectedText }"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" flexibility="auto">
+                <lightning:button label="First" iconName="utility:left" iconPosition="left"
+                                  onclick="{!c.onFirst}" disabled="{! v.currentPageNumber == 1}"/>
+                <lightning:button iconName="utility:chevronleft" iconPosition="left"
+                                  onclick="{!c.onPrev}" disabled="{! v.currentPageNumber == 1}"/>
+                <span class="slds-p-horizontal_x-small">
+                    <a onclick="{!c.processMe}" name="1" 
+                       class="{! (v.currentPageNumber == 1) ? 'selected' : ''}">1</a>
+                </span>
+                <span class="slds-p-horizontal_xxx-small">
+                    <a>...</a>
+                </span>
+                
+                <aura:iteration items="{!v.pageList}" var="item">
+                    <span class="slds-p-horizontal_x-small">
+                        <a onclick="{!c.processMe}" name="{!item}"
+                           class="{! (v.currentPageNumber == item) ? 'selected' : ''}">{!item}</a>
+                    </span>
+                </aura:iteration>
+                
+                <span class="slds-p-horizontal_xxx-small">
+                    <a>...</a>
+                </span>
+                <span class="slds-p-horizontal_x-small">
+                    <a onclick="{!c.processMe}" name="{!v.totalPages}"
+                       class="{! (v.currentPageNumber == v.totalPages) ? 'selected' : ''}">{!v.totalPages}</a>
+                </span>
+                <lightning:button iconName="utility:chevronright" iconPosition="right" 
+                                  disabled="{! v.currentPageNumber == v.totalPages}" onclick="{!c.onNext}"/>
+                <lightning:button label="Last" iconName="utility:right" iconPosition="right" 
+                                  disabled="{! v.currentPageNumber == v.totalPages}" onclick="{!c.onLast}"/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small"  size="12"></lightning:layoutItem>
+           
+            <lightning:layoutItem padding="around-small" class="left-align" size="8" >
+                <aura:if isTrue="{!v.selectedEvaluationId}">
+                    
+                   <u style="color: rgba(156, 27, 83, 1);"> <p Style="background-color: white;text-align: center;font-size: large;color: rgba(156, 27, 83, 1);">Application</p></u>
+                  
+                 <lightning:recordViewForm recordId="{!v.selectedEvaluationId}" objectApiName="Application__c">
+				<table style="width:100%">
+				 <tr >
+					<td>  <lightning:outputField variant="label-inline"  fieldName="Name" /></td>
+						<td>   <lightning:outputField variant="label-inline"  fieldName="Venture__c" /></td>
+				  </tr>
+				  <tr >
+					<td> <lightning:outputField variant="label-inline"  fieldName="Initial_CDL_Site_Preference__c" /></td>
+					 <td> <lightning:outputField variant="label-inline"  fieldName="Tech_Specialization__c" /></td>
+				  </tr>
+				   <tr >
+					<td> <lightning:outputField variant="label-inline"  fieldName="Type_of_Application__c" /></td>
+					 <td> <lightning:outputField variant="label-inline"  fieldName="OwnerID" /></td>
+				  </tr>
+				    <tr >
+					<td> <lightning:outputField variant="label-inline"  fieldName="Application_Primary_Contact__c" /></td>
+					 <td><lightning:outputField variant="label-inline"  fieldName="Application_Stage__c" /></td>
+				  </tr>
+				    <tr >
+					<td> <lightning:outputField variant="label-inline"  fieldName="Application_Primary_Contact__c" /></td>
+					 <td><lightning:outputField variant="label-inline"  fieldName="Reason_for_Disqualification__c" /></td>
+				  </tr>
+				</table>
+	 	<table style="width:100%" class="table">
+  <tr >
+	<th class="th">Venture Overview</th>
+	<td class="td"> <lightning:outputField variant="label-hidden"  fieldName="Venture_Overview_Briefly_describe_your__c" /></td>
+  </tr>
+  <tr>
+	<th class="th">Technology Overview</th>
+	<td class="td"> <lightning:outputField variant="label-hidden"  fieldName="Technology_Overview__c" /></td>
+  </tr>
+  <tr>
+	<th class="th">Product/Service Overview</th>
+	<td class="td"> <lightning:outputField variant="label-hidden"  fieldName="Product_Service_Overview_Briefly_descri__c" /></td>
+  </tr>
+   <tr>
+	<th class="th">Describe a Single Customer</th>
+	<td class="td"> <lightning:outputField variant="label-hidden"  fieldName="Describe_a_single_customer_and_how_they__c" /></td>
+  </tr>
+	  <tr>
+	<th class="th">Customer Value Proposition</th>
+	<td class="td"> <lightning:outputField variant="label-hidden"  fieldName="What_is_the_value_proposition_for_this_s__c" /></td>
+  </tr>
+	 <tr>
+	<th class="th">Have a Working Prototype?</th>
+	<td class="td">   <lightning:outputField variant="label-hidden"  fieldName="Do_you_have_a_working_prototype_Can_you__c" /></td>
+  </tr>
+	  <tr>
+	<th class="th">How Do You Sell to Your Customer?</th>
+	<td class="td">     <lightning:outputField variant="label-hidden"  fieldName="How_do_you_sell_to_your_customer__c" /></td>
+  </tr>
+    <tr>
+	<th class="th">Who else is selling to your Customer?</th>
+	<td class="td">      <lightning:outputField variant="label-hidden"  fieldName="Who_else_is_selling_to_your_customer_Wh__c" /></td>
+  </tr>
+    <tr>
+	<th class="th">Long-Term Vision of Company</th>
+	<td class="td">    <lightning:outputField variant="label-hidden"  fieldName="What_is_the_long_term_vision_of_your_com__c" /></td>
+  </tr>
+   <tr>
+	<th class="th">How Do You Plan to Protect your Ideas?</th>
+	<td class="td">     <lightning:outputField variant="label-hidden"  fieldName="How_do_you_plan_to_protect_your_idea_fro__c" /></td>
+  </tr>
+   <tr>
+	<th class="th">Single Most Important Dimension</th>
+	<td class="td">     <lightning:outputField variant="label-hidden"  fieldName="What_is_the_single_most_important_dimens__c" /></td>
+  </tr>
+   <tr>
+	<th class="th">How Do You Think CDL Can Help?</th>
+	<td class="td">   <lightning:outputField variant="label-hidden"  fieldName="How_do_you_think_the_Creative_Destructio__c" /></td>
+  </tr>
+    <tr>
+	<th class="th">Have You Generated Any Revenue?</th>
+	<td class="td"> <lightning:outputField variant="label-hidden"  fieldName="Have_you_generated_any_revenue_If_so_h__c" /></td>
+  </tr>
+    <tr>
+	<th class="th">Time and Money Already Spent</th>
+	<td class="td">  <lightning:outputField variant="label-hidden"  fieldName="How_much_time_and_money_have_you_already__c" /></td>
+  </tr>
+      <tr>
+	<th class="th">Have You Raised Any Money?</th>
+	<td class="td">  <lightning:outputField variant="label-hidden"  fieldName="Have_you_raised_any_money_If_so_how_mu__c" /></td>
+  </tr>
+     <tr>
+	<th class="th">Have You Received Any Grant Funding?</th>
+	<td class="td"> <lightning:outputField variant="label-hidden"  fieldName="Have_you_received_any_grant_funding_If__c" /></td>
+  </tr>
+      <tr>
+	<th class="th">Affiliated w/ Other Program/Institution</th>
+	<td class="td">   <lightning:outputField variant="label-hidden"  fieldName="Do_you_have_affiliation_with_any_other_p__c" /></td>
+  </tr>
+     <tr>
+	<th class="th">Reason for Machine Learning Algorithm</th>
+	<td class="td">   <lightning:outputField variant="label-hidden"  fieldName="Why_is_it_crucial_to_have_a_sophisticate__c" /></td>
+  </tr>
+    <tr>
+	<th class="th">Machine-Learning Problem Description</th>
+	<td class="td">  <lightning:outputField variant="label-hidden"  fieldName="Describe_the_machine_learning_problem_yo__c" /></td>
+  </tr>
+      <tr>
+	<th class="th">What Kind of Data Do You Have Access To?</th>
+	<td class="td">     <lightning:outputField variant="label-hidden"  fieldName="What_kind_of_data_do_you_have_access_to__c" /></td>
+  </tr>
+      <tr>
+	<th class="th">How Long Founders Have Known One Another</th>
+	<td class="td">  <lightning:outputField variant="label-hidden"  fieldName="How_Long_Founders_Have_Known_One_Another__c" /></td>
+  </tr>
+     <tr>
+	<th class="th">Does Your Venture Have Any Advisors?</th>
+	<td class="td">    <lightning:outputField variant="label-hidden"  fieldName="Does_your_venture_have_any_advisors_If__c" /></td>
+  </tr>
+	  </table>
+            </lightning:recordViewForm><br/>
+                 <aura:if isTrue="{!v.contacts}">
+                     
+                  <aura:iteration items="{!v.contacts}" var="con" >
+                      <h1><b>Contact Information</b></h1>
+                 <table style="width:100%" class="table">
+                  <tr >
+                    <th class="th">Name</th>
+                    <td class="td">{!con.Name}</td>
+                  </tr>
+                  <tr>
+                    <th class="th">Email</th>
+                    <td class="td">{!con.Email}</td>
+                  </tr>
+                  <tr>
+                    <th class="th">Hours Spent on Venture in Last 30 Days</th>
+                    <td class="td">{!con.Hours_Spent_on_Venture_in_Last_30_Days__c}</td>
+                  </tr>
+                   <tr>
+                    <th class="th">Intended Hrs Per Month Working on Venture over Next 8 Months</th>
+                    <td class="td">{!con.Hrs_Expected_on_Venture_for_Next_8_Mths__c}</td>
+                  </tr>
+                      <tr>
+                    <th class="th">Relevant Experience </th>
+                    <td class="td">{!con.Relevant_Experience__c}</td>
+                  </tr>
+                     <tr>
+                    <th class="th">Key Awards and Achievements </th>
+                    <td class="td">{!con.Key_Awards_and_Achievements__c}</td>
+                  </tr>
+                      <tr>
+                    <th class="th">Importance for the Venture</th>
+                    <td class="td">{!con.Why_Co_Founder_is_Important_for_Venture__c}</td>
+                  </tr>
+                      </table><br/>
+                  <aura:if isTrue="{!con.Education__r}">
+                      <h1><b>Education</b></h1>
+                 <table style="width:100%" class="table">
+                     <aura:iteration items="{!con.Education__r}" var="education" >
+                         <tr>
+                            <th class="th">Degree</th>
+                            <th class="th">Institute</th>
+                            <th class="th">Specialization</th>
+                             <th class="th">Graduation Year</th>
+                            <th class="th">GPA</th>
+                          </tr>
+                         <tr>
+                             <td class="td">{!education.Degree__c}</td>
+                             <td class="td">{!education.Institute__c}</td>
+                             <td class="td">{!education.Specialization__c}</td>
+                             <td class="td">{!education.Graduation_Year__c}</td>
+                             <td class="td">{!education.GPA__c}</td>
+                         </tr>
+                     </aura:iteration>
+                      </table><br/>
+                      </aura:if>  
+                </aura:iteration>
+              </aura:if>   
+                     </aura:if>
+            </lightning:layoutItem>
+     	
+             
+              <lightning:layoutItem padding="around-small" class="right-align" size="4">
+                   <aura:if isTrue="{!v.recordId}">
+                          <u style="color: rgba(156, 27, 83, 1);"><p Style="background-color: white;text-align: center;font-size: large;color: rgba(156, 27, 83, 1);">Evaluation</p></u>
+              <br/>
+                        <lightning:recordEditForm
+            onload="{!c.handleLoad}"
+            onsubmit="{!c.handleSubmit}"
+            onsuccess="{!c.handleSuccess}"
+            recordId="{!v.recordId}"
+            objectApiName="Evaluation__c">
+            <!-- the messages component is for error messages -->
+            <lightning:messages />
+
+            <lightning:inputField variant="label-inline" fieldName="Recommendation_Reasoning__c" />
+            <lightning:inputField variant="label-inline" fieldName="Explainyourreasoning__c" />
+            <div class="slds-m-top_medium">
+                <lightning:button variant="brand" type="submit" name="save" label="Save" />
+            </div>
+        </lightning:recordEditForm>
+                    </aura:if>
+       			
+                   </lightning:layoutItem>
+       <lightning:layoutItem padding="around-small" class="analysisleft-align" size="6">
+           	<aura:if isTrue="{!v.recordId}">
+             <u style="color: rgba(156, 27, 83, 1);"> <p style="font-size: large;color: rgba(156, 27, 83, 1);">Analysis</p></u><br/>
+             <!--  <lightning:formattedNumber class="analysis" style="percent" value="{!(v.analysisReportMap.admitted)/(v.analysisReportMap.TotalApps)}"/>
+                --> <p>There are <b>{!v.analysisReportMap.TotalApps}</b> number of applications that have <b>{!v.numberOfApplicants}</b> contacts and out of them <b>{!v.analysisReportMap.admitted}</b> are admitted</p>
+                </aura:if>
+           </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="4">
+                </lightning:layoutItem>
+        </lightning:layout>
+    </lightning:card>
+    
+</aura:component>

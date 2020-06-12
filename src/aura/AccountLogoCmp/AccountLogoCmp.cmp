@@ -1,0 +1,5 @@
+<aura:component controller="GetAccountImageHandler" implements="forceCommunity:availableForAllPageTypes" access="global" >
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+        <aura:attribute name="acctObj" type="Account"/>
+   <ui:outputRichText aura:id="outputRT" value="{!v.acctObj.Account_Logo__c}" class="logoCss"/>
+</aura:component>

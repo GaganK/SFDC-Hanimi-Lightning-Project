@@ -1,0 +1,552 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <div>
+    <h3>Artificial Intelligence</h3>
+    <div class="slds-grid">
+    <div class="slds-col slds-p-around_medium slds-size_1-of-2">
+    <div class="slds-grid">
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4">
+    <article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article>
+    </div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div></div>
+    
+    
+    <div class="slds-grid">
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div></div>
+    <div class="slds-grid">
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div></div>
+    
+    
+    </div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-2">
+    <div class="slds-grid">
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div></div>
+    <div class="slds-grid">
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div></div>
+        
+        
+    <div class="slds-grid">
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-size_1-of-4"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div></div>
+    </div>
+    </div>
+        
+        
+    <h3>Space</h3>
+    <div class="slds-grid">
+    <div class="slds-col  slds-p-around_medium slds-medium-size_1-of-3 slds-large-size_1-of-5"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-medium-size_1-of-3 slds-large-size_1-of-5"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-medium-size_1-of-3 slds-large-size_1-of-5"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-medium-size_1-of-3 slds-large-size_1-of-5"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    <div class="slds-col slds-p-around_medium slds-medium-size_1-of-3 slds-large-size_1-of-5"><article class="slds-card hovereffect">
+    <figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+    
+    <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+    </div>
+    </figure>
+    <div class="course-detail">
+    <div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+    <a href="#">
+    <h3 class="course-title">Reading 1</h3>
+    </a>
+    
+    </div>
+    </div>
+    </article></div>
+    </div>
+    </div>
+    </aura:component>

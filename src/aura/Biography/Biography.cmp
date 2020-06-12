@@ -1,0 +1,14 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_4-of-12 pdall">
+        <img src="{! $Resource.AjayAgarwalImg}" alt="Description of the image"/>
+        </div>
+         <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_8-of-12 pdall ">
+             <div class="hr-bio">
+        <h1 class="title">Ajay Agrawal</h1>
+            <p class="subtitle">Founder, Creative Destruction Lab | Professor, Rotman School of Management </p>
+                 <p class="descriptiontitle">Ajay Agrawal is the Peter Munk Professor of Entrepreneurship at the University of Toronto’s Rotman School of Management, Research Associate at the National Bureau of Economic Research in Cambridge, MA, Co-Founder of The Next 36, and Founder of the Creative Destruction Lab. He teaches courses on business strategy, innovation, and entrepreneurship. He has been recognized as “Professor of the Year” by the graduating MBA class seven times. Professor Agrawal conducts research on the economics of innovation and creativity. He has presented this work at a variety of institutions, including Harvard, MIT, Stanford, London Business School, Wharton, London School of Economics, Carnegie Mellon, Berkeley, The Brookings Institution, the National Press Club in Washington, the World Intellectual Property Organization in Geneva, Industry Canada, and the Federal Reserve Bank, among others. Professor Agrawal advises firms and governments in fields related to innovation and strategy and has testified as an expert witness on related topics. He is the Founder and Academic Director of the Creative Destruction Lab.</p>
+                 </div>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,17 @@
+.THIS .boxClass{
+   width: 90%;
+    padding-bottom: 20%;
+    background: rgba(204, 204, 204, 0.21);
+    border: 0px;
+    margin-bottom: 0rem;
+}
+@media only screen and (max-width: 500px){
+    .THIS .tabsetvariant{
+        display: contents !important;
+    }
+    .THIS .slds-vertical-tabs__nav {
+    /* width: 6rem; */
+    display: flex;
+    width: 100%;
+}
+}

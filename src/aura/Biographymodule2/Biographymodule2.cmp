@@ -1,0 +1,14 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_4-of-12 pdall">
+        <img src="{! $Resource.dot}" alt="Description of the image"/>
+        </div>
+         <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_8-of-12 pdall ">
+             <div class="hr-bio">
+        <h1 class="title">Francesco Bova</h1>
+            <p class="subtitle">Founder, Creative Destruction Lab | Professor, Rotman School of Management </p>
+                 <p class="descriptiontitle">Francesco is an Associate Professor of Accounting at Rotman. Francesco has diverse research interests, and has focused most recently on issues related to equity-based compensation and gray markets. Francesco has papers forthcoming or published in a variety of top journals including: The Accounting Review, Journal of Financial Economics, Contemporary Accounting Research, Marketing Science, and Production and Operations Management. Francesco is a former recipient of the Dean’s Award for Excellence in Teaching and the GBC Instructor Award for Full-Time Courses.</p>
+                 </div>
+        </div>
+    </div>
+</aura:component>

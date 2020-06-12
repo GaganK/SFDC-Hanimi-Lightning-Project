@@ -1,0 +1,15 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_4-of-12 pdall">
+            <img src="{! $Resource.joshuaGans}" alt="Description of the image"/>
+        </div>
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_8-of-12 pdall ">
+            <div class="hr-bio">
+                <h1 class="title">Joshua Gans</h1>
+                <p class="subtitle">Professor, Rotman School of Management &amp; Chief Economist, Creative Destruction Lab</p>
+                <p class="descriptiontitle">Joshua Gans is Professor of Strategic Management and holder of the Jeffrey S. Skoll Chair of Technical Innovation and Entrepreneurship at the Rotman School of Management, University of Toronto (with a cross appointment in the Department of Economics). Prior to 2011, he was the foundation Professor of Management (Information Economics) at the Melbourne Business School, University of Melbourne and prior to that he was at the School of Economics, University of New South Wales. In 2011, Joshua was a visiting researcher at Microsoft Research (New England). Joshua holds a PhD from Stanford University and an honors degree in economics from the University of Queensland. In 2012, Joshua was appointed as a Research Associate of the NBER in the Productivity, Innovation, and Entrepreneurship Program. He is the Chief Economist of the Creative Destruction Lab.</p>
+               
+            </div>
+        </div>
+    </div>
+</aura:component>

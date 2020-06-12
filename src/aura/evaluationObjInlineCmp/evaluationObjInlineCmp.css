@@ -1,0 +1,7 @@
+.THIS .inputFieldWidth {
+     width:100% !important;
+}
+.THIS .unsavedCls{
+       border: 1px solid black;
+  border-collapse: collapse;
+}

@@ -1,0 +1,39 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global"
+                controller="downloadAttachementsCtrl">
+    <!--aura doInit handler--> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!--aura attributes-->  
+    <aura:attribute name="lstAttachments" type="List"/>
+     <aura:attribute name="cbaseURL" type="String"/>
+    
+    <!-- Custom DataTable to Display List Of Available current community user related files Start-->  
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="slds-text-title_caps" scope="col">
+                    <div class="slds-truncate" title="Title">Relevant Documents</div>
+                </th>
+               <!-- <th class="slds-text-title_caps" scope="col">
+                    <div class="slds-truncate" title="Created By">Created By</div>
+                </th>-->
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.lstAttachments}" var="attach">
+                <tr>
+                    <th scope="row">
+                        <div class="slds-truncate" title="{!attach.Title}">
+                                    <a href="{!v.cbaseURL+'/sfc/servlet.shepherd/document/download/'+attach.Id}" target="_blank">{!attach.Title}</a>
+                        </div>
+                    </th>
+                   <!-- <th scope="row">
+                        <div class="slds-truncate" title="{!attach.CreatedBy.Name}">{!attach.CreatedBy.Name}</div>
+                    </th>-->
+                </tr>  
+            </aura:iteration>
+        </tbody>
+    </table>
+    <!-- Custom DataTable to Display List Of Availablecurrent community user related files End-->     
+</aura:component>

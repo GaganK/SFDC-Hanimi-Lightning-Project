@@ -1,0 +1,603 @@
+<aura:component controller="myevaluationListController">
+   <aura:registerEvent name="UpdatedEvalRecs" type="c:myappEvaluationEvent"></aura:registerEvent>
+ <div style="display:none" class="unsavedCls"> <lightning:unsavedChanges aura:id="unsavedData"
+                              onsave="{!c.handleSave}"
+                              ondiscard="{!c.handleDiscard}"/></div>
+    <aura:attribute name="showSaveCancelBtn" type="boolean"/>
+    <aura:attribute name="showErrorClass" type="boolean" default="false"/>
+       <aura:attribute name="totalScore" type="integer" default="0"/>
+    <aura:attribute name="updatedApplications" type="Application__c[]" default="[]"/>
+     <aura:attribute name="updatedEvaluations" type="Evaluation__c[]" default="[]"/>
+     <aura:attribute name="evaluationRec" type="sobject" default="{'sobjectType' : 'Evaluation__c',
+                                                                  'EvaluatorsRanking__c' : '',
+                                                                  'Flag__c':'',
+                                                                  'Superstar_Potential__c':'',
+                                                                  'Tech_Review__c':'',
+                                                                  'Business_Review__c':''}"/>
+     <aura:attribute name="appRec" type="sobject" default="{'sobjectType' : 'Application__c'
+                                                            }"/>
+
+    <aura:attribute name="selectedColumnsInfo" type="object" default="{}"/>
+
+    <aura:attribute name="rankingEditMode" type="boolean" default="false" />
+    <aura:attribute name="recommendedIntEditMode" type="boolean" default="false" />
+    <aura:attribute name="streamRecommendEditMode" type="boolean" default="false" />
+	 <aura:attribute name="superstarPotentialEditMode" type="boolean" default="false" />
+    <aura:attribute name="superstarPotentialCommentsEditMode" type="boolean" default="false" />
+	 <aura:attribute name="techReviewEditMode" type="boolean" default="false" />
+    <aura:attribute name="techReviewCommentsEditMode" type="boolean" default="false" />
+	 <aura:attribute name="businessReviewEditMode" type="boolean" default="false" />
+    <aura:attribute name="businessReviewCommentsMode" type="boolean" default="false" />
+    <aura:attribute name="commentsEditMode" type="boolean" default="false" />
+    <aura:attribute name="flagEditMode" type="boolean" default="false" />
+    <aura:attribute name="otherflagEditMode" type="boolean" default="false" />
+    <aura:attribute name="generalCommentsEditMode" type="boolean" default="false" />
+    <aura:attribute name="techStreamEditMode" type="boolean" default="false" />
+    <aura:attribute name="refOtherSiteEditMode" type="boolean" default="false" />
+    <aura:attribute name="reasonforRecommendEditMode" type="boolean" default="false" />
+    <aura:attribute name="recommendedIntoptions" type="List" />
+    <aura:attribute name="streamRecommendoptions" type="List" />
+    <aura:attribute name="techStreamoptions" type="List" />
+     <aura:attribute name="flagoptions" type="List" />
+    <aura:attribute name="refOtherSiteoptions" type="List" />
+     <aura:attribute name="evalIds" type="List" default="[]"/>
+        <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>    
+
+   <td  role="gridcell" class="{!v.selectedColumnsInfo.finalRank ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="ranking">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.rankingEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.finalRank ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.EvaluatorsRanking__c}
+					</div>	
+              <lightning:buttonIcon aura:id="ranking" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="width:auto;top: 0px" >
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                        <!--<ui:inputText  class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      aura:id="rankingInput"
+                                                      value="{!v.evaluationRec.EvaluatorsRanking__c}"
+                                                       Placeholder = "{!v.evaluationRec.EvaluatorsRanking__c}"
+                                                      />-->
+                                       <lightning:input type="text" accesskey="rankingEditMode" onmouseout="{!c.closeInlineEditIcon}" name="rankingInput" aura:id="rankingInput"  label="" value="{!v.evaluationRec.EvaluatorsRanking__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>
+	<td role="gridcell" class="{!v.selectedColumnsInfo.totalScore ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsInfo.totalScore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+				<!--	{!v.evaluationRec.Application__r.Overall_Score__c}-->
+   
+                    {!v.totalScore}
+															</div>
+														</td>
+<td  role="gridcell" class="{!v.selectedColumnsInfo.superstarPotential ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.superstarPotentialEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.superstarPotential ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Superstar_Potential__c}
+					</div>	
+              <lightning:buttonIcon aura:id="superstarpotential" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="width:auto;top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                     <!--  <ui:inputNumber class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      aura:id="superstarpotentialInt"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      label=""
+                                                      value="{!v.evaluationRec.Superstar_Potential__c}"
+                                                       Placeholder = "{!v.evaluationRec.Superstar_Potential__c}"
+                                                      />-->
+									 <lightning:input type="number" accesskey="superstarPotentialEditMode" onmouseout="{!c.closeInlineEditIcon}" name="superstarpotentialInt" aura:id="superstarpotentialInt"  label="" value="{!v.evaluationRec.Superstar_Potential__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+   </td>
+<td  role="gridcell" class="{!v.selectedColumnsInfo.superstarPotentialComments ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.superstarPotentialCommentsEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.superstarPotentialComments ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Comments_Superstar_Potential__c}
+					</div>	
+              <lightning:buttonIcon aura:id="superstarPotentialComments" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" >
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                      <!-- <ui:inputTextArea class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      aura:id="superstarPotentialCommentsInt"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      label=""
+                                                      required="true"
+													  rows="5"
+                                                      value="{!v.evaluationRec.Comments_Superstar_Potential__c}"
+                                                       Placeholder = "{!v.evaluationRec.Comments_Superstar_Potential__c}"
+                                                      />-->
+										 <lightning:textarea   name="superstarPotentialCommentsInt" aura:id="superstarPotentialCommentsInt" accesskey="superstarPotentialCommentsEditMode" onmouseout="{!c.closeInlineEditIcon}" label="" value="{!v.evaluationRec.Comments_Superstar_Potential__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+   </td>
+
+<td  role="gridcell" class="{!v.selectedColumnsInfo.techReview ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.techReviewEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.techReview ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Tech_Review__c}
+					</div>	
+              <lightning:buttonIcon aura:id="techReview" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="width:auto;top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                      <!-- <ui:inputNumber class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      aura:id="techReviewInt"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      label=""
+                                                      required="true"
+                                                      value="{!v.evaluationRec.Tech_Review__c}"
+                                                       Placeholder = "{!v.evaluationRec.Tech_Review__c}"
+                                                      />-->
+													  
+									 <lightning:input type="number" name="techReviewInt" aura:id="techReviewInt"  accesskey="techReviewEditMode" onmouseout="{!c.closeInlineEditIcon}" label="" value="{!v.evaluationRec.Tech_Review__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+   </td>
+<td  role="gridcell" class="{!v.selectedColumnsInfo.techReviewComments ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.techReviewCommentsEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.techReviewComments ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Comments_Tech_Review__c}
+					</div>	
+              <lightning:buttonIcon aura:id="techReviewComments" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" >
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                      <!-- <ui:inputTextArea class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      aura:id="techReviewCommentsInt"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      label=""
+                                                      required="true"
+													  rows="5"
+                                                      value="{!v.evaluationRec.Comments_Tech_Review__c}"
+                                                       Placeholder = "{!v.evaluationRec.Comments_Tech_Review__c}"
+                                                      />-->
+										 
+	 
+										<lightning:textarea   name="techReviewCommentsInt" aura:id="techReviewCommentsInt"  accesskey="techReviewCommentsEditMode" onmouseout="{!c.closeInlineEditIcon}" label="" value="{!v.evaluationRec.Comments_Tech_Review__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+   </td>
+
+<td  role="gridcell" class="{!v.selectedColumnsInfo.businessReview ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.businessReviewEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.businessReview ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Business_Review__c}
+					</div>	
+              <lightning:buttonIcon aura:id="businessReview" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="width:auto;top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                     <!--  <ui:inputNumber class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      aura:id="businessReviewInt"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      label=""
+                                                      required="true"
+                                                      value="{!v.evaluationRec.Business_Review__c}"
+                                                       Placeholder = "{!v.evaluationRec.Business_Review__c}"
+                                                      />-->
+										 <lightning:input type="number" accesskey="businessReviewEditMode" onmouseout="{!c.closeInlineEditIcon}" name="businessReviewInt" aura:id="businessReviewInt"  label="" value="{!v.evaluationRec.Business_Review__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+   </td>
+<td  role="gridcell" class="{!v.selectedColumnsInfo.businessReviewComments ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.businessReviewCommentsMode == false}">
+					<div class="{!v.selectedColumnsInfo.businessReviewComments ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Comments_Business_Review__c}
+					</div>	
+              <lightning:buttonIcon aura:id="businessReviewComments" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                      <!-- <ui:inputTextArea class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      aura:id="businessReviewCommentsInt"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      label=""
+                                                      required="true"
+													  rows="5"
+                                                      value="{!v.evaluationRec.Comments_Business_Review__c}"
+                                                       Placeholder = "{!v.evaluationRec.Comments_Business_Review__c}"
+                                                      />-->
+										  <lightning:textarea   name="businessReviewCommentsInt" aura:id="businessReviewCommentsInt"  accesskey="businessReviewCommentsMode" onmouseout="{!c.closeInlineEditIcon}" label="" value="{!v.evaluationRec.Comments_Business_Review__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+   </td>
+<td  role="gridcell" class="{!v.selectedColumnsInfo.oneLineDescription ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <div class="{!v.selectedColumnsInfo.oneLineDescription ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.appRec.One_line_description__c}
+					</div>
+            </span>
+</td>		
+ <td  role="gridcell" class="{!v.selectedColumnsInfo.interviewRecommendation ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.recommendedIntEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.interviewRecommendation ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Recommend_Interview_2__c}
+					</div>	
+              <lightning:buttonIcon aura:id="recommendedInt" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                        <lightning:select aura:id="recommendedIntId" accesskey="recommendedIntEditMode" onblur="{!c.closeInlineEditIcon}" class="slds-input inputFieldWidth"  onchange="{!c.onValueChange}" value="{!v.evaluationRec.Recommend_Interview_2__c}">
+                                             <aura:iteration items="{!v.recommendedIntoptions}" var="item">
+                                                <option text="{!item.label}" value="{!item.value}"/>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+   </td>
+    <td role="gridcell" class="{!v.selectedColumnsInfo.ReasonList ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}">
+        <div class="{!v.selectedColumnsInfo.ReasonList ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">  
+            {!v.appRec.Reason_for_Disqualification__c}
+        </div>
+    </td>
+    <!--<td  role="gridcell" class="{!v.selectedColumnsInfo.flag ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <aura:if isTrue="{!v.flagEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.flag ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Flag__c}
+					</div>	
+              <lightning:buttonIcon aura:id="flag" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" onmouseout="{!c.closeInlineEditIcon}">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                        <lightning:select   class="slds-input inputFieldWidth"  onblur="{!c.closeInlineEditIcon}" onchange="{!c.onValueChange}" value="{!v.evaluationRec.Flag__c}">
+                                             <aura:iteration items="{!v.flagoptions}" var="item">
+                                                <option text="{!item.label}" value="{!item.value}" selected="{!v.evaluationRec.Flag__c}"/>
+                                            </aura:iteration>
+                                        </lightning:select>
+       
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>-->
+	 <td  role="gridcell" class="{!v.selectedColumnsInfo.finalStreamRecommendation ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.streamRecommendEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.finalStreamRecommendation ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Stream_Recommendation__c}
+					</div>	
+              <lightning:buttonIcon aura:id="streamRecommend" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" >
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                          <lightning:select aura:id="streamRecommendId" class="slds-input inputFieldWidth"  accesskey="streamRecommendEditMode" onblur="{!c.closeInlineEditIcon}" onchange="{!c.onValueChange}" value="{!v.evaluationRec.Stream_Recommendation__c}">
+                                             <aura:iteration items="{!v.streamRecommendoptions}" var="item">
+                                                <option text="{!item.label}" value="{!item.value}" />
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>
+
+ <td  role="gridcell" class="{!v.selectedColumnsInfo.CommentsBox ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.commentsEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.CommentsBox ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Comments__c}
+					</div>	
+              <lightning:buttonIcon aura:id="comments" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" >
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                        <!--<ui:inputTextArea  class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      aura:id="commentsInput"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      label=""
+                                                      required="true"
+                                                      value="{!v.evaluationRec.Comments__c}"
+                                                       Placeholder = "{!v.evaluationRec.Comments__c}"
+                                                      />-->
+										  <lightning:textarea   accesskey="commentsEditMode" onmouseout="{!c.closeInlineEditIcon}" name="commentsInput" aura:id="commentsInput" label="" value="{!v.evaluationRec.Comments__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>
+
+
+  <!--<aura:if  isTrue="{!v.evaluationRec.Flag__c=='Other'}" >
+ <td  role="gridcell" class="{!v.selectedColumnsInfo.otherFlag ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <aura:if isTrue="{!v.otherflagEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.otherFlag ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Other_Flag__c}
+					</div>	
+              <lightning:buttonIcon aura:id="otherflag" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />p 
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" onmouseout="{!c.closeInlineEditIcon}">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+            
+										 <lightning:input type="text" name="otherflagInput" aura:id="otherflagInput"  onblur="{!c.closeInlineEditIcon}" label="" value="{!v.evaluationRec.Other_Flag__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>
+ </aura:if>-->
+ <td  role="gridcell" class="{!v.selectedColumnsInfo.techScreening ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.techStreamEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.techScreening ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Tech_Screening_Recommendation__c}
+					</div>	
+              <lightning:buttonIcon aura:id="techStream" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" >
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                        <lightning:select aura:id="techStreamId" class="slds-input inputFieldWidth" accesskey="techStreamEditMode" onblur="{!c.closeInlineEditIcon}"  onchange="{!c.onValueChange}" value="{!v.evaluationRec.Tech_Screening_Recommendation__c}">
+                                             <aura:iteration items="{!v.techStreamoptions}" var="item">
+                                                <option text="{!item.label}" value="{!item.value}" />
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>
+
+ <td  role="gridcell" class="{!v.selectedColumnsInfo.referOtherSite ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.refOtherSiteEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.referOtherSite ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Refer_to_Other_Site__c}
+					</div>	
+              <lightning:buttonIcon aura:id="refOtherSite" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                    <lightning:select aura:id="refOtherSiteId" class="slds-input inputFieldWidth"  accesskey="refOtherSiteEditMode" onblur="{!c.closeInlineEditIcon}"  onchange="{!c.onValueChange}" value="{!v.evaluationRec.Refer_to_Other_Site__c}">
+                                             <aura:iteration items="{!v.refOtherSiteoptions}" var="item">
+                                                <option text="{!item.label}" value="{!item.value}" />
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>
+ <td  role="gridcell" class="{!v.selectedColumnsInfo.reasonforRecommendation ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="recommendedInt">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.reasonforRecommendEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.reasonforRecommendation ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.evaluationRec.Reason_for_Recommending_Other_Site__c}
+					</div>	
+              <lightning:buttonIcon aura:id="reasonforRecommend" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="width:auto;top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                       <!-- <ui:inputText  class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      aura:id="reasonforRecommendInput"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      mouseout="{!c.closeInlineEditIcon}"
+                                                      label=""
+                                                      required="true"
+                                                      value="{!v.evaluationRec.Reason_for_Recommending_Other_Site__c}"
+                                                      />-->
+										 <lightning:input type="text"  accesskey="reasonforRecommendEditMode" onmouseout="{!c.closeInlineEditIcon}" name="reasonforRecommendInput" aura:id="reasonforRecommendInput"  label="" value="{!v.evaluationRec.Reason_for_Recommending_Other_Site__c}" onchange="{!c.onValueChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>
+</aura:component>

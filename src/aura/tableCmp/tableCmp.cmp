@@ -1,0 +1,123 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+	
+    <div class="slds-grid" style="width: 100%;
+    overflow: hidden;">
+        <div class="slds-col slds-size_1-of-12">
+       <table class="slds-table slds-table_cell-buffer slds-table_bordered fixedtable slds-table_striped" >
+           <thead>
+           <tr class="slds-line-height_reset" >				
+                                            <th scope="col" class="headerClr">
+                                                <div class="slds-truncate" title="Acct #"></div>
+                                            </th>
+                                            <th scope="col" class="headerClr">
+                                                <div class="slds-truncate" title="Venture Name">Venture Name</div>
+                                            </th>
+               </tr>           </thead><tbody>
+               <tr class="slds-line-height_reset">
+               <td class="">1</td>
+               <td clas="">Atomos</td>
+               </tr>
+               <tr class="slds-line-height_reset">
+               <td class="">1</td>
+               <td clas="">Atomos</td>
+               </tr>
+               <tr class="slds-line-height_reset">
+               <td class="">1</td>
+               <td clas="">Atomos</td>
+               </tr>
+               <tr class="slds-line-height_reset">
+               <td class="">1</td>
+               <td clas="">Atomos</td>
+               </tr>
+               <tr class="slds-line-height_reset">
+               <td class="">1</td>
+               <td clas="">Atomos</td>
+               </tr>
+</tbody>
+            </table></div>
+       <div class="slds-col slds-size_11-of-12" style="overflow: scroll;
+    display: block;">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-scrollable slds-table_striped" style="overflow-x: scroll;">
+           <thead>
+            <tr class="slds-line-height_reset">
+<th class="cell100 column2">Position</th>
+<th class="cell100 column3">Start date</th>
+<th class="cell100 column4">Last Activity</th>
+<th class="cell100 column5">Contacts</th>
+<th class="cell100 column6">Age</th>
+<th class="cell100 column7">Address</th>
+<th class="cell100 column8">Card No</th>
+ <th class="cell100 column6">Age</th>
+<th class="cell100 column7">Address</th>
+<th class="cell100 column8">Card No</th>
+</tr>
+            </thead>
+            <tbody>
+            <tr class="slds-line-height_reset">
+                <td class="cell100 column2">CMO</td>
+               <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">CMO</td>
+                </tr>
+                
+                            <tr class="slds-line-height_reset">
+               <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CsdfdsaO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                </tr>
+                
+                 <tr class="slds-line-height_reset">
+               <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CsdfdsaO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                </tr>
+                
+                 <tr class="slds-line-height_reset">
+               <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CsdfdsaO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                </tr>
+                
+                 <tr class="slds-line-height_reset">
+               <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CsdfdsaO</td>
+                <td class="cell100 column2">sdfdsa</td>
+                <td class="cell100 column2">CMO</td>
+                </tr>
+            
+            </tbody>
+           
+           </table>
+        </div>
+        </div>
+  
+</aura:component>

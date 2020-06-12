@@ -1,0 +1,77 @@
+.THIS.headerClr {
+   background-color: #ed047b !important;
+    color : white;
+}
+.THIS .slds-size_1-of-12{
+  
+   display: contents;
+}
+.THIS .cAccountListCmp p.slds-cell-wrap {
+    padding-right: .3rem;
+    font-size: .9rem;
+    text-align: center;
+}
+.THIS table{
+   box-shadow: 2px 3px 5px 0px rgba(228, 32, 118, 0.21);
+  display: block;
+    width: 100%;
+   max-height: 560px;
+    overflow-x: auto;
+}
+.THIS .Namecell{
+    width:20px;
+}
+.THIS tbody th:hover {
+ font-size: 1.0025rem;
+    transition: 0.3s;
+}
+.THIS .descriptionCell{
+        max-width: 45rem;
+     text-align: justify;
+}
+
+.THIS span.slds-grid.slds-grid_align-spread {
+    min-width: 5rem;
+}
+.THIS .slds-table--header-fixed_container {
+    position: relative;
+   padding-top: 3.2rem!important;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+}
+.THIS th {
+    font-size: 1.0025rem;
+}
+.THIS .colfonttype{
+    padding-right:7px !important;
+    width: 100% !important;
+}
+.THIS #partner {
+    padding-top: 0px !important;
+}
+.THIS .cardfonttype{
+    width: 100%;
+    display: block;
+}
+
+.THIS .slds-table thead th {
+   
+    color: #e42076;
+   
+    font-weight: inherit;
+   font-size: 1.0025rem;
+}
+.THIS tr {
+    border-bottom: 1px solid rgba(228,35,120,0.28);
+}
+.THIS .headtrucnate {
+   background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 0px;
+   max-width: 100px;
+    min-height: 2rem;
+}
+@media only screen and (max-width: 700px){
+.THIS .headtrucnate {
+    position: inherit !important;
+    }}

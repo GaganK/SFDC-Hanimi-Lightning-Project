@@ -1,0 +1,132 @@
+.THIS .cp-text{
+    font-size: 16px;
+    background-color: #e81f76;
+    color: #ffffff;
+    padding: 1rem 1.5rem;   
+    margin-top: 30px;
+}
+.THIS a{
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 0 8px;
+    padding-top: 4px;
+    transition: all .5s;
+}
+.THIS .mg-tp{
+    margin-top:10px;
+    font-family: Tw Cen MT !important;
+    font-size: 22px;
+}
+.THIS a span{
+  background: #fff;
+  color: #222;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  left: -25px;
+  right: -25px;
+  padding: 5px 7px;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+}
+
+.THIS a span:before{
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+  position: absolute;
+  bottom: -5px;
+  left: 40px;
+}
+.THIS a:hover span{
+  bottom: 50px;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* hover over the icons now to see the tooltips! */
+.THIS a.facebook:hover{
+  background-color: #4183d7;
+  color: #bfbfbf;
+}
+.THIS a.facebook span{
+  color: #4183d7;
+}
+.THIS a.twitter:hover{
+  background-color: #19b5fe;
+  color: #fff;
+}
+.THIS a.twitter span{
+  color: #19b5fe;
+}
+.THIS a.github:hover{
+  background-color: #000;
+  color: #fff;
+}
+.THIS a.github span{
+  color: #000;
+}
+.THIS a.dribble:hover{
+  background-color: #f62459;
+  color: #fff;
+}
+.THIS a.dribble span{
+  color: #f62459;
+}
+.THIS a.pinterest:hover{
+  background-color: #f22613;
+  color: #fff;
+}
+.THIS a.pinterest span{
+  color: #f22613;
+}
+.THIS .swap-on-hover {
+  position: relative;	
+	margin:  0 auto;
+	max-width: 38px;
+}
+
+/* Select the image and make it absolute to the container */
+.THIS .swap-on-hover img {
+  position: absolute;
+  top:0;
+  left:0;
+	overflow: hidden;
+	/* Sets the width and height for the images*/
+	width: 38px;
+	height: 38px;
+}
+
+
+.THIS .swap-on-hover .swap-on-hover__front-image {
+  z-index: 9999;
+  transition: opacity .5s linear;
+  cursor: pointer;
+}
+
+/* When we hover the figure element, the block with .swap-on-hover, we want to use > so the front-image is going to have opacity of 0, which means it will be hidden, to the back image will show */
+.THIS .swap-on-hover:hover > .swap-on-hover__front-image{
+  opacity: 0;
+}
+.THIS .link{
+        color: #ffffff;
+    font-size: 15px;
+    display: initial;
+    line-height: 40px;
+}
+.THIS .leftalign{
+    text-align:left;
+}
+.THIS .moveright{
+    float:right;
+}

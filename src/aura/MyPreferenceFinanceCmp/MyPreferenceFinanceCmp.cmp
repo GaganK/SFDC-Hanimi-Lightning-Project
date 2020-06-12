@@ -1,0 +1,31 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="FinanceMemoCtrl">
+     
+    <aura:attribute name="selTabId" type="String" default="day1" />
+	       <ltng:require styles="{!$Resource.cssresource+'/css-resources/css/style.css'}"/>
+    <ltng:require styles="{!$Resource.fontIcon+'/font-icons/css/font-awesome.min.css'}"/>
+    <div style="background-color: transparent; padding:20px 0px;">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_12-of-12" >
+                <div  class="forceCommunityTileMenu" data-aura-class="forceCommunityTileMenu">
+                    <lightning:tabset variant="default" class="tabsetvariant"  selectedTabId="{!v.selTabId}">
+                        <lightning:tab aura:id="day1" label="Current Cohort Companies " tabindex="1" id="day1">
+                            <div class="slds-box boxClass"  >
+<aura:if isTrue="{!v.selTabId=='day1'}">
+                                <!--<c:myMatchVentureCmp dayId="day1"/> -->
+     <c:CDLV_MyFinanceportal dayId= "day1"/>
+                                </aura:if>
+                            </div>            
+                        </lightning:tab>
+                        <lightning:tab  aura:id="day2" label="Alumuni Companies" tabindex="2" id="day2">
+                            <div class="slds-box boxClass"  >
+					<c:CDLV_MyFinanceportal dayId= "day2"/>
+                            </div>           
+                        </lightning:tab>
+                    </lightning:tabset>
+                </div>
+            </div> 
+        
+        </div>
+    </div>
+
+</aura:component>

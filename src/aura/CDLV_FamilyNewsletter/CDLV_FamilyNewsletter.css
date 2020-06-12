@@ -1,0 +1,266 @@
+.THIS *,  .THIS  *:before,.THIS  *:after {
+    -ms-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+.THIS .pinkcircle::before {
+   content: " ";
+    background: url(https://cdl--teqfocus--c.cs142.visual.force.com/resource/1569489572000/PinkCircle?) no-repeat;
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    background-size: contain;
+    top: 2px;
+    left: -233px;
+    z-index: -7;
+}
+.THIS .hrline {
+    line-height: 0.5;
+    text-align: center;
+}
+.THIS .hrline div:before {
+    right: 100%;
+    margin-right: 15px;
+}
+.THIS .hrline div:before, .THIS .hrline div:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-bottom: 1px solid #e42076;
+    border-top: 1px solid rgba(228, 32, 118, 0.5);
+    top: 8px;
+    width: 200px;
+}
+.THIS .hrline div {
+    display: inline-block;
+    position: relative;
+}
+.THIS .subtitle {
+    margin: 1em;
+}
+.THIS .hrline div:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+/*.THIS .hovereffect img {
+    max-width: 100%;
+    min-width: 340px;
+    min-height: 200px;
+     max-height: 200px;
+}*/
+.THIS .fnlogo{
+    max-width: 100%;
+    height:auto;
+}
+.THIS .imageCard{
+   min-height: 178px; 
+}
+
+/*.THIS .hovereffect img {
+    display: block;
+    width:100%;
+    height: -webkit-fill-available;
+}*/
+.THIS  body {
+    padding: 10px;
+    background: #f6f5f5;
+}
+.THIS .course-detail {
+    min-height: 60px;
+}
+.THIS .headingcaption {
+    color: #ffffff;
+    font-size: 23px;
+    word-spacing: 3px;
+    line-height: 30px;
+    margin-top: 39px;
+}
+ .THIS h2{
+    font-family: Tw Cen MT;
+    font-weight: 600;
+    margin: 0;
+     font-size: 25px; 
+    font-size: 1.8rem;
+    line-height: 1.1em;
+    letter-spacing: .04em;
+}
+.THIS a {
+    color: #e42076;
+    text-decoration: none;
+    font-size: 1.35rem;
+    transition: color .1s linear;
+    /* border: 1px solid #e42076; */
+}
+.THIS .boxa{
+    border:none;
+    
+}
+.THIS .boxa:hover{
+    border:1px solid #e42076;
+    
+}
+.THIS .overlay {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    top:0;
+    left:0;
+    opacity: 0.5;
+    background-color: rgb(228, 32, 118);
+    -webkit-transition:all .4s ease-in-out;
+    transition:all .4s ease-in-out
+}
+
+.THIS .image-4 {
+    background: url(https://cdl--teqfocus--c.cs142.visual.force.com/resource/1568093032000/partnerImg2?);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation: myanimation 10s infinite;
+    
+}
+
+.THIS .grid-6 {
+    flex-basis: 50%;
+    max-width: 50%;
+    padding: 5px;
+    box-shadow: inset 0 0 10px rgba(237, 3, 124, 0.25);
+    /* padding: 16px; */
+    border: 1px solid rgba(237, 3, 124, 0.25)!important;
+    
+}
+
+.THIS .flex-rowseries {
+    position:relative;
+}
+
+.THIS .section {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    
+}
+
+
+
+.THIS .section > * {
+    margin: 0 8px;
+}
+
+
+
+.THIS .tall {
+    max-width: 190px;
+}
+
+
+
+.THIS img {
+    display: block;
+}
+
+
+
+.THIS .divider {
+    width: 2px;
+    margin: 25px 0;
+    background: #e81f76;
+}
+.THIS .headingcaption{
+    color: #ffffff;
+    font-size: 23px;
+    word-spacing: 3px;
+    line-height: 30px;
+    margin-top: 39px;
+}
+
+
+.THIS .item {
+    flex: 0 1 auto;
+    
+}
+.THIS .image-container {
+    position: relative;
+    
+}
+.THIS  .image-container .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: #FFF;
+}
+.THIS .image-container .after {
+    display: block;
+    background: rgba(228, 32, 118, 0.27);
+}
+.THIS .hovereffect {
+    width:100%;
+    height:100%;
+    float:left;
+    border: 3px solid transparent; 
+    overflow:hidden;
+    position:relative;
+    text-align:center;
+    box-shadow: 2px 2px 2px 2px rgba(128,128,128,0.12);
+}
+
+
+
+
+
+.THIS .hovereffect:hover {
+    border: 3px solid rgba(228, 32, 118, 0.9); 
+    box-shadow: none;
+} 
+
+
+.THIS .hovereffect .overlay {
+    width:100%;
+    height:100%;
+    position:absolute;
+    overflow:hidden;
+    top:0;
+    left:0;
+    opacity: 0;
+   
+    -webkit-transition:all .4s ease-in-out;
+    transition:all .4s ease-in-out
+}
+.THIS .hovereffect:hover .overlay {
+    opacity:0;
+    transition: 1s linear;
+    filter:alpha(opacity=100);
+}
+.THIS .hovereffect:hover .course-detail {
+    background-color: #e81f76;
+    transition: 1s linear;
+}
+
+.THIS .hovereffect:hover .course-title {
+    color: white;
+}
+@media (min-width: 770px) and (max-width: 1000px) {
+.THIS .hovereffect img {
+   
+    min-height: 150px;
+}
+}
+@media (min-width: 320px) and (max-width: 480px) {
+    .THIS .grid-6 {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+    .THIS  .flex-rowseries span {
+        white-space: nowrap;
+        text-align: center;
+        font-size: 2rem;
+        top: 60%;
+    }
+    .THIS .headingcaption{
+        
+        margin-top: 13px;
+    }
+}

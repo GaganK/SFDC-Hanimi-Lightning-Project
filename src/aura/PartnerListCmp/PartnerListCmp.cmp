@@ -1,0 +1,42 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                controller="speakersCtrl" access="global" >
+    <!-- Handler to call function when page is loaded initially -->
+    <aura:handler name="init" action="{!c.getContactsList}" value="{!this}" />
+    <!-- List of contacts stored in attribute -->
+    <aura:attribute name="contactList" type="List" />
+    <aura:attribute name="listOfAllContacts" type="speakersCtrl.speakerWrapper[]"/>
+     <aura:attribute name="SpeakersList" type="List" />
+    <div class="slds-p-horizontal_medium slds-p-vertical_large">
+	<aura:iteration items="{!v.SpeakersList}" var="speakerWrapper" indexVar="key">
+	<div class="subtitle hrline " style="font-size: xx-large; color: #e42076;"><div>Fellow Partners<!--{!speakerWrapper.key}--></div></div>  
+        <ul class="slds-grid gridSpeaker hovereffect" style="display: contents;">
+            <aura:iteration items="{!speakerWrapper.value}" var="wrapper">
+                <li class="slds-item gridSpeaker hovereffect" style="width:100% !important;padding-right:2% !important;display: flex !important;">
+                    <div class="slds-grid slds-wrap slds-p-horizontal_large" style="width: 100%">
+                        <div class="pillar-image slds-col slds-size_1-of-2 slds-small-size_4-of-12 slds-medium-size_4-of-12 "> 
+                            <div class="img collaboration-image">
+                                
+                               <!-- <img class="slds-text-longform clbimg" src="{!'/partners/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&amp;versionId='+wrapper.conDocId}" />
+                               --> <img class="slds-text-longform clbimg" src="/partners/resource/DefaultSpeaker"/>
+                                <!--    <img src="{!contact.Speaker_Profile_Photo__c}" class="clbimg"/>-->
+                                <!-- <img src="{! $Resource.speaker1}" class="clbimg"/>-->
+                                <div class="overlay"></div>
+                                <!-- <ui:outputRichText class="slds-text-longform clbimg" value="{!contact.Speaker_Profile_Photo__c}"/>-->
+                            </div>
+                        </div>
+                        <div class="pillar-description slds-col slds-size_1-of-2 slds-small-size_8-of-12 slds-medium-size_8-of-12 " >
+                            <p class="slds-cell-wrap" >{!wrapper.conObj.Name}</p>
+                             <p class="slds-cell-wrap" >{!wrapper.conObj.Account.Name}</p>
+                            <p class="slds-cell-wrap">{!wrapper.conObj.Title}</p>
+                            <p class="slds-cell-wrap">{!wrapper.conObj.Email}</p>
+                             <p class="slds-cell-wrap" >{!wrapper.conObj.LinkedIn_Profile__c}</p>
+                              </div>
+                        
+                    </div>  
+                </li>
+                <hr></hr>
+            </aura:iteration>
+        </ul>
+		</aura:iteration>
+		</div>
+</aura:component>

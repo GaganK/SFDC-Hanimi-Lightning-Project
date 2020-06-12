@@ -1,0 +1,22 @@
+.THIS .hideheader{
+    font-size: 1.2rem;
+    line-height: 1.5em;
+    Color:white;
+     background-color: #e81f76!important;
+    border:none;
+}
+.THIS .Headingheader{
+     background-color: #e81f76!important;
+    text-align: center;
+    padding: 7px 0px;
+}
+
+.THIS .navBar {
+    min-height:50px;
+}
+
+.THIS .p:empty {
+  width: 100px;
+  height: 20px;
+  background: #ff0000;
+}

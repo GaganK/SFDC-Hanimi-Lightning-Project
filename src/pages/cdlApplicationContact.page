@@ -1,0 +1,677 @@
+<apex:page id="cdlApplicationContact" controller="cdlApplicationController" standardStylesheets="false"
+           showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" cache="false"
+           language="{!IF(language == 'English' || language == null, 'en_US', 'fr')}" action="{!init}">
+  <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>CDL - Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Import The Design System StyleSheet -->
+    <apex:slds />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"/>
+    <link type="text/css" rel="stylesheet"
+          href="{!URLFOR($Asset.SLDS, '/assets/styles/salesforce-lightning-design-system-ltng.min.css')}"/>
+    <!-- Import The CDL StyleSheet -->
+    <link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.cdlStyle)}"/>
+    <script language="JavaScript" type="text/javascript">
+    $(document).ready(function ()
+    {
+      $(".phone-mask").mask("(999) 999-9999 ?x9999");
+    });
+    </script>
+  </head>
+  <body id="body">
+  <apex:form id="cdlApplication">
+    <!--<apex:actionFunction action="{!checkColdApplication}" name="checkColdApplication" reRender="all"/>-->
+    <div class="slds-scope">
+      <!-- PRIMARY CONTENT WRAPPER -->
+      <div class="slds-align_absolute-center"
+           style="border-radius : 15px; max-width : 1200px; background-color : #ffffff; padding : 0.5em; border : 0px solid #ffffff;">
+        <div class="slds-form slds-form_compound"
+             style="border-radius : 20px; max-width : 1024px; padding : 2.5em; background-color : #ffffff;">
+          <div class="slds-grid slds-align_absolute-center" style="width : 900px;">
+            <div class="slds-tabs--path" role="application">
+              <ul class="slds-tabs--path__nav" role="tablist">
+                <li class="slds-tabs--path__item slds-is-complete" role="presentation">
+                  <a class="slds-tabs--path__link not-active" id="tabs-path-1" aria-controls="content-path-1"
+                     aria-selected="true" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                  <span class="slds-tabs--path__stage">
+                    <svg class="slds-icon slds-icon--x-small" aria-hidden="false">
+                      <use
+                        xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                    </svg>
+                    <span class="slds-assistive-text"></span>
+                  </span>
+                    <span class="slds-tabs--path__title">{!$Label.Preferred_Language}</span>
+                  </a>
+                </li>
+                <li class="slds-tabs--path__item slds-is-current" role="presentation">
+                  <a class="slds-tabs--path__link not-active" id="tabs-path-2" aria-controls="content-path-1"
+                     aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                  <span class="slds-tabs--path__stage">
+                    <svg class="slds-icon slds-icon--x-small" aria-hidden="false">
+                      <use
+                        xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                    </svg>
+                    <span class="slds-assistive-text"></span>
+                  </span>
+                    <span class="slds-tabs--path__title">{!$Label.Primary_Contact_Information}</span>
+                  </a>
+                </li>
+                <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+                  <a class="slds-tabs--path__link not-active" id="tabs-path-3" aria-controls="content-path-1"
+                     aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                  <span class="slds-tabs--path__stage">
+                    <svg class="slds-icon slds-icon--x-small" aria-hidden="true">
+                      <use
+                        xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                    </svg>
+                    <span class="slds-assistive-text"></span>
+                  </span>
+                    <span class="slds-tabs--path__title">{!$Label.Contact_Details}</span>
+                  </a>
+                </li>
+                <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+                  <a class="slds-tabs--path__link not-active" id="tabs-path-4" aria-controls="content-path-1"
+                     aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                  <span class="slds-tabs--path__stage">
+                    <svg class="slds-icon slds-icon--x-small" aria-hidden="true">
+                      <use
+                        xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                    </svg>
+                  </span>
+                    <span class="slds-tabs--path__title">{!$Label.Venture_Information}</span>
+                  </a>
+                </li>
+                <!--
+                <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+                  <a class="slds-tabs--path__link not-active" id="tabs-path-5" aria-controls="content-path-1"
+                     aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                  <span class="slds-tabs--path__stage">
+                    <svg class="slds-icon slds-icon--x-small" aria-hidden="true">
+                      <use
+                        xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                    </svg>
+                  </span>
+                    <span class="slds-tabs--path__title">{!$Label.Stream_Information}</span>
+                  </a>
+                </li>
+                -->
+                <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+                  <a class="slds-tabs--path__link not-active" id="tabs-path-6" aria-controls="content-path-1"
+                     aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                  <span class="slds-tabs--path__stage">
+                    <svg class="slds-icon slds-icon--x-small" aria-hidden="true">
+                      <use
+                        xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                    </svg>
+                  </span>
+                    <span class="slds-tabs--path__title">{!$Label.Venture_Details}</span>
+                  </a>
+                </li>
+                <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+                  <a class="slds-tabs--path__link not-active" id="tabs-path-7" aria-controls="content-path-1"
+                     aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                  <span class="slds-tabs--path__stage">
+                    <svg class="slds-icon slds-icon--x-small" aria-hidden="true">
+                      <use
+                        xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"></use>
+                    </svg>
+                  </span>
+                    <span class="slds-tabs--path__title">{!$Label.Additional_Information}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <br></br>
+          <div class="slds-align_absolute-center">
+            <apex:pageMessages id="errorMsg"/>
+          </div>
+          <!--
+          <apex:pageBlock id="prime" rendered="{!IF(qmlApplication,false, true)}">
+            <br></br>
+            <legend class="slds-form-element__label slds-text-title"><b></b></legend>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.Prime_App_Header_1}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.Prime_App_Header_2}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.Prime_App_Header_3}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.Prime_App_Header_4}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.Prime_App_Header_5}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </apex:pageBlock>
+          -->
+          <apex:pageBlock id="qml" rendered="{!qmlApplication}">
+            <br></br>
+            <legend class="slds-form-element__label slds-text-title"><b>QML {!$Label.Venture_Details}</b></legend>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.QML_App_Header_1}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.QML_App_Header_2}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.QML_App_Header_3}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.QML_App_Header_4}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.QML_App_Header_5}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <apex:outputText value="{!$Label.QML_App_Header_6}" escape="false"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </apex:pageBlock>
+          <br></br>
+          <apex:pageBlock id="contents" rendered="{!allowColdApplication}">
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"><b>{!$Label.Contact_Information}</b>
+                  <!--<apex:image url="{!$Resource.one_by_one_png}" height="0" width="50"/>-->
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="firstName">{!$Label.Salutation}</label>
+                      <apex:selectList styleClass="slds-select" value="{!salutation}" multiselect="false" size="1"
+                                       required="false" id="Salutation">
+                        <apex:selectOptions value="{!salTypes}"/>
+                      </apex:selectList>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="lastName">{!$Label.Gender}</label>
+                      <apex:selectList styleClass="slds-select" value="{!gender}" multiselect="false" size="1"
+                                       required="false" id="Gender">
+                        <apex:selectOptions value="{!genderTypes}"/>
+                      </apex:selectList>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required">*</abbr>
+                      <label class="slds-form-element__label" for="firstName">{!$Label.First_Name}</label>
+                      <apex:inputText label="First Name" styleClass="slds-input" id="firstName"
+                                      html-placeholder="First Name" maxLength="80" required="true"
+                                      value="{!firstName}"/>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required">*</abbr>
+                      <label class="slds-form-element__label" for="lastName">{!$Label.Last_Name}</label>
+                      <apex:inputText label="Last Name" styleClass="slds-input" id="lastName"
+                                      html-placeholder="Last Name"
+                                      maxlength="80" required="true" value="{!lastName}"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required">*</abbr>
+                      <label class="slds-form-element__label" for="firstName">{!$Label.Phone}</label>
+                      <apex:inputText label="Phone" styleClass="slds-input phone-mask" id="phone"
+                                      html-placeholder="Phone #" maxLength="80" required="true" value="{!phone}"/>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required">*</abbr>
+                      <label class="slds-form-element__label" for="lastName">{!$Label.Email}</label>
+                      <apex:inputText label="Email" styleClass="slds-input" id="email" html-placeholder="Email"
+                                      maxlength="80" required="true" value="{!email}"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_2-of-2">
+                      <abbr class="slds-required" title="required">*</abbr>
+                      <label class="slds-form-element__label" for="firstName">{!$Label.Street_Address}</label>
+                      <apex:inputText label="Street" styleClass="slds-input" id="street"
+                                      html-placeholder="Street" maxLength="80" required="true" value="{!street}"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <apex:pageBlock id="provState">
+              <div class="slds-align_absolute-center" style="max-width : 1200px;">
+                <fieldset class="slds-form-element">
+                  <legend class="slds-form-element__label slds-text-title"></legend>
+                  <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                      <div class="slds-form-element slds-size_1-of-2">
+                        <abbr class="slds-required" title="required">*</abbr>
+                        <label class="slds-form-element__label" for="lastName">{!$Label.City}</label>
+                        <apex:inputText label="City" styleClass="slds-input" id="city" html-placeholder="City"
+                                        maxlength="80" required="true" value="{!city}"/>
+                      </div>
+
+                      <div class="slds-form-element slds-size_1-of-2">
+                        <abbr class="slds-required" title="required">*</abbr>
+                        <label class="slds-form-element__label" for="lastName">{!$Label.Province_State}</label>
+                        <!--<apex:inputText label="Province/State" styleClass="slds-input" id="province"
+                                      html-placeholder="Province/State"
+                                      maxlength="80" required="true" value="{!provState}"/>-->
+                        <apex:inputField styleClass="slds-select" value="{!hContact.MailingStateCode}" required="true"/>
+                        <!--<apex:inputHidden id="provState" value="{!contact.MailingStateCode}"/>-->
+                        <!--
+                      <apex:selectList styleClass="slds-select" value="{!provState}" multiselect="false" size="1"
+                                       required="true" id="provState">
+                        <apex:selectOptions value="{!provStateOptions}"/>
+                      </apex:selectList>
+                      -->
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </apex:pageBlock>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required">*</abbr>
+                      <label class="slds-form-element__label" for="lastName">{!$Label.Postal_Code}</label>
+                      <apex:inputText label="Postal Code" styleClass="slds-input" id="postalCode"
+                                      html-placeholder="Postal Code"
+                                      maxlength="80" required="true" value="{!postalCode}"/>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required">*</abbr>
+                      <label class="slds-form-element__label" for="lastName">{!$Label.Country}</label>
+                      <!--<apex:inputText label="Country" styleClass="slds-input" id="country" html-placeholder="Country"
+                                      maxlength="80" required="true" value="{!country}"/>-->
+                      <apex:inputField styleClass="slds-select" value="{!hContact.MailingCountryCode}" required="true"/>
+                      <!--<apex:inputHidden id="country" value="{!contact.MailingCountryCode}"/>-->
+                      <!--
+                      <apex:selectList styleClass="slds-select" value="{!country}" multiselect="false" size="1"
+                                       required="true" id="country">
+                        <apex:selectOptions value="{!countryOptions}"/>
+                        <apex:actionSupport event="onchange" rerender="cdlApplication,provState"/>
+                      </apex:selectList>
+                      -->
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"><b>{!$Label.Venture_Information}</b>
+                </legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required">
+                        <apex:outputText value="*"
+                                         rendered="{!IF(qmlApplication == null || qmlApplication == false, true, false)}"/>
+                      </abbr>
+                      <label class="slds-form-element__label" for="firstName">{!$Label.Venture_Name}</label>
+                      <apex:inputText label="First Name" styleClass="slds-input" id="ventureName"
+                                      html-placeholder="Venture Name" maxLength="80"
+                                      required="{!IF(qmlApplication == null || qmlApplication == false, true, false)}"
+                                      value="{!ventureName}"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <apex:pageBlock id="indOther">
+              <div class="slds-align_absolute-center" style="max-width : 1200px;">
+                <fieldset class="slds-form-element">
+                  <legend class="slds-form-element__label slds-text-title"></legend>
+                  <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                      <div class="slds-form-element slds-size_1-of-2">
+                        <abbr class="slds-required" title="required">*</abbr>
+                        <label class="slds-form-element__label" for="lastName">{!$Label.Venture_Industry}</label>
+                        <apex:selectCheckboxes value="{!ventureIndustryValues}" layout="pageDirection" required="true"
+                                               id="ventureIndustry">
+                          <apex:selectOptions value="{!venIndustry}"/>
+                          <apex:actionSupport event="onclick" rerender="indOther"/>
+                        </apex:selectCheckboxes>
+                        <!--
+                      <apex:selectList styleClass="slds-combobox-picklist" disabled="false" readOnly="false"
+                                       value="{!ventureIndustry}"
+                                       multiselect="true" size="15">
+                        <apex:selectOptions value="{!venIndustry}"/>
+                      </apex:selectList>
+                      -->
+                        <!--
+                      <apex:inputText label="First Name" styleClass="slds-input" id="ventureIndustry"
+                                      html-placeholder="Venture Industry" maxLength="80" required="true"
+                                      value="{!ventureIndustry}"/>
+                      -->
+                      </div>
+                      <div class="slds-form-element slds-size_1-of-2">
+                        <abbr class="slds-required" title="required">
+                          <!--<apex:outputText value="*" rendered="{!IF(contains(ventureIndustry,'Other'), true, false)}"/>-->
+                        </abbr>
+                        <label class="slds-form-element__label" for="firstName">{!$Label.Other_Industry}</label>
+                        <apex:inputText label="First Name" styleClass="slds-input" id="industryOther"
+                                        html-placeholder="Other Industry" maxLength="80"
+                                        required="{!IF(contains(ventureIndustry,'Other'), true, false)}"
+                                        value="{!industryOther}"/>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </apex:pageBlock>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <label class="slds-form-element__label" for="lastName"><b>{!siteLabel}</b></label>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required">*</abbr>
+                      <!--<div class="toolTip">-->
+                      <label class="slds-form-element__label" for="firstName">
+                        <apex:outputText value="{!$Label.Venture_Preferred_Site}" escape="false"/>
+                        <span class="toolTipText">
+                          <!--{!$Label.Stream_ToolTip}-->
+                        </span>
+                      </label>
+                      <!--</div>-->
+                      <apex:selectList styleClass="slds-select" disabled="false" readOnly="false"
+                                       value="{!applicationSite}"
+                                       multiselect="false" size="1">
+                        <apex:selectOptions value="{!appSites}"/>
+                      </apex:selectList>
+                    </div>
+                  </div>
+                </div>
+                <apex:pageBlock id="techSpec"
+                                rendered="{!IF(qmlApplication == null || qmlApplication == false, true, false)}">
+                  <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                      <div class="slds-form-element slds-size_1-of-2">
+                        <abbr class="slds-required" title="required">*</abbr>
+                        <!--<div class="toolTip">-->
+                          <label class="slds-form-element__label" for="lastName">{!$Label.Tech_Specialization}
+                            <span class="toolTipText">
+                            <!--{!$Label.Tech_Spec_ToolTip}-->
+                            </span>
+                          </label>
+                        <!--</div>-->
+                        <apex:selectCheckboxes value="{!techSpecializationValues}" layout="pageDirection"
+                                               required="true"
+                                               id="techSpecialization">
+                          <apex:selectOptions value="{!getTechSpecial}"/>
+                        </apex:selectCheckboxes>
+                      </div>
+                    </div>
+                  </div>
+                </apex:pageBlock>
+              </fieldset>
+            </div>
+            <!--
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="lastName">{!$Label.Skype}</label>
+                      <apex:inputText label="SkypeID" styleClass="slds-input" id="skypeID" html-placeholder="Skype ID"
+                                      maxlength="80" required="false" value="{!skypeID}"/>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="twitterID">{!$Label.Twitter_ID}</label>
+                      <apex:inputText label="Twitter ID" styleClass="slds-input" id="twitterID"
+                                      html-placeholder="Twitter ID"
+                                      maxlength="80" required="false" value="{!twitterID}"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="linkedInID">{!$Label.Linked_In_Profile}</label>
+                      <apex:inputText label="Linked In Profile" styleClass="slds-input" id="linkedInID"
+                                      html-placeholder="Linked In Profile"
+                                      maxlength="80" required="false" value="{!linkedInID}"/>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="otherProfileID">{!$Label.Other_Profiles}</label>
+                      <apex:inputText label="Other Profile" styleClass="slds-input" id="otherProfileID"
+                                      html-placeholder="Other Profile"
+                                      maxlength="80" required="false" value="{!otherProfileID}"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="linkedInID">{!$Label.Facebook_Profile}</label>
+                      <apex:inputText label="Linked In Profile" styleClass="slds-input" id="faceBookID"
+                                      html-placeholder="FaceBook Profile"
+                                      maxlength="80" required="false" value="{!faceBookID}"/>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="otherProfileID">{!$Label.Crunchbase_Profile}</label>
+                      <apex:inputText label="Other Profile" styleClass="slds-input" id="crunchBaseID"
+                                      html-placeholder="Crunchbase Profile"
+                                      maxlength="80" required="false" value="{!crunchBaseID}"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="linkedInID">{!$Label.HackerNews_Profile}</label>
+                      <apex:inputText label="Linked In Profile" styleClass="slds-input" id="hackerNewsID"
+                                      html-placeholder="HackerNews Profile"
+                                      maxlength="80" required="false" value="{!hackerNewsID}"/>
+                    </div>
+                    <div class="slds-form-element slds-size_1-of-2">
+                      <abbr class="slds-required" title="required"></abbr>
+                      <label class="slds-form-element__label" for="otherProfileID">{!$Label.GitHub_Page}</label>
+                      <apex:inputText label="Other Profile" styleClass="slds-input" id="gitHubID"
+                                      html-placeholder="GitHub Page"
+                                      maxlength="80" required="false" value="{!gitHubID}"/>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            -->
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <fieldset class="slds-form-element">
+                <legend class="slds-form-element__label slds-text-title"></legend>
+                <div class="slds-form-element__group">
+                  <div class="slds-form-element__row">
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <br></br>
+            <div class="slds-align_absolute-center" style="max-width : 1200px;">
+              <!--
+              <apex:commandButton styleClass="slds-button slds-button--neutral"
+                                  action="{!initPage}" value="Previous" id="previousButton"/>
+              -->
+              <apex:commandButton styleClass="slds-button slds-button--neutral"
+                                  action="{!saveContact}" value="Next" id="saveButton"/>
+            </div>
+          </apex:pageBlock>
+          <!-- / PRIMARY CONTENT WRAPPER -->
+        </div>
+      </div>
+    </div>
+  </apex:form>
+  </body>
+  </html>
+</apex:page>

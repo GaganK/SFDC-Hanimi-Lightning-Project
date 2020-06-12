@@ -1,0 +1,42 @@
+<aura:component controller="myApplicationsCtrl"
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+	<!--ColumnSearchComponent-->
+    <aura:attribute name="searchTerm" type="String" default="" />
+    <aura:attribute name="searchField" type="String" default="" />
+    <aura:attribute name="searchObject" type="String" default="" />
+    <aura:attribute name="allRecords" type="object" default="[]" />
+    
+    <aura:attribute name="checkboxValues" type="object" default="{}" />
+    <aura:attribute name="selectedOptions" type="List"  default="[]"/>
+    
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:attribute name="spinner" type="boolean" default="FALSE"/>
+    
+    <aura:attribute name="parent" type="Aura.Component" />
+
+
+    <div class="slds-media__body" style="margin-right: var(--lwc-spacingSmall,0.75rem);">
+        
+        <!--loading spinner start-->
+        <aura:if isTrue="{!v.spinner}">
+            <div aura:id="spinnerId" class="slds-spinner_container">
+                <div class="slds-spinner--brand  slds-spinner slds-spinner--small slds-is-relative" role="alert">
+                    <span class="slds-assistive-text">Loading...</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </aura:if>
+        <!-- Loading spinner end-->
+    
+    
+        <lightning:input aura:id="gSearch" placeholder="Search this list..." type="search"
+                         value="{!v.searchTerm}" tabindex="0" onchange="{!c.onSearch}"/> <!--class="gSearch-->
+         
+             <aura:iteration items="{!v.checkboxValues}" var="key">
+                <ui:inputCheckbox label="{!key.label}" labelClass="displayLabel" aura:id="{!v.searchField}" text="{!key.value}" change="{!c.checkboxSelect}" class="myCheckbox"/>
+            </aura:iteration>
+    </div>
+</aura:component>

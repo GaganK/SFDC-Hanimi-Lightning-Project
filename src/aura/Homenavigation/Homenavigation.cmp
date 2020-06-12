@@ -1,0 +1,15 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+	<div style="border-bottom:0px;" class="slds-context-bar border">
+
+<nav class="slds-context-bar__secondary" role="navigation">
+<ul class="slds-grid">
+<li class="slds-context-bar__item slds-is-active">
+<a href="javascript:void(0);" class="slds-context-bar__label-action" title="Home">
+<span class="slds-assistive-text">Current Page:</span>
+<span class="slds-truncate" title="Home">General Motors</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</aura:component>

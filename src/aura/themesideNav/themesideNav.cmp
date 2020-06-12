@@ -1,0 +1,49 @@
+<aura:component implements="forceCommunity:themeLayout,forceCommunity:layout">
+	<aura:attribute name="search" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="profileMenu" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="navBar" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newLogo" type="Aura.component[]" required="false"/>
+    <aura:attribute name="newFooter" type="Aura.Component[]" required="false"/>
+    <div>
+        <div class="header">
+            <div class="slds-grid" style="width: 100%; ">
+               <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-2 slds-medium-size_2-of-6 slds-large-size_1-of-6" ><!-- Logo here -->   {!v.newLogo} </div>
+                <div class="slds-col  slds-medium-size_3-of-6 slds-large-size_4-of-6 navMenu"></div>
+         	<!--<div class="slds-col slds-size_2-of-6 searchRegion " >
+             Search Publisher component
+            {!v.search}
+        	</div> --> 
+        	<div class="profileMenuRegion slds-size_1-of-2 slds-small-size_1-of-2 slds-medium-size_1-of-6 slds-large-size_1-of-6" >
+            <!-- User Profile Menu component -->
+           {!v.profileMenu}
+        	</div>
+            </div>
+     <div class="slds-grid" style="width: 100%; background: #e81f76; padding: 2px 0px 2px 0px; ">
+        
+      		<div class="navigation slds-col slds-size_12-of-12" >
+            <!-- Navigation Menu component -->
+           {!v.navBar}
+               
+        	</div>
+        <!-- <div class="navigation slds-col slds-size_1-of-12" >
+             Navigation Menu component
+          <c:Navigationdropdown/>
+        	</div> -->
+          
+                 
+        </div>
+
+        </div>
+          
+        <div class="mainContentArea slds-p-around_none">
+        	{!v.body}
+        </div>
+       <div class="slds-p-around_none">
+     
+        </div>
+   <div class="slds-p-around_none">
+       <c:Footer/>
+        </div>
+    </div>
+</aura:component>

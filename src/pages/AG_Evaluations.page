@@ -1,0 +1,6 @@
+<apex:page standardController="Application__c" showHeader="false" docType="html-4.01-strict">
+<CRMC_PP:Grid ObjectName="Evaluation__c" FKName="Application__c" FKValue="{!Application__c.Id}"  DelayLoad="false"  ViewID="a0b0A000000HqtTQAS" 
+ EnableNewButton="true"  EnableNewInline="true"  EnableEdit="true"  EnableActions="true"  EnableFieldChooser="true" 
+ EnableStickyViews="true"  EnableToolbar="true"  EnableViews="true"  EnableFormatting="true"  EnableReadingPane="true" />
+<CRMC_PP:DrillUp />
+</apex:page>

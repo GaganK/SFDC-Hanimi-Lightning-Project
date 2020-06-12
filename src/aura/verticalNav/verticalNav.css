@@ -1,0 +1,30 @@
+.THIS .boxClass{
+   width: 90%;
+    padding-bottom: 10%;
+    background: rgb(255, 255, 255);
+    border: 0px;
+    margin-bottom: 0rem;
+}
+.THIS .boxClassa{
+   width: 90%;
+    
+    background: rgba(204, 204, 204, 0.21);
+    border: 0px;
+    margin-bottom: 0rem;
+}
+@media only screen and (max-width: 900px){
+    .THIS .tabsetvariant{
+        display: contents !important;
+    }
+    .THIS .slds-vertical-tabs__nav {
+    /* width: 6rem; */
+    display: flex;
+    width: 100%;
+}
+}
+
+.THIS .course-info-box , .THIS .cSketchTheme .course-info-box{
+    min-height: 100px;
+   
+    position:relative;
+}

@@ -1,0 +1,210 @@
+.THIS .hovereffect {
+    overflow:hidden;
+    
+    text-align:center;
+    cursor:pointer;
+}
+
+.THIS .titlep{
+    font-size: 22px;
+}
+.THIS .titlebio{
+    font-size: 18px;
+}
+
+.THIS .hovereffect .overlay {
+    width:100%;
+    height:100%;
+    position:absolute;
+    overflow:hidden;
+    top:0;
+    left:0;
+    opacity:0;
+    background-color: rgb(232, 31, 118, 0.5);
+    -webkit-transition:all .4s ease-in-out;
+    transition:all .4s ease-in-out
+}
+.THIS hr{
+    border-top: 2px solid rgba(232, 31, 118, 0.5);
+    margin: 20px;
+}
+
+.THIS .overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    transition: .5s ease;
+    background-color: rgb(228, 32, 118);
+}
+.THIS .collaboration-image .overlay{
+    opacity: 1;
+}
+
+.THIS .pillar-image {
+    width: max-content;
+    height: max-content;
+    position: relative;
+    display: inline-block;
+    background: white;
+    
+    
+}
+
+.THIS .img.collaboration-image {
+    height: 160px;
+    width: max-content;
+    min-width: 160px;
+    z-index: 4;
+}
+.THIS .clbimg{
+    max-width: 160px;
+    height: 160px;
+    margin-left: 20p;
+    z-index: 1;
+    overflow: hidden;
+    
+    transition: width 2s, height 2s;
+}
+.THIS .pillar-description {
+    
+    padding: 20px;
+    
+    font-size: 25px;
+    transition: width 2s,height 2s;
+    display: table;
+    /* z-index: -1; */
+    /* padding-left: 33px; */
+    /* border-radius: 117px 0px 0px 0px; */
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: left;
+}
+.THIS h1, .THIS h4{
+    margin-bottom: .5rem;
+}
+.THIS p .action-links {
+    margin-bottom: .25rem;
+}
+.THIS .gridSpeaker:hover .clbimg{
+    
+    opacity: 0.9; 
+}
+/*.THIS .gridSpeaker:hover .pillar-description{
+color: #e81f76;
+}*/
+.THIS .gridSpeaker:hover {
+    background: white;
+    
+}
+.THIS .gridSpeaker {
+    box-sizing: border-box;
+    height: max-content;
+    display: block;
+    
+    margin-bottom: 20px;
+    
+    
+    
+}
+.THIS p.slds-cell-wrap {
+    transition: 0.5s linear;
+    
+}
+
+
+@media only screen and (min-width: 581px) and (max-width: 1111px){
+    .THIS .pillar-description p{
+        font-size: 13px; 
+        
+    }
+    .THIS .pillar-description .titlep{
+        font-size: 10px; 
+        
+    }
+    .THIS .pillar-description .titlebio{
+        font-size: 9px; 
+        
+    }
+    .THIS .pillar-description{
+        padding-left: 10px;
+    }
+    
+}
+@media only screen and (min-width: 425px) and  (max-width: 581px){
+    .THIS .pillar-description {
+        font-size: 14px;
+        padding-left: 10px;
+    } 
+    .THIS .pillar-description .titlep{
+        font-size: 12px; 
+        
+    }
+    .THIS .pillar-description .titlebio{
+        font-size: 10px; 
+        
+    }
+    .THIS .pillar-image {
+        max-width: 160px;
+        min-height: 160px;
+        
+        
+    } 
+    .THIS .pillar-description .titlep{
+        font-size: 10px; 
+        
+    }
+    .THIS .pillar-description .titlebio{
+        font-size: 9px; 
+        
+    }
+    
+    .THIS .img.collaboration-image {
+        height: max-content;
+        margin: 10px;
+        z-index: 4;
+    }
+    .THIS .clbimg{
+        max-width: 130px;
+        height: 130px;
+        margin:3px;
+        
+        
+    }
+}
+@media only screen and (max-width: 425px){
+    
+    .THIS .pillar-image {
+        width: 100px;
+    }
+    .THIS h1, .THIS h4{
+        margin-bottom: .5rem;
+    }
+    .THIS .img.collaboration-image {
+        height: max-content;
+    }
+    .THIS .clbimg{
+        
+        max-width: 100px;
+        height: 100px;
+    }
+    .THIS .pillar-description .titlep{
+        font-size: 10px; 
+        
+    }
+    .THIS .pillar-description .titlebio{
+        font-size: 9px; 
+        
+    }
+    
+    .THIS .pillar-description {
+        font-size: 11px; 
+        padding: 0px;
+        padding-left: 10px;
+        
+    }
+}

@@ -1,0 +1,2034 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="openImg1" type="boolean" default="false"/>
+    <aura:attribute name="openImg2" type="boolean" default="false"/>
+    <aura:attribute name="openImg3" type="boolean" default="false"/>
+    <aura:attribute name="openImg4" type="boolean" default="false"/>
+    <aura:attribute name="openImg5" type="boolean" default="false"/>
+    <aura:attribute name="openImg6" type="boolean" default="false"/>
+    <aura:attribute name="openImg7" type="boolean" default="false"/>
+    <aura:attribute name="openImg8" type="boolean" default="false"/>
+    <aura:attribute name="openImg9" type="boolean" default="false"/>
+    <aura:attribute name="openImg10" type="boolean" default="false"/>
+    <aura:attribute name="openImg11" type="boolean" default="false"/>
+    <aura:attribute name="openImg12" type="boolean" default="false"/>
+    <aura:attribute name="openImg13" type="boolean" default="false"/>
+    <aura:attribute name="openImg14" type="boolean" default="false"/>
+    <aura:attribute name="openImg15" type="boolean" default="false"/>
+    <aura:attribute name="openImg16" type="boolean" default="false"/>
+    <aura:attribute name="openImg17" type="boolean" default="false"/>
+    <aura:attribute name="openImg18" type="boolean" default="false"/>
+    <aura:attribute name="openImg19" type="boolean" default="false"/>
+    <aura:attribute name="openImg20" type="boolean" default="false"/>
+    <aura:attribute name="openImg21" type="boolean" default="false"/>
+    <aura:attribute name="openImg22" type="boolean" default="false"/>
+    <aura:attribute name="openImg23" type="boolean" default="false"/>
+    <aura:attribute name="openImg24" type="boolean" default="false"/>
+    <aura:attribute name="openImg25" type="boolean" default="false"/>
+    <aura:attribute name="openImg26" type="boolean" default="false"/>
+    <aura:attribute name="openImg27" type="boolean" default="false"/>
+    <aura:attribute name="openImg28" type="boolean" default="false"/>
+    <aura:attribute name="openImg29" type="boolean" default="false"/>
+    <aura:attribute name="openImg30" type="boolean" default="false"/>
+    <aura:attribute name="openImg31" type="boolean" default="false"/>
+    <aura:attribute name="openImg32" type="boolean" default="false"/>
+    <aura:attribute name="openImg33" type="boolean" default="false"/>
+    <aura:attribute name="openImg34" type="boolean" default="false"/>
+    <aura:attribute name="openImg35" type="boolean" default="false"/>
+    <aura:attribute name="openImg36" type="boolean" default="false"/>
+    <aura:attribute name="openImg37" type="boolean" default="false"/>
+    <aura:attribute name="openImg38" type="boolean" default="false"/>
+    <aura:attribute name="openImg39" type="boolean" default="false"/>
+    <aura:attribute name="openImg40" type="boolean" default="false"/>
+    <aura:attribute name="openImg41" type="boolean" default="false"/>
+    <aura:attribute name="openImg42" type="boolean" default="false"/>
+    <aura:attribute name="openImg43" type="boolean" default="false"/>
+    <aura:attribute name="openImg44" type="boolean" default="false"/>
+    <aura:attribute name="openImg45" type="boolean" default="false"/>
+    <aura:attribute name="openImg46" type="boolean" default="false"/>
+    <aura:attribute name="openImg47" type="boolean" default="false"/>
+    <aura:attribute name="openImg48" type="boolean" default="false"/>
+    
+    
+    
+    
+    
+    
+    <div class="slds-grid slds-wrap slds-p-horizontal_x-large">
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg1}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlvideo1}" alt="Description of the image"/>
+                    </a></div>
+                <div class="slds-image__title course-detail">
+                    <div class="course-info-box slds-image__text slds-truncate">
+                        <div class="course-teacher">Machine Learning and the marketing for Intelligence</div>
+                        <h3 class="course-title">Tiff Macklem</h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg1 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal1}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/E8PhY5m9qg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>	-->			
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/E8PhY5m9qg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;;fullscreen;" ></iframe>	
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg2}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlvideo2}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Not Just Algorithms, Data, and Compute: AI Complements</div>
+                        <h3 class="course-title">
+                            Ajay Agrawal</h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg2 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal2}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link  https://www.youtube.com/embed/p1S6U4jeuGc-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/p1S6U4jeuGc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg3}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlvideo3}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AI, Innovation, and Economic Growth</div>
+                        <h3 class="course-title">
+                            Scott Stern </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg3 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal3}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/p1S6U4jeuGc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        <!-- 2nd row -->
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg4}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{!$Resource.mlvideo + '/mlvideo/mlvideo4.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Algorithmic Bias</div>
+                        <h3 class="course-title">
+                            
+                            Anja Lambrecht		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg4 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal4}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/0nvuvm9AgCU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg5}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{!$Resource.mlvideo + '/mlvideo/mlvideo5.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Humans vs Machines in Complex Cognitive Tasks: Investing</div>
+                        <h3 class="course-title">Ramana Nanda		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg5 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal5}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/iFmjG0TN8_4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg6}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{!$Resource.mlvideo + '/mlvideo/mlvideo6.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Worldwide Implementation of Machine Intelligence</div>
+                        <h3 class="course-title">Kevin Sneader		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg6 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal6}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/WzAbOkaKNwc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        
+        <!--3rd row-->
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg7}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/1.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AI at Alibaba</div>
+                        <h3 class="course-title">
+                            
+                            Michael Evans		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg7 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal7}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/LYkhpJHiaHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg8}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/2.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AI at Linamar</div>
+                        <h3 class="course-title">
+                            Linda Hasenfratz		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg8 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal8}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/UVOcKqqrevI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg9}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/3.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AI and the World Economy</div>
+                        <h3 class="course-title">
+                            Mark Carney		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg9 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal9}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/gTJB3vg-GKg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        <!-- 4th row-->
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg10}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/4.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Dawn of a New Era?</div>
+                        <h3 class="course-title">
+                            
+                            Mark Carney, 		               
+                            
+                            Michael Evans, 		               
+                            
+                            Kevin Sneader, 		               
+                            
+                            Heather Reisman, 		               
+                            
+                            Linda Hasenfratz, 		               
+                            
+                            Ajay Agrawal		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg10 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal10}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/Bw8Cvx8eNAU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg11}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/5.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Annual CDL Awards</div>
+                        <h3 class="course-title"> 
+                            Chris Hadfield</h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg11 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal11}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/FFCVbvXWLho" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg12}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow1 + '/mlpic/6.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AI, Science, and Scaling</div>
+                        <h3 class="course-title">Geoffrey West	 </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg12 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal12}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/GPf6WvxQ524" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <!-- 5th row-->
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg13}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/7.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Brains 2.0</div>
+                        <h3 class="course-title">
+                            
+                            
+                            Ramez Naam		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg13 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal13}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/Wxuf5SaVuJY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg14}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/8.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AIs in Human-Like Bodies: Virtues and Challenges</div>
+                        <h3 class="course-title">
+                            
+                            Suzanne Gildert		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg14 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal14}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/unvIRU6wXXk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg15}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow1 + '/mlpic/9.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">What Kind of AGI are We Moving Towards?</div>
+                        <h3 class="course-title">
+                            
+                            Ben Goertzel		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg15 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal15}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/erP-9lCi-Wc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <!-- 6th row-->
+        
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg16}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/10.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Lightning Round: “Where Are We Headed?”</div>
+                        <h3 class="course-title">
+                            
+                            Shivon Zilis, 		               
+                            
+                            Jack Clark, 		               
+                            
+                            Ramez Naam, 		               
+                            
+                            Suzanne Gildert, 		               
+                            
+                            Parvin Mousavi, 		               
+                            
+                            Ben Goertzel, 		               
+                            
+                            Ruslan Salakhutdinov, 		               
+                            
+                            Ilya Sutskever, 		               
+                            
+                            Marzyeh Ghassemi, 		               
+                            
+                            Geoffrey Hinton		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg16 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal16}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/bIUXZzhSTq8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg17}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/11.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Learning “Healthy” Models in Machine Learning for Health</div>
+                        <h3 class="course-title"> 
+                            
+                            
+                            Marzyeh Ghassemi		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg17 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal17}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/EE6d-yoktuA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg18}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow1 + '/mlpic/12.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Recent Advances and New Challenges for AI</div>
+                        <h3 class="course-title">
+                            
+                            Ruslan Salakhutdinov		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg18 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal18}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/XyKdIQ84GWsT" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <!-- 7th row-->
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg19}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/13.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AI Progress from OpenAI</div>
+                        <h3 class="course-title">
+                            
+                            Ilya Sutskever		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg19 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal19}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/tJ4DKi6NOMQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg20}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/14.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">On the Nature of Intelligence</div>
+                        <h3 class="course-title">
+                            
+                            Geoffrey Hinton		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg20 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal20}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/MhvfhKnEIqM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg21}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow1 + '/mlpic/15.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">What’s Next?</div>
+                        <h3 class="course-title">
+                            
+                            Ruslan Salakhutdinov, 		               
+                            
+                            Ilya Sutskever, 		               
+                            
+                            Marzyeh Ghassemi, 		               
+                            
+                            Geoffrey Hinton, 		               
+                            
+                            Shivon Zilis		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg21 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal21}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/AuQVVZ5DgBs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        <!-- 8th row -->
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg22}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/16.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Reflections and Looking Ahead</div>
+                        <h3 class="course-title">
+                            
+                            Renato Faria		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg22 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal22}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/r8xXPx-U9PI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg23}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/17.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Conference Welcome Remarks</div>
+                        <h3 class="course-title"> 
+                            
+                            Tiff Macklem, 		               
+                            
+                            Sonia Sennik		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg23 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal23}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/PAx6FYN7SFw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg24}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow1 + '/mlpic/18.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Time</div>
+                        <h3 class="course-title">
+                            
+                            Ajay Agrawal		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg24 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal24}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/MXgdi3BRIG0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <!-- 9th row-->
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg25}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/19.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Recent Advances in Deep Learning</div>
+                        <h3 class="course-title">
+                            
+                            Ruslan Salakhutdinov, 		               
+                            
+                            Steve Lohr		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg25 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal25}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/AZf6-C1PS5E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg26}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow1 + '/mlpic/20.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">How Will Machine Intelligence Transform Scientific Discovery?</div>
+                        <h3 class="course-title">
+                            
+                            Elizabeth Caley, 		               
+                            
+                            Will Knight		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg26 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal26}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/qrGqoFHCvA8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg27}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow1 + '/mlpic/21.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Brain Science and AI</div>
+                        <h3 class="course-title">
+                            
+                            Eric Jonas		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg27 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal27}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/X_nVcWhFtIk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        <!-- 10th row -->
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg28}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/1.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Solving Intelligence</div>
+                        <h3 class="course-title">
+                            
+                            Doina Precup, 		               
+                            
+                            Sven Strohband		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg28 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal28}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/J1wX2Yc8vaA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg29}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/2.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Conversation: On Intelligent Machines</div>
+                        <h3 class="course-title">
+                            
+                            The Right Honourable Justin Trudeau, 		               
+                            
+                            Shivon Zilis		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg29 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal29}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/upDO6rPIf5Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg30}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/3.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Intelligent Machines and the Future of Human Communication</div>
+                        <h3 class="course-title">
+                            Brad Hoover, 		               
+                            
+                            Alexandra Suich		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg30 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal30}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/upDO6rPIf5Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        <!-- 11th row-->
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg31}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/4.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Deciphering Cardiac Signals with Machine Learning</div>
+                        <h3 class="course-title">
+                            
+                            Don Crawford, 		               
+                            
+                            Barney Pell		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg31 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal31}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/rIbn8lZRcwk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg32}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/5.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Humans-In-The-Loop</div>
+                        <h3 class="course-title"> 
+                            
+                            
+                            Lukas Biewald		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg32 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal32}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/nwTk7BfPrPg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg33}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/6.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">How We Won the International ACM Recommendation System Challenge 2017</div>
+                        <h3 class="course-title">
+                            
+                            Tomi Poutanen, 		               
+                            
+                            Lisha Li		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg33 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal33}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/g0TEkeH7Q94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <!-- 12th row-->
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg34}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/7.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Quantum Machine Learning and It’s Discontents</div>
+                        <h3 class="course-title">                   Peter Wittek		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg34 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal34}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/MYHYBwgZuyc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg35}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/8.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Accelerating AI Futures</div>
+                        <h3 class="course-title">
+                            
+                            Steve Jurvetson		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg35 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal35}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/oQexCfSkkkM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg36}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/9.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Why Are Goals So Central to Intelligence?</div>
+                        <h3 class="course-title">
+                            
+                            Richard Sutton, 		               
+                            
+                            Steve Jurvetson		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg36 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal36}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/rc56vjyad9Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <!--13th row-->
+        
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg37}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/10.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AGI and Embodiment</div>
+                        <h3 class="course-title">
+                            
+                            Ben Goertzel		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg37 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal37}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/SOA8RJ8lu2I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg38}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/11.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AGI and Embodiment</div>
+                        <h3 class="course-title"> 
+                            
+                            Scott Phoenix		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg38 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal38}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/9lg3ISfFNFs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg39}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/12.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">AGI and Embodiment</div>
+                        <h3 class="course-title">
+                            
+                            Suzanne Gildert		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg39 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal39}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/3METDqWpVyY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <!-- 14th row-->
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg40}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/13.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Lightning Round on General Intelligence</div>
+                        <h3 class="course-title">
+                            
+                            Shivon Zilis, 		               
+                            
+                            Ben Goertzel, 		               
+                            
+                            Suzanne Gildert, 		               
+                            
+                            Max Tegmark, 		               
+                            
+                            Richard Sutton, 		               
+                            
+                            Scott Phoenix, 		               
+                            
+                            Gary Marcus, 		               
+                            
+                            Steve Jurvetson, 		               
+                            
+                            Alexandra Suich		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg40 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal40}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/RxLIQj_BMhk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg41}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/14.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Realtalk on AI and Business</div>
+                        <h3 class="course-title">
+                            
+                            Michael Chui, 		               
+                            
+                            Greg Ip		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg41 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal41}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/Yr960HHOeYI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg42}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/15.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Peter Drucker Meets Machine Intelligence</div>
+                        <h3 class="course-title">
+                            
+                            James Cham		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg42 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal42}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/PhGmm4oO1JQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        <!-- 15th row -->
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg43}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/16.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">The World After Capital</div>
+                        <h3 class="course-title">
+                            
+                            Renato Faria		               
+                            
+                            
+                            Albert Wenger, 		               
+                            
+                            Candice Faktor		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg43 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal43}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/nV-M8EJKVg4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg44}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/17.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Prediction Machines: They’re Good For Business, But Are They Good For People?</div>
+                        <h3 class="course-title"> 
+                            
+                            Joshua Gans, 		               
+                            
+                            Walter Frick		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg44 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal44}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/6SLjmIEDEww" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg45}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/18.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">If AI is Stuck, Then How Should We Unstick It?</div>
+                        <h3 class="course-title">
+                            
+                            Gary Marcus, 		               
+                            
+                            Tom Simonite		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg45 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal45}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/VflIYkhEO94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <!-- 16th row-->
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg46}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/19.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Super Humans</div>
+                        <h3 class="course-title">
+                            
+                            Sean Gourley, 		               
+                            
+                            Shivon Zilis		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg46 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal46}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/dM7x-jPpkQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg47}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/20.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Conference Closing Remarks</div>
+                        <h3 class="course-title">
+                            
+                            Ajay Agrawal, 		               
+                            
+                            Shivon Zilis		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg47 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal47}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/IO4rtX_Oig0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+        <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-2  slds-large-size_1-of-3 slds-p-around_x-large slds-p-bottom_none" >
+            <figure class="slds-image slds-image--card hovereffect" onclick="{!c.openImg48}">
+                <div style="width: 100%;
+                            ">
+                    <a href="javascript:void(0);" >
+                        <!-- {!URLFOR($Resource.mlvideo, '/mlvideo4')}
+{!$Resource.Presentation5 + '/pptpreview/1.png'}" {!$Resource.mlvideo + '/mlvideo4.JPG'}-->
+                        <img src="{! $Resource.mlrow2 + '/mlrow2/21.jpg'}" alt="Description of the image"/>
+                    </a></div>
+                <div class="course-detail">
+                    <div class="course-info-box">
+                        <div class="course-teacher">Why Will Machine Intelligence be so Transformational?</div>
+                        <h3 class="course-title">
+                            
+                            Steve Jurvetson		               
+                        </h3>    
+                    </div>
+                </div>    
+            </figure>
+            <aura:if isTrue="{!v.openImg48 == true}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header slds-modal__header_empty">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                                <lightning:icon iconName="utility:close" size="small" onclick="{!c.closeModal48}"/> 
+                            </button>
+                        </header>
+                        <div class="  slds-p-around_medium" id="modal-content-id-1">
+                            
+                            <!--Add 1st tile youtube Link-->
+                            <iframe class="frameDiv" src="https://www.youtube.com/embed/VkXruXv3EAU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;fullscreen;" ></iframe>				
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        
+        
+        
+    </div>
+    
+</aura:component>

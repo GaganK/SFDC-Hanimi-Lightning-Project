@@ -1,0 +1,15 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_4-of-12 pdall">
+            <img src="{! $Resource.AviGoldfarb}" alt="Description of the image"/>
+        </div>
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_8-of-12 pdall ">
+            <div class="hr-bio">
+                <h1 class="title">Avi Goldfarb</h1>
+                <p class="subtitle">Chief Data Scientist | Moderator</p>
+                <p class="descriptiontitle">Avi Goldfarb is Professor of Marketing at the Rotman School of Management, University of Toronto. He received his Ph.D. in economics from Northwestern University. He teaches courses on data, statistics, and digitization. His research, funded by Google, WPP, Industry Canada, Bell Canada, AIMIA, SSHRC, and others, focuses on understanding the opportunities and challenges of the digital economy. Professor Goldfarb is a Research Associate at the National Bureau of Economic Research.</p>
+               
+            </div>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,8 @@
+<apex:page standardController="Contact">
+   <apex:form >
+   
+     
+       <apex:outputText value="{!$Label.SurveyQuestion1Part2}" />
+    
+   </apex:form>
+</apex:page>

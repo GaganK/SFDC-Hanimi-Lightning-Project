@@ -1,0 +1,64 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
+    <aura:attribute name="showSaveCancelBtn2" type="boolean" default="true" />
+    <aura:attribute name="selTabId" type="String" default="day1" />
+    <ltng:require styles="{!$Resource.cssresource+'/css-resources/css/style.css'}"/>
+    <ltng:require styles="{!$Resource.fontIcon+'/font-icons/css/font-awesome.min.css'}"/>
+    <aura:handler name="Preference" event="c:Preference" action="{!c.handleComponentEvent}"/>
+    <aura:handler name="change" value="{!v.selTabId}" action="{!c.ChangeselectTab}"/>
+    <div style="background-color: transparent; padding:20px 0px;">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_12-of-12" >
+                <div  class="forceCommunityTileMenu" data-aura-class="forceCommunityTileMenu">
+                    <lightning:tabset variant="default" class="tabsetvariant"  selectedTabId="{!v.selTabId}">
+                        <lightning:tab aura:id="day1" label="Day 1" tabindex="1" id="day1">
+                            <div class="slds-box boxClass"  >
+						     <aura:if isTrue="{!v.selTabId=='day1'}">
+                                <c:myMatchVentureCmp dayId="day1"/>
+                                </aura:if>
+                            </div>       
+                        </lightning:tab>
+                        <lightning:tab  aura:id="day2" label="Day 2" tabindex="2" id="day2">
+                            <div class="slds-box boxClass"  >
+						<aura:if isTrue="{!v.selTabId=='day2'}">
+                                <c:myMatchVentureCmp dayId="day2"/>
+                                </aura:if>
+                            </div>           
+                        </lightning:tab>
+                    </lightning:tabset>
+                </div>
+            </div> 
+            <!-- <div class="slds-tabs_default">
+  <ul class="slds-tabs_default__nav" role="tablist">
+    <li aura:id="day1" class="slds-tabs_default__item slds-is-active" title="Day 1" role="presentation" >
+      <a class="slds-tabs_default__link"  role="tab" tabindex="0" onclick="{!c.day1Tab}" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">Day 1</a>
+    </li>
+      
+    <li aura:id="day2" class="slds-tabs_default__item" title="Day 2" role="presentation" >
+      <a class="slds-tabs_default__link" role="tab" tabindex="-1" onclick="{!c.day2Tab}" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Day 2</a>
+    </li>
+  </ul>
+  <div aura:id="day1TabDataId" id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+      <c:myMatchVentureCmp/>
+                </div>
+  <div aura:id="day2TabDataId" id="tab-default-2" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item">
+       <c:myPreferenceVentureCmp/>
+     </div>
+</div>-->
+            <!--   <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_2-of-12">
+                <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-grid_align-center">
+                    <div style="display: block;"><p class="resourcecaption">Resources</p> 
+                        <div class="resource">
+                            <div> <a onclick="{!c.redirectCDLpi}" target="_blank">
+                                <i class="fa fa-book"></i> <br/>
+                              My Preferences     
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</aura:component>

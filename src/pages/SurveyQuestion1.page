@@ -1,0 +1,8 @@
+<apex:page standardController="Contact" 
+           showHeader="false" sidebar="false" docType="html-5.0" >
+   <apex:form styleClass="form-inline">
+       <apex:outputText value="1. Gender and Gender identity "/><br></br><br></br>
+       <apex:outputText value="{!$Label.SurveyQuestion1}" />
+    
+   </apex:form>
+</apex:page>

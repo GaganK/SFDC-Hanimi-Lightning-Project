@@ -1,0 +1,58 @@
+.THIS .selected{
+    color:orange;
+}
+.THIS .tableContainer {
+
+    height:calc(100vh - 250px);
+    overflow:auto;
+    margin-top : 0px;
+}
+.THIS .slds-modal__container{
+    min-width: 0% !important;
+}
+.THIS .left-align {
+    text-align: left;
+     overflow: scroll;
+    overflow-x: hidden;
+    height: 300px;
+}
+.THIS .right-align {
+    text-align: right;
+     overflow: scroll;
+    overflow-x: hidden;
+    height: 300px;
+}
+.THIS .layoutScroll {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 580px;
+}
+.THIS .filtericon {
+ 
+}.THIS .table {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+.THIS .th {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+.THIS .td {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+.THIS .slds-form-element__control{
+    padding-left:0% !important;
+}
+.THIS .analysis {
+    color: brown;
+    font-size: -webkit-xxx-large;
+}
+.THIS .slds-text-color_default
+{
+    color: #A3A6B4 !important;
+    font-family: Source Sans Pro !important;
+}
+.THIS .slds-form-element__label{
+    display:none;
+}

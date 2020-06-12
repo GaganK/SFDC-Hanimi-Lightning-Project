@@ -1,0 +1,79 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="SelectedAllValue" type="boolean" default="false" />     
+    <aura:attribute name="SelectedValue" type="String"/>
+    <aura:attribute name="ValueList" type="Object[]" />    
+    <aura:attribute name="Selected" type="string"/>  
+    <aura:attribute name="uniqueName" type="String"/>
+    <aura:attribute name="label" type="String"/>
+    <aura:attribute name="parent" type="Aura.Component" />
+    
+    <label class="slds-form-element__label" for="combobox-id-8">{!v.label}</label>
+
+    <div aura:id="ddlPart" class="slds-picklist" onclick="{!c.OpenValueToggle}" onmouseleave="{!c.HideValueToggle}">
+        <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="false" style="width: 100%;">            
+            <aura:if isTrue="{!v.SelectedAllValue == true}">
+                <label id="lblselectvalue">  All Value </label>
+                <aura:set attribute="else">
+                    <label id="lblselectvalue">
+                        <aura:if isTrue="{!v.SelectedValue == null}">
+                            Select {!v.uniqueName}
+                            <aura:set attribute="else">
+                                Selected {!v.uniqueName}s - Filtered: {!v.SelectedValue}
+                            </aura:set>
+                        </aura:if>                            
+                    </label>  
+                </aura:set>
+            </aura:if>
+            <lightning:icon iconName="utility:down" alternativeText="down" />
+        </button>
+        <div class="slds-dropdown slds-dropdown--left slds-hide" aura:id="droplist_value"  onmouseleave="{!c.HideValueToggle}" style="max-height:auto; overflow:auto;margin-top:auto;">
+            <ul class="slds-dropdown__list" role="menu" >                
+                <aura:if isTrue="{!v.SelectedAllValue == true}">
+                    <li class="slds-dropdown__item slds-is-selected" role="presentation" id="AllValue">
+                        <a href="javascript:void(0);" role="menuitemcheckbox" aria-checked="true"  id="AllValue" onclick="{!c.AllValueUnCheck}">
+                            <span class="slds-truncate" id="AllValue">
+                                <lightning:icon class="selected" iconName="utility:check" alternativeText="check" size="small"/>
+                                <label>All Value</label>
+                            </span>
+                        </a>
+                    </li>
+                    <aura:set attribute="else">
+                        <li class="slds-dropdown__item slds-is-selected" role="presentation" id="AllValue">
+                            <a href="javascript:void(0);" role="menuitemcheckbox" aria-checked="false"   id="AllValue" onclick="{!c.AllValueCheck}">
+                                <span class="slds-truncate" id="AllValue">
+                                    <lightning:icon iconName="utility:check" alternativeText="check" size="small"/>
+                                    <label>All Value</label>
+                                </span>
+                            </a>
+                        </li>
+                    </aura:set>
+                </aura:if>
+                <aura:iteration items="{!v.ValueList}" var="listVal">                    
+                    <aura:if isTrue="{!listVal.flag == true}">                        
+                        <li class="slds-dropdown__item slds-is-selected" role="presentation" id="{!listVal.value}">
+                            <a href="javascript:void(0);" role="menuitemcheckbox" aria-checked="true"  id="{!listVal.value}" onclick="{!c.ValueUnCheck}">
+                                <span class="slds-truncate" id="{!listVal.value}">
+                                    <lightning:icon class="selected" iconName="utility:check" alternativeText="check" size="small"/>
+                                    <label id="{!listVal.value}">{!listVal.label}</label>
+                                </span>
+                            </a>
+                        </li>
+                        
+                        <aura:set attribute="else">
+                            <li class="slds-dropdown__item slds-is-selected" role="presentation" id="{!listVal.value}">
+                                <a href="javascript:void(0);" role="menuitemcheckbox" aria-checked="false"  
+                                    id="{!listVal.value}" onclick="{!c.ValueCheck}">
+                                    <span class="slds-truncate" id="{!listVal.value}">
+                                        <lightning:icon iconName="utility:check" alternativeText="check" size="small"/>
+                                        <label id="{!listVal.value}">{!listVal.label}</label>
+                                    </span>
+                                </a>
+                            </li>
+                        </aura:set>                        
+                    </aura:if>  
+                </aura:iteration>
+            </ul>
+        </div>
+    </div>
+ </aura:component>

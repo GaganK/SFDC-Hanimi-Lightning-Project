@@ -1,0 +1,8 @@
+<aura:component >
+	 <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="streamPotenList" type="string" />
+    <aura:attribute name="updatedstreamPotenList" type="string[]" />
+    <aura:iteration items="{!v.updatedstreamPotenList}" var="item">
+       <span style="border: solid 1px #a0a0a0;margin:1px;float: left;height: 30px;padding: 3px;">{!item}</span>
+	</aura:iteration>
+</aura:component>

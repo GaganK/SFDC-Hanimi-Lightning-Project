@@ -1,0 +1,57 @@
+<aura:component >
+    <!-- on component load, fetch picklist values dynamically from apex controller -->   
+    
+    
+    <!--declare aura attributes-->
+    <aura:attribute name="showSaveCancelBtn" type="boolean"/>
+    <aura:attribute name="showErrorClass" type="boolean" default="false"/>
+    <aura:attribute name="updatedApplications" type="Application__c[]" default="[]"/>
+    <aura:attribute name="updatedEvaluations" type="Evaluation__c[]" default="[]"/>
+    <aura:attribute name="singleRec" type="sobject" default="{'sobjectType' : 'Application__c',
+                                                             'Venture_Overview_Briefly_describe_your__c' : '',
+                                                             'Application_Referral_Name__c' : '',
+                                                             'Name' : '',
+                                                             }"/>
+     <aura:attribute name="EvaluationRec" type="sobject" default="{'sobjectType' : 'Evaluation__c',
+                                                             'EvaluatorsRanking__c' : '',
+                                                                                                                       }"/>
+    <aura:attribute name="refferalEditMode" type="boolean" default="false" />
+    <aura:attribute name="finalrankEditMode" type="boolean" default="false" />
+    <aura:attribute name="selectedColumnsInfo" type="object" default="{}"/>   
+    <!--Table Row Start-->       
+        
+      <td ondblclick="{!c.inlineEditRefferal}" role="gridcell" class="{!v.selectedColumnsInfo.referral ? 'slds-cell-edit' : 'slds-cell-edit hiddenColumn'}" title="ranking">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.refferalEditMode == false}">
+					<div class="{!v.selectedColumnsInfo.referral ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+						{!v.singleRec.Application_Referral_Name__c}
+					</div>	
+                    <lightning:buttonIcon aura:id="refNameBt" iconName="utility:edit"
+													  onclick="{!c.inlineEditRefferal}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                        <ui:inputNumber  class="slds-input inputFieldWidth"
+                                                      labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                      aura:id="refName"
+                                                      blur="{!c.closeInlineEditIcon}"
+                                                      change="{!c.onValueChange}"
+                                                      label=""
+                                                      value="{!v.singleRec.Application_Referral_Name__c}"
+                                                      Placeholder = "{!v.singleRec.Application_Referral_Name__c}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td>
+</aura:component>

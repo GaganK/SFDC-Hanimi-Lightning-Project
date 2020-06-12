@@ -1,0 +1,8 @@
+<apex:page standardController="Contact">
+   <apex:form >
+   
+   
+       <apex:outputText value="{!$Label.SurveyHeading}" />
+    
+   </apex:form>
+</apex:page>

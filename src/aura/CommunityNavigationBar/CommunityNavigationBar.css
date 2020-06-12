@@ -1,0 +1,15 @@
+.THIS .slds-col .ui-widget {
+   margin: 16px 0;
+}
+ 
+.THIS .slds-col.content {
+   width: 1140px;
+    color:white;
+    font-weight: 400;
+    font-size: .875rem;
+    font-family: Work Sans;
+  
+}
+.THIS.actualNode{
+      background-color: #e82076;
+}

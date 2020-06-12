@@ -1,0 +1,20 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"> 
+      <div class="slds-grid slds-wrap">
+       <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 pdall">
+   <h2  class="headingover">As a Partner, you will have access to two types of exclusive morning programs when attending CDL-Toronto Sessions.</h2> 
+<p class="para">On the first day of each Session, you will get an in-depth look into one of our past 
+    or present CDL ventures. You will learn more about their technology and business
+    model, how they have benefited from the CDL program and the challenges they face when
+    with with partners and early customers.</p> 
+<p class="para">On the second day of each Session, you will hear from some of our most experienced 
+    mentors who will draw on their experiences as operators and investors to share 
+    concrete strategies for managing innovation and collaborating with start-ups. </p>
+  </div>
+  <div style="position: relative;
+    z-index: 21;" class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 pdall pinkcircle">
+      <img src="{! $Resource.MorningProgramImg2}" alt="Description of the image"/>
+  </div>
+    </div>
+
+          
+</aura:component>

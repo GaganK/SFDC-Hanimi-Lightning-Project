@@ -1,0 +1,26 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <ltng:require styles="{!$Resource.cssresource+'/css-resources/css/style.css'}"/>
+    <ltng:require styles="{!$Resource.fontIcon+'/font-icons/css/font-awesome.min.css'}"/>
+    <div style="background-color: transparent; padding:20px 0px;">
+        
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_12-of-12" >
+              			<c:FamilyNewsletter/>
+            </div> 
+           <!-- <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_2-of-12">
+                <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-grid_align-center">
+                    <div style="display: block;"><p class="resourcecaption">Resources</p> 
+                        <div class="resource">
+                            <div> <a onclick="{!c.redirectCDLpi}" target="_blank">
+                                <i class="fa fa-book"></i> <br/>
+                              My Preferences     
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</aura:component>

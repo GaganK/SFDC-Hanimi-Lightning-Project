@@ -1,0 +1,9 @@
+<aura:component description="EventCustomPlainText" access="global" implements="LTE:EventInterface">
+    <aura:if isTrue="{!and(v.componentObj != null,v.componentObj.config != null,v.componentObj.config.plaintexthtml != null)}">
+        <div class="fonteva-event-component">
+            <div class="slds-grid slds-grid--vertical slds-p-horizontal--medium">
+                <ui:outputRichText value="{!v.componentObj.config.plaintexthtml}" linkify="true" class="event-plain-text-html event-rich-text"/>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

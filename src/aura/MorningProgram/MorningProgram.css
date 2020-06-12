@@ -1,0 +1,42 @@
+.THIS .headingover{
+   font-weight: 600;
+    font-size: 1.125rem;
+    letter-spacing: 1px;
+    line-height: 1.25em;
+    margin: 15px 0px;
+    background-color: #fff;
+    position: relative;
+    z-index: 30;
+}
+.THIS .pdall{
+    padding:50px;
+}
+.THIS .para{
+    font-size: 1.125rem;
+    line-height: 1.45rem;
+    margin-bottom: 25px;
+    background-color: #fff;
+    position: relative;
+    z-index: 30;
+}
+.THIS .pinkcircle::before {
+   content: " ";
+    background: url(https://cdl--c.na99.visual.force.com/resource/1569582768000/PinkCircle?) no-repeat;
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    background-size: contain;
+    top: 2px;
+    left: -233px;
+    z-index: -7;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+   .THIS .pinkcircle::before {
+    width: 0px;
+    height: 0px;
+} 
+    .THIS .pdall{
+    padding:10px;
+}
+}

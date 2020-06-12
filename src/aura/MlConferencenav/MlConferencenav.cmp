@@ -1,0 +1,24 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    
+    
+    <lightning:tabset class="tabsetvariant">
+        <lightning:tab label="Speaker Bios">
+            <div class="slds-box boxClass"  >
+                <c:MLSpeakerCmp/>
+            </div>
+            
+        </lightning:tab>
+        <lightning:tab label="Video Library">
+            <div class="slds-box boxClass"  >
+                <c:videoContentML/>
+                
+                <c:videoContent/>
+            </div>
+            
+            
+        </lightning:tab>
+        
+    </lightning:tabset>
+    
+    
+</aura:component>

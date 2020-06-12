@@ -1,0 +1,101 @@
+.THIS .Rankbox {
+  width: 281.5px;
+  height: 245px;
+  box-shadow: 0 1.5px 3px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+}
+.THIS .mouseHoverCls:hover{
+    text-decoration: underline;
+}
+
+.THIS .selected{
+    color:orange;
+}
+.THIS .slds-form-element__control slds-grow{
+    width: max-content !important;
+}
+.THIS .removeWhiteSpace{
+     word-wrap: break-word;
+    white-space: pre-wrap;
+
+}
+.THIS .image-modal-div {
+
+    height: 150px !important;
+    width: 150px !important;
+    margin-right: 30px;
+    border: 1px solid grey;
+    overflow: hidden;
+    border-radius: 5%;
+}
+.THIS .contactdetails{
+    font-size: medium;
+    color: black;
+    text-align: center;
+    font-weight:bold;
+    margin-top: 3%;
+     transition:all .9s ease-in-out
+}
+.THIS .RowBG {
+  width: 312.7px;
+  height: 25px;
+  background-color: #ffffff;
+}
+.THIS .left-align {
+    text-align: left;
+     overflow: scroll;
+    overflow-x: hidden;
+    height: 300px;
+}
+.THIS .right-align {
+    text-align: right;
+     overflow: scroll;
+    overflow-x: hidden;
+    height: 300px;
+}
+.THIS .layoutScroll {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 1150px;
+}
+.THIS .sendEmail {
+    left: 7%;
+    color: rgb(232, 32, 118);
+}
+.THIS .filtericon {
+    left: 7%;
+}.THIS .table {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+.THIS .th {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+.THIS .td {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+.THIS .slds-form-element__control{
+    padding-left:0% !important;
+}
+.THIS .selStyle{
+    width: max-content;
+}
+.THIS .analysis {
+    color: brown;
+    font-size: -webkit-xxx-large;
+}
+.THIS .slds-text-color_default
+{
+    color: #A3A6B4 !important;
+    font-family: Source Sans Pro !important;
+}
+.THIS .slds-form-element__label{
+    display:none;
+}
+.THIS .contactName {
+    
+    font-size: 20px !important;
+    font-weight: bold !important;
+}

@@ -1,0 +1,76 @@
+.THIS .hideheader{
+    font-size: 1.2rem;
+    line-height: 1.5em;
+    Color:white;
+     background-color: #e81f76!important;
+    border:none;
+}
+.THIS .Headingheader{
+     background-color: #e81f76!important;
+    text-align: center;
+    padding: 7px 0px;
+}
+.THIS .homeMenu{
+   Color:white;
+    border:0px; 
+}
+.THIS .menuCls{
+    background-color: rgb(232, 32, 118)!important;
+    color: white!important;
+    padding-left: 33px!important;
+    border: 0px!important;
+}
+.THIS .slds-button .slds-button_neutral{
+    background-color: rgb(232, 32, 118)!important;
+    color: white!important;
+    padding-left: 33px!important;
+    border: 0px!important;
+}
+.THIS .topnav {
+  overflow: hidden;
+}
+.THIS .menuItem{
+   background-color: rgb(232, 32, 118);
+    color: white;
+}
+.THIS .dropdown {
+ display: inline-flex;
+}
+
+.THIS .dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.THIS .dropdown-content {
+  display: none;
+  position: absolute;
+  Color:white;
+     background-color: #e81f76!important;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.THIS .dropdown-content a {
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.THIS .dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.THIS .dropdown:hover .dropdown-content {
+  display: block;
+}

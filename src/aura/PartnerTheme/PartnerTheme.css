@@ -1,0 +1,12 @@
+.THIS .searchRegion,  .THIS .navMenu{
+    padding: 1rem;
+}
+
+.THIS .profileMenuRegion{
+    padding: 1rem 0rem;
+}
+@media only screen and (max-width: 425px){
+.THIS .navMenu{
+   display:none; 
+}
+}

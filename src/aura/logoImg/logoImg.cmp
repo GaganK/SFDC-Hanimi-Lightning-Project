@@ -1,0 +1,6 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+	 <a onClick="{!c.redirectHome}">
+    <div class="slds-grid slds-grid_align-center"> 
+    
+    <img src="{! $Resource.logocdl}" alt="Description of the image" class="imgclass" /> </div>  </a>
+</aura:component>

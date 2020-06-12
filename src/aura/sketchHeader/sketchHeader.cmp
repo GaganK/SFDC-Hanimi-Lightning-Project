@@ -1,0 +1,14 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <ltng:require styles="{!$Resource.cssresource+'/css-resources/css/style.css'}"/>
+    <div class="">
+        <div class="overlay">
+            <div class="pd-rem">
+                <p class="heading2"><span style="color:#e42076;">BUILD SOMETHING</span><br></br>MASSIVE </p>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</aura:component>

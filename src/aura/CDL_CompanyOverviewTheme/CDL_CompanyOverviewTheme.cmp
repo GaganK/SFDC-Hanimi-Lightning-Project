@@ -1,0 +1,44 @@
+<aura:component implements="forceCommunity:themeLayout,forceCommunity:layout">
+    <ltng:require styles="{!$Resource.font_awesomecss}"/>
+    <aura:attribute name="search" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="profileMenu" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="navBar" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newLogo" type="Aura.component[]" required="false"/>
+    <aura:attribute name="newFooter" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="recordId" type="String" default="false"/>
+    <div>
+        
+        <div class="header">
+            <div class="slds-grid" style="background-color: rgb(232, 32, 118) !important;width: 100%; ">
+                
+                 
+                <div class="profileMenuRegion slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-6 slds-large-size_1-of-6 slds-p-top_large" >
+                  
+                </div>
+            </div>
+            
+        </div>
+        <div class="slds-grid" style="width: 100%; background: #e81f76; padding: 2px 0px 2px 0px; display: none; ">
+        
+      		<div class="navigation slds-col slds-size_2-of-12" >
+            <!-- Navigation Menu component -->
+           {!v.navBar}
+               
+        	</div>         
+                 
+        </div>
+
+        <div class="mainContentArea slds-p-around_none" style="margin-left: 1.5em;margin-right:1.5em;margin-top:2em">
+         </div> 
+        <div class="mainContentArea slds-p-around_none">
+            {!v.body}
+        </div>
+        
+        
+        
+        <div class="slds-p-around_none">
+           
+        </div>
+    </div>
+</aura:component>

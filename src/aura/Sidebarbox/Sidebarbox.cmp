@@ -1,0 +1,56 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+     <div style="color: #e81f76;
+    font-size: 26px;
+    font-family: FuturaBT-Heavy;
+    font-weight: 400;
+            padding: 20px 0px 0px 0px;
+            text-align:center;
+    line-height: 38px;">Relevant Materials
+            <hr class="lines"/>
+</div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1">
+    <div class="event-list-small">
+            <div class="event-container event-listing">
+<div class="flex-middle row">
+<div class="event-post-date">
+<div class="startdate">
+<span class="day">
+    <img src="{!$Resource.schedule}" alt="person name" style="width: 70%;"/></span>
+</div>
+</div>
+<div class="event-metas">
+<h3 class="entry-title"><a href="#" rel="bookmark">Schedule With Us</a></h3>
+<div class="time-location">
+<div class="event-time">
+Connet with us</div>
+</div>
+</div>
+</div>
+</div>
+            </div>
+  </div>
+        <div class="slds-col slds-size_1-of-1">
+    <div class="event-list-small">
+            <div class="event-container event-listing">
+<div class="flex-middle row">
+<div class="event-post-date">
+<div class="startdate">
+<span class="day">
+    <img src="{!$Resource.slackIcon}" alt="person name" style="width: 70%;"/></span>
+</div>
+</div>
+<div class="event-metas">
+<h3 class="entry-title"><a href="#" rel="bookmark">Join us on Slack</a></h3>
+<div class="time-location">
+<div class="event-time">
+Connect through slack </div>
+</div>
+</div>
+</div>
+</div>
+            </div>
+  </div>
+       
+    </div>   
+</aura:component>

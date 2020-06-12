@@ -1,0 +1,8 @@
+.THIS .myCheckbox{
+  display: inline-block;
+  float: left;
+}
+.THIS .displayLabel {
+
+    display: inline-block !important;
+}

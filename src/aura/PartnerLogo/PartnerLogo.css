@@ -1,0 +1,33 @@
+.THIS .logo {
+    transition: .15s all cubic-bezier(.1,.46,.32,.9);
+    opacity: .7;
+    padding-top: 25px;
+}
+.THIS .logo:hover {
+    opacity: 1;
+}
+.THIS .pdbt{
+    padding-bottom:20px;
+}
+.THIS .pdtp{
+   padding-top: 25px;
+}
+.THIS .divider {
+    width: 100%;
+    height: 1px;
+    background-color: #d8d8d8;
+} 
+.THIS .imgresize{
+    padding: 20px;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+   .THIS .logo{
+    padding-top:0px;
+} 
+    .THIS .pd-tp{
+    padding-top:0px;
+}
+    .THIS .imgresize{
+    padding:0px 10px;
+}
+}

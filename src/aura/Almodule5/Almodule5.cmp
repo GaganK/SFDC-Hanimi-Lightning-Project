@@ -1,0 +1,60 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global">
+    <aura:handler name="init" value="this" action="{!c.doInit}"/>
+    <aura:attribute name="commentsVal" type="String" />
+    <aura:attribute name="previewPreReadingM" type="Boolean" default="false"/>
+    <aura:attribute name="previewAIPrimer" type="Boolean" default="false"/>
+    <ltng:require styles="{!$Resource.cssresource+'/css-resources/css/style.css'}"/>
+    <lightning:tabset class="tabsetvariant">
+       <!-- <lightning:tab label="Pre-reading Materials" >
+            <div class="slds-box boxClass"  >
+                <c:prereadingMaterial/>
+            </div>    
+        </lightning:tab>
+        <lightning:tab label="Presentation">
+            <div class="slds-box boxClass"  >
+                <c:Presentation5/>  
+            </div>    
+        </lightning:tab>-->
+        <lightning:tab label="Biography">
+            <div class="slds-box boxClassa"  >
+                <c:Biographymodule5/>
+            </div>
+            
+            
+        </lightning:tab>
+       
+    </lightning:tabset>
+    
+    
+    
+    <!--  <ul class="slds-has-dividers_bottom-space">
+ 
+        <li class="slds-item">
+             <div class="slds-grid">
+    <div class="slds-col slds-size_1-of-5">
+                   <ul class="slds-has-dividers_bottom-space">
+      <li class="slds-item">
+     <a style="font-size: medium;color: rgb(232, 32, 118);" onclick="{!c.openPreReadingPreview}">Pre-Reading Materials</a>
+                       </li>
+      <li class="slds-item">
+     <a style="font-size: medium;color: rgb(232, 32, 118);" onclick="{!c.openAIPreview}">AI Primer Presentation</a>
+                       </li>
+      </ul>
+                <lightning:inputRichText value="{!v.commentsVal}" placeholder="Type something interesting"/>
+    </div>
+    <div class="slds-col slds-size_1-of-2">
+                 <div style="width: 75%; margin: 0 auto; text-align: left">
+                    <aura:if isTrue="{!v.previewPreReadingM}">
+                     <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=http://www.sis.pitt.edu/jjoshi/courses/IS2620/Spring11/Cloud_Hassan.ppt" style="width:600px; height:500px;" frameborder="0"></iframe>
+     </aura:if>
+                      <aura:if isTrue="{!v.previewAIPrimer}">
+                     <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=https://sfdcbeginner.com/wp-content/uploads/2015/02/introduction-to-salesforce.pps" style="width:600px; height:500px;" frameborder="0"></iframe>
+     </aura:if>
+    </div>
+                    </div>
+   </div>
+        </li>
+    </ul>-->
+    
+</aura:component>

@@ -1,0 +1,15 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_12-of-12 pdall ">
+            <div class="hr-bio">
+                <h1 class="title">Pre-reading articles:</h1>
+				<ul>
+				  <li class="subtitle"><a href="https://www.nature.com/articles/d41586-019-02935-4" target="_blank">Quantum gold rush: the private funding pouring into quantum start-ups</a> - Nature 2019</li>
+				   <li class="subtitle"><a href="https://www.technologyreview.com/s/613119/quantum-computing-should-supercharge-this-machine-learning-technique/" target="_blank">Quantum computing should supercharge this machine-learning technique</a> - MIT Technology Review 2019</li>
+				    <li class="subtitle"><a href="https://www.forbes.com/sites/cognitiveworld/2019/02/24/why-quantum-computings-time-is-now/#1d7de41358d4" target="_blank">Why Quantum Computing's Time Is Now</a> - Forbes 2019</li>
+					  <li class="subtitle"><a href="https://www.wsj.com/articles/quantum-computing-holds-promise-for-banks-executives-say-11573230983?mod=djemCIO" target="_blank">Quantum Computing Holds Promise for Banks, Executives Say</a> - Wall Street Journal 2019</li>
+				</ul>                
+            </div>
+        </div>
+    </div>
+</aura:component>

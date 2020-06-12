@@ -1,0 +1,17 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="labelset" type="List" default="[]" />
+    <aura:attribute name="dataset" type="List" default="[]" />
+    <aura:attribute name="uniqueName" type="String" />
+    <aura:attribute name="mentorId" type="String" />
+    <aura:attribute name="mode" type="String" />
+    <aura:attribute name="xaxeslabel" type="String" />
+    <aura:attribute name="yaxeslabel" type="String" />
+    <aura:attribute name="chartTitle" type="String" />
+    <aura:attribute name="stepSize" type="Integer" default="1" />
+    
+    <ltng:require scripts="{!$Resource.Chart}" afterScriptsLoaded="{!c.scriptsLoaded}" />
+    
+    <canvas id="{!v.mentorId + v.uniqueName + v.mode + 'Chart'}" width="331" height="200" style="max-width:341px!important;max-height:341px!important;"></canvas>
+    <!--div style="padding-left: 45%;">{!v.uniqueName}</div-->
+</aura:component>

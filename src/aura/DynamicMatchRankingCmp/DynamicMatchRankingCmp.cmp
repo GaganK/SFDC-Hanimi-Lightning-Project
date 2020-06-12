@@ -1,0 +1,20 @@
+<aura:component>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="name" type="String"/>
+    <aura:attribute name="accesskey" type="String"/>
+    <aura:attribute name="value" type="String"/>
+    <aura:attribute name="options" type="List" default="[1,2,3,4,5]"/>
+	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" description="flag for rendered save and cancel buttons in aura:if "/>
+    <aura:attribute name="existingRankingList" type="List" default="[]"/>
+    <aura:attribute name="selectedVenturesList" type="String[]"/>
+	<aura:attribute name="currentApplication" type="myMatchVentureListController.ventureWrapper"/>
+	<aura:attribute name="listOfAllApplications" type="myMatchVentureListController.ventureWrapper[]"/>
+    <c:toastMsgCmp />
+    <aura:if isTrue="{!v.options.length &gt; 0}">
+    <lightning:select class="selStyle" name="rankingId" label="" accesskey="{!v.accesskey}" value="{!v.currentApplication.isSelectedVal}" onchange="{!c.handleVentureRanking}">
+        <aura:iteration var="option" items="{! v.options }">
+           <option text="{!option.label}" value="{!option.value}" />
+        </aura:iteration>
+    </lightning:select>
+    </aura:if>
+</aura:component>

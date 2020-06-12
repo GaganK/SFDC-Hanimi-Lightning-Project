@@ -1,0 +1,140 @@
+.THIS .textbold{
+    color: #0c1e44;
+    font-size: 16px;
+    font-weight: 600;
+}
+.THIS .captiontext{
+    color: #0c1e44;
+    padding-bottom: 30px;
+}
+.THIS .event-list-small {
+    padding: 30px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.THIS .event-listing .flex-middle {
+    margin: 0;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    -moz-align-items: flex-start;
+    align-items: flex-start;
+}
+.THIS .flex-middle {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+}
+.THIS .event-listing .event-post-date .startdate {
+    position: static;
+    overflow: hidden;
+    width: 70px;
+    height: 60px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    margin-right: 15px;
+    line-height: 22px;
+    font-weight: 400;
+    font-size: 18px;
+    font-family: nunito,Arial,sans-serif;
+    background: #e81f76;
+}
+.THIS .startdate {
+    bottom: auto;
+    font-size: 14px;
+    font-family: open sans,Helvetica,Arial,sans-serif;
+    color: #fafafa;
+    line-height: normal;
+    top: 30px;
+    text-transform: none;
+    right: auto;
+    left: 30px;
+}
+
+.THIS .startdate {
+    z-index: 1;
+    color: #fff;
+    bottom: 24px;
+    position: absolute;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: nunito,Arial,sans-serif;
+    text-align: center;
+    line-height: normal;
+    right: 57px;
+}
+.THIS .startdate .day {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+}
+.THIS .event-metas {
+    z-index: 1;
+    bottom: 21px;
+    padding-right: 30px;
+    left: 30px;
+    right: 0;
+}
+.THIS .event-listing .entry-title {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+    margin-top: -4px;
+    margin-bottom: 5px;
+}
+.THIS .event-listing .entry-title a {
+    color: #0a0a0a;
+}
+.THIS .event-listing .time-location {
+    color: #7e7e7e;
+    margin: 0;
+    font-size: 13px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    align-items: center;
+}
+.THIS .event-listing .event-post-date .startdate:hover{
+    background-color:black;
+}

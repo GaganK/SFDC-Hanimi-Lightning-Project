@@ -1,0 +1,38 @@
+<apex:page controller="myApplicationListCtrl" showHeader="false" sidebar="false">
+<apex:slds />
+<apex:form >
+<apex:pageBlock mode="inlineEdit" title="My Applications" id="pb">
+
+<apex:pageBlockTable value="{!AllApplications}" var="a" styleClass="slds-table slds-table_cell-buffer slds-table_bordered">
+<apex:column Headervalue="Application #" style="width:10% !important;">
+<apex:outputfield value="{!a.Name}"/>
+</apex:column>
+<apex:column headervalue="Venture" style="width:10% !important;">
+<apex:outputfield value="{!a.Venture__r.Name}"/>
+</apex:column>
+<apex:column headervalue="CDL Site Preference" style="width:10% !important;">
+<apex:outputfield value="{!a.Initial_CDL_Site_Preference__c}"/>
+</apex:column>
+<apex:column headervalue="Stream Potential" style="width:10% !important;">
+<apex:outputfield value="{!a.Tech_Specialization__c}"/>
+</apex:column>
+<apex:column headervalue="Evaluator 1" style="width:10% !important;">
+<apex:outputfield value="{!a.Evaluator_1__c}"/>
+</apex:column>
+<apex:column headervalue="Evaluator 2" style="width:10% !important;">
+<apex:outputfield value="{!a.Evaluator_2__c}"/>
+</apex:column>
+<apex:column headervalue="Evaluator 3" style="width:10% !important;">
+<apex:outputfield value="{!a.Evaluator_3__c}"/>
+</apex:column>
+<apex:inlineEditSupport event="ondblClick" showOnEdit="saveButton,CancelButton" />
+</apex:pageBlockTable>
+<apex:pageBlockButtons >
+<apex:commandButton value="Cancel" id="CancelButton" styleclass="slds-button" rerender="pb" style="display: none;"/>
+<apex:commandButton action="{!updateApplication}" value="Save" id="saveButton" style="display: none;" styleclass="slds-button slds-button_brand"/>
+
+</apex:pageBlockButtons>
+</apex:pageBlock>
+
+</apex:form>
+</apex:page>

@@ -1,0 +1,521 @@
+<aura:component controller="myApplicationsCtrl_Temp"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global">
+    
+    <aura:attribute name="selectedColumnsInfo" type="object" default="{}" />
+    <aura:attribute name="isSearching" type="boolean" default="false " />
+    <aura:attribute name="searchTerm" type="String" default="" />
+    <aura:attribute name="filterBy" type="String" default="" />
+    <aura:attribute name="availableOptions" type="List" default="[]" />
+    <aura:attribute name="filteredOptions" type="List" default="[]" />
+    <aura:attribute name="filteredFirstSitePreference" type="List"  default="[]"/>
+    <aura:attribute name="filteredSecondSitePreference" type="List" default="[]" />
+    <aura:attribute name="filteredEvaluator1" type="List" default="[]" />
+    <aura:attribute name="filteredEvaluator2" type="List" default="[]" />
+    <aura:attribute name="filteredEvaluator3" type="List" default="[]" />
+    <aura:attribute name="filteredStreamPotentials" type="List" default="[]" />
+    <aura:attribute name="firstSitePreferances" type="List" default="[]" />
+    <aura:attribute name="secondSitePreferances" type="List" default="[]" />
+    <aura:attribute name="assignedToUsers" type="List" default="[]" />
+    <aura:attribute name="allStreamPotentials" type="List" default="[]" />
+    <aura:attribute name="allApplications" type="Application__c[]"/>
+    <aura:attribute name="allFilters" type="myApplicationsCtrl_Temp.FieldFilterWrapper[]"/>
+    <aura:attribute name="filterOptions" type="List" default="[]" />
+    <aura:attribute name="filterValue" type="List" default="[]" />
+    <aura:attribute name="fieldSearchTerm" type="String" default=""/>
+    <aura:attribute name="sortField" type="String" default="Name" />
+    <aura:attribute name="sortAsc" type="Boolean" default="false" />
+    
+    
+    <aura:attribute name="isProcessing" type="boolean" default="true" />
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+    <aura:attribute name="showFilter" type="boolean" default="false" />
+    <aura:attribute name="lastEvaluatorFieldName" type="String" default="" />
+    <aura:attribute name="lastEvaluatorId" type="String" default="" />
+    <aura:attribute name="lastApplicationId" type="String" default="" />
+    <aura:attribute type="Boolean" name="isRemove" default="false" />
+    
+    <aura:attribute name="currentApplications" type="Application__c[]"/>
+    <aura:attribute name="currentPageNumber" type="Integer" default="1"/>
+    <aura:attribute name="maxPageNumber" type="Integer" default="1"/>
+    <aura:attribute type="Integer" name="pageSize" default="10" />
+    
+    <aura:method name="searchAction" action="{!c.onSearch}" />
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <aura:if isTrue="{!v.isProcessing}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--small" role="alert">
+                <span class="slds-assistive-text">Loading...</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-assignment" title="Application Assignment">
+                        <lightning:icon iconName="standard:assignment" size="small" />
+                    </span>
+                </div>
+                <div class="gSearch slds-media__body" style="margin-right: var(--lwc-spacingSmall,0.75rem);">
+                    <lightning:input aura:id="gSearch" placeholder="Search this list..." type="search"
+                                     value="{!v.searchTerm}" tabindex="0" onchange="{!c.onSearch}" />
+                </div>
+                <div class="slds-no-flex">
+                    <lightning:buttonIcon iconName="utility:refresh" variant="border-filled" onclick="{! c.refreshView}"
+                                          tooltip="Refresh" />
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body tableContainer">
+            <table aria-multiselectable="true"
+                   class="slds-table slds-table_bordered slds-table_striped slds-table_col-bordered" role="grid">
+                <thead>
+                    <tr class="slds-line-height_reset" id="selectable">
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.applicationNumber ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.applicationNumber ? 'width:160px;' : ''}">
+                                <div onclick="{!c.sortByApplicationNumber}"
+                                     class="{!v.selectedColumnsInfo.applicationNumber ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Application Number" style="cursor: pointer;">
+                                    Application #
+                                    <aura:if isTrue="{!v.sortField=='Name'}">
+                                        <span>
+                                            <aura:if isTrue="{!v.sortAsc}">
+                                                <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                </aura:set>
+                                            </aura:if>
+                                        </span>
+                                    </aura:if>
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                          iconName="utility:filterList" onclick="{!c.openFilterModal}"
+                                          variant="bare" value="Name"/>
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.applicationNumber ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="applicationNumber"
+                                                          tooltip="{!v.selectedColumnsInfo.applicationNumber ? 'Hide Application Number' : 'Show Application Number'}" />
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.firstSitePreference ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.firstSitePreference ? 'width:180px;' : ''}">
+                                <div onclick="{!c.sortByFirstSitePref}"
+                                     class="{!v.selectedColumnsInfo.firstSitePreference ? 'slds-float_left' : 'slds-hide'}"
+                                     title="First Site Preference" style="cursor: pointer;">
+                                    First Site Preference
+                                    <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                        <span>
+                                            <aura:if isTrue="{!v.sortAsc}">
+                                                <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                </aura:set>
+                                            </aura:if>
+                                        </span>
+                                    </aura:if>
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.firstSitePreference ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="firstSitePreference"
+                                                          tooltip="{!v.selectedColumnsInfo.firstSitePreference ? 'Hide First Site Preferance' : 'Show First Site Preferance'}" />
+                                </div>
+                                <div class="{!v.selectedColumnsInfo.firstSitePreference ? 'slds-float_right hideShowIcon' : 'slds-hide'}">
+                                    <lightning:buttonIcon
+                                                          iconName="utility:filterList" ariaLabel="First Site Preference" onclick="{!c.openFilterModal}"
+                                                          variant="bare" tooltip="Filter by First Site Preference" iconClass="{!not(empty(v.filteredFirstSitePreference)) ? 'selectedFilter' : ''}"/>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.secondSitePreference ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.secondSitePreference ? 'width:180px;' : ''}">
+                                <div onclick="{!c.sortBySecondSitePref}"
+                                     class="{!v.selectedColumnsInfo.secondSitePreference ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Second Site Preference" style="cursor: pointer;">
+                                    Second Site Preference
+                                    <aura:if isTrue="{!v.sortField=='X2nd_Preference_CDL_Location__c'}">
+                                        <span>
+                                            <aura:if isTrue="{!v.sortAsc}">
+                                                <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                </aura:set>
+                                            </aura:if>
+                                        </span>
+                                    </aura:if>
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.secondSitePreference ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="secondSitePreference"
+                                                          tooltip="{!v.selectedColumnsInfo.secondSitePreference ? 'Hide Second Site Preferance' : 'Show Second Site Preferance'}" />
+                                </div>
+                                <div class="{!v.selectedColumnsInfo.secondSitePreference ? 'slds-float_right hideShowIcon' : 'slds-hide'}">
+                                    <lightning:buttonIcon
+                                                          iconName="utility:filterList" ariaLabel="Second Site Preference" onclick="{!c.openFilterModal}"
+                                                          variant="bare" tooltip="Filter by Second Site Preference" iconClass="{!not(empty(v.filteredSecondSitePreference)) ? 'selectedFilter' : ''}"/>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.ventureName ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.ventureName ? 'width:200px;' : ''}">
+                                <div onclick="{!c.sortByVentureName}"
+                                     class="{!v.selectedColumnsInfo.ventureName ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Venture Name" style="cursor: pointer;">
+                                    Venture Name
+                                    <aura:if isTrue="{!v.sortField=='Venture__r.Name'}">
+                                        <span>
+                                            <aura:if isTrue="{!v.sortAsc}">
+                                                <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                </aura:set>
+                                            </aura:if>
+                                        </span>
+                                    </aura:if>
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                          iconName="utility:filterList" onclick="{!c.openFilterModal}"
+                                          variant="bare" value="Venture__r.Name"/>
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.ventureName ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="ventureName"
+                                                          tooltip="{!v.selectedColumnsInfo.ventureName ? 'Hide Venture Name' : 'Show Venture Name'}" />
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.ventureOverview ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.ventureOverview ? 'width:300px;' : ''}">
+                                <div class="{!v.selectedColumnsInfo.ventureOverview ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Venture Overview" style="cursor: pointer;">
+                                    Venture Overview
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.ventureOverview ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="ventureOverview"
+                                                          tooltip="{!v.selectedColumnsInfo.ventureOverview ? 'Hide Venture Overview' : 'Show Venture Overview'}" />
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.streamPotential ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.streamPotential ? 'width:180px;' : ''}">
+                                <div class="{!v.selectedColumnsInfo.streamPotential ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Stream Potential" style="cursor: pointer;">
+                                    Stream Potential
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.streamPotential ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="streamPotential"
+                                                          tooltip="{!v.selectedColumnsInfo.streamPotential ? 'Hide Stream Potential' : 'Show Stream Potential'}" />
+                                </div>
+                                <div class="{!v.selectedColumnsInfo.streamPotential ? 'slds-float_right hideShowIcon' : 'slds-hide'}">
+                                    <lightning:buttonIcon
+                                                          iconName="utility:filterList" ariaLabel="Stream Potential" onclick="{!c.openFilterModal}"
+                                                          variant="bare" tooltip="Filter by Stream Potential" iconClass="{!not(empty(v.filteredStreamPotentials)) ? 'selectedFilter' : ''}"/>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.evaluator1 ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.evaluator1 ? 'width:200px;' : ''}">
+                                <div class="{!v.selectedColumnsInfo.evaluator1 ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Evaluator 1" style="cursor: pointer;">
+                                    Evaluator 1
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.evaluator1 ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="evaluator1"
+                                                          tooltip="{!v.selectedColumnsInfo.evaluator1 ? 'Hide Evaluator 1' : 'Show Evaluator 1'}" />
+                                </div>
+                                <div class="{!v.selectedColumnsInfo.evaluator1 ? 'slds-float_right hideShowIcon' : 'slds-hide'}">
+                                    <lightning:buttonIcon
+                                                          iconName="utility:filterList" ariaLabel="Evaluator 1" onclick="{!c.openFilterModal}"
+                                                          variant="bare" tooltip="Filter by Evaluator 1" iconClass="{!not(empty(v.filteredEvaluator1)) ? 'selectedFilter' : ''}"/>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.evaluator2 ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.evaluator2 ? 'width:200px;' : ''}">
+                                <div class="{!v.selectedColumnsInfo.evaluator2 ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Evaluator 2" style="cursor: pointer;">
+                                    Evaluator 2
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.evaluator2 ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="evaluator2"
+                                                          tooltip="{!v.selectedColumnsInfo.evaluator2 ? 'Hide Evaluator 2' : 'Show Evaluator 2'}" />
+                                </div>
+                                <div class="{!v.selectedColumnsInfo.evaluator2 ? 'slds-float_right hideShowIcon' : 'slds-hide'}">
+                                    <lightning:buttonIcon
+                                                          iconName="utility:filterList" ariaLabel="Evaluator 2" onclick="{!c.openFilterModal}"
+                                                          variant="bare" tooltip="Filter by Evaluator 2" iconClass="{!not(empty(v.filteredEvaluator2)) ? 'selectedFilter' : ''}"/>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.evaluator3 ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.evaluator3 ? 'width:200px;' : ''}">
+                                <div class="{!v.selectedColumnsInfo.evaluator3 ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Evaluator 3" style="cursor: pointer;">
+                                    Evaluator 3
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.evaluator3 ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="evaluator3"
+                                                          tooltip="{!v.selectedColumnsInfo.evaluator3 ? 'Hide Evaluator 3' : 'Show Evaluator 3'}" />
+                                </div>
+                                <div class="{!v.selectedColumnsInfo.evaluator3 ? 'slds-float_right hideShowIcon' : 'slds-hide'}">
+                                    <lightning:buttonIcon
+                                                          iconName="utility:filterList" ariaLabel="Evaluator 3" onclick="{!c.openFilterModal}"
+                                                          variant="bare" tooltip="Filter by Evaluator 3" iconClass="{!not(empty(v.filteredEvaluator3)) ? 'selectedFilter' : ''}"/>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.ventureLinkdin ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.ventureWebsite ? 'width:200px;' : ''}">
+                                <div class="{!v.selectedColumnsInfo.ventureLinkdin ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Venture's Founder LinkedIn" style="cursor: pointer;">
+                                    Venture's Founder LinkedIn
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.ventureLinkdin ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="ventureLinkdin"
+                                                          tooltip="{!v.selectedColumnsInfo.ventureLinkdin ? 'Hide Venture\'s Founder LinkedIn' : 'Show Venture\'s Founder LinkedIn'}" />
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col"
+                            class="{!v.selectedColumnsInfo.ventureHeadquarters ? 'showColumn' : 'hiddenColumn'}">
+                            <div class="slds-clearfix" style="{!v.selectedColumnsInfo.ventureHeadquarters ? 'width:200px;' : ''}">
+                                <div onclick="{!c.sortByVentureHeadquarters}"
+                                     class="{!v.selectedColumnsInfo.ventureHeadquarters ? 'slds-float_left' : 'slds-hide'}"
+                                     title="Venture Headquarters" style="cursor: pointer;">
+                                    Venture Headquarters
+                                    <aura:if isTrue="{!v.sortField=='Venture__r.Headquarters__c'}">
+                                        <span>
+                                            <aura:if isTrue="{!v.sortAsc}">
+                                                <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                <aura:set attribute="else">
+                                                    <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                </aura:set>
+                                            </aura:if>
+                                        </span>
+                                    </aura:if>
+                                </div>
+                                <div class="slds-float_right hideShowIcon">
+                                    <lightning:buttonIcon
+                                                          iconName="{!v.selectedColumnsInfo.ventureHeadquarters ? 'utility:hide' : 'utility:preview'}"
+                                                          variant="bare" onclick="{!c.showHideColumn}" ariaLabel="ventureHeadquarters"
+                                                          tooltip="{!v.selectedColumnsInfo.ventureHeadquarters ? 'Hide Venture Headquarters' : 'Show Venture Headquarters'}" />
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.currentApplications}" var="application">
+                        <tr aria-selected="false" class="slds-hint-parent">
+                            <td role="gridcell"
+                                class="{!v.selectedColumnsInfo.applicationNumber ? '' : 'hiddenColumn'}">
+                                <div class="{!v.selectedColumnsInfo.applicationNumber ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}" style="{!v.selectedColumnsInfo.applicationNumber ? 'width:160px;' : ''}">
+                                    <a href="{!'/' + application.objApplication.Id}"
+                                       target="_blank">{!application.objApplication.Name}</a> &nbsp; &nbsp;
+                                    
+                                    <aura:if isTrue="{!application.file.ContentDocumentId != null}">
+                                        <div style="display:inline-block;margin-right:10px" onclick="{!c.downloadPDF}" data-value="{!application.file.ContentDocumentId}">    
+                                            <span class="slds-icon_container">
+                                                <lightning:icon iconName="doctype:pdf" size="small" class="myIconClass"/>
+                                            </span>
+                                        </div>                                        
+                                    </aura:if>
+                                </div> 
+                            </td>
+                            <td role="gridcell"
+                                class="{!v.selectedColumnsInfo.firstSitePreference ? '' : 'hiddenColumn'}">
+                                <div
+                                     class="{!v.selectedColumnsInfo.firstSitePreference ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}" style="{!v.selectedColumnsInfo.firstSitePreference ? 'width:180px;' : ''}">
+                                    {!application.objApplication.X1st_Preference_CDL_Location__c}
+                                </div>
+                            </td>
+                            <td role="gridcell"
+                                class="{!v.selectedColumnsInfo.secondSitePreference ? '' : 'hiddenColumn'}">
+                                <div
+                                     class="{!v.selectedColumnsInfo.secondSitePreference ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}" style="{!v.selectedColumnsInfo.secondSitePreference ? 'width:180px;' : ''}">
+                                    {!application.objApplication.X2nd_Preference_CDL_Location__c}
+                                </div>
+                            </td>
+                            <td role="gridcell" class="{!v.selectedColumnsInfo.ventureName ? '' : 'hiddenColumn'}">
+                                <div class="v.selectedColumnsInfo.ventureName ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}" style="{!v.selectedColumnsInfo.ventureName ? 'width:200px;' : ''}">
+                                    <a href="{!'/' + application.objApplication.Id}"
+                                       target="_blank" onclick = "{!c.openWebsitesAndRecordPage}" data-value="{!application.objApplication.VentureWebsite}">{!application.objApplication.VentureName}</a>
+                                </div>
+                            </td>
+                            <td role="gridcell" class="{!v.selectedColumnsInfo.ventureOverview ? '' : 'hiddenColumn'}">
+                                <div title="{!application.objApplication.Venture_Overview_Briefly_describe_your__c}" class="{!v.selectedColumnsInfo.ventureOverview ? 'slds-truncate' : 'slds-hide'}" style="{!v.selectedColumnsInfo.ventureOverview ? 'width:300px;' : ''}">
+                                    {!application.objApplication.Venture_Overview_Briefly_describe_your__c}
+                                </div>
+                            </td>
+                            <td role="gridcell" class="{!v.selectedColumnsInfo.streamPotential ? '' : 'hiddenColumn'}">
+                                <div class="{!v.selectedColumnsInfo.streamPotential ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}" style="{!v.selectedColumnsInfo.streamPotential ? 'width:180px;' : ''}">
+                                    {!application.objApplication.Tech_Specialization__c}
+                                </div>
+                            </td>
+                            <td role="gridcell" class="{!v.selectedColumnsInfo.evaluator1 ? '' : 'hiddenColumn'}">
+                                <div class="{!v.selectedColumnsInfo.evaluator1 ? '' : 'slds-hide'}" style="width: 200px; display: inline-flex;">
+                                    <c:CustomUserLookup selectedRecord="{!application.evaluator1}"
+                                                        selectChange="{!c.onEvalChange}"
+                                                        recordSelected="{!application.evaluator1Selected}"
+                                                        applicationId="{!application.objApplication.Id}" apiName="Evaluator_1__c" />
+                                    <div class="copyEstimator"
+                                         style="{!v.lastEvaluatorFieldName + v.lastApplicationId == 'Evaluator_1__c' + application.objApplication.Id ? 'visibility : visible;' : 'visibility : hidden;'}">
+                                        <lightning:buttonIcon iconName="utility:copy" variant="bare"
+                                                              ariaLabel="{!application.objApplication.Id}"
+                                                              tooltip="{!v.isRemove == true ? 'Remove from all application downward' : 'Copy this to all application downward.'}"
+                                                              onclick="{!c.copyValues}"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td role="gridcell" class="{!v.selectedColumnsInfo.evaluator2 ? '' : 'hiddenColumn'}">
+                                <div class="{!v.selectedColumnsInfo.evaluator2 ? '' : 'slds-hide'}" style="width: 200px; display: inline-flex;">
+                                    <c:CustomUserLookup selectedRecord="{!application.evaluator2}"
+                                                        selectChange="{!c.onEvalChange}"
+                                                        recordSelected="{!application.evaluator2Selected}"
+                                                        applicationId="{!application.objApplication.Id}" apiName="Evaluator_2__c" />
+                                    <div class="copyEstimator"
+                                         style="{!v.lastEvaluatorFieldName + v.lastApplicationId == 'Evaluator_2__c' + application.objApplication.Id ? 'visibility : visible;' : 'visibility : hidden;'}">
+                                        <lightning:buttonIcon iconName="utility:copy" variant="bare"
+                                                              ariaLabel="{!application.objApplication.Id}"
+                                                              tooltip="{!v.isRemove == true ? 'Remove from all application downward' : 'Copy this to all application downward.'}"
+                                                              onclick="{!c.copyValues}"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td role="gridcell" class="{!v.selectedColumnsInfo.evaluator3 ? '' : 'hiddenColumn'}">
+                                <div class="{!v.selectedColumnsInfo.evaluator3 ? '' : 'slds-hide'}" style="width: 200px; display: inline-flex;">
+                                    <c:CustomUserLookup selectedRecord="{!application.evaluator3}"
+                                                        selectChange="{!c.onEvalChange}"
+                                                        recordSelected="{!application.evaluator3Selected}"
+                                                        applicationId="{!application.objApplication.Id}" apiName="Evaluator_3__c" />
+                                    <div class="copyEstimator"
+                                         style="{!v.lastEvaluatorFieldName + v.lastApplicationId == 'Evaluator_3__c' + application.objApplication.Id ? 'visibility : visible;' : 'visibility : hidden;'}">
+                                        <lightning:buttonIcon iconName="utility:copy" variant="bare"
+                                                              ariaLabel="{!application.objApplication.Id}"
+                                                              tooltip="{!v.isRemove == true ? 'Remove from all application downward' : 'Copy this to all application downward.'}"
+                                                              onclick="{!c.copyValues}"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td role="gridcell" class="{!v.selectedColumnsInfo.ventureLinkdin ? '' : 'hiddenColumn'}">
+                                <div class="{!v.selectedColumnsInfo.ventureLinkdin ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">
+                                    <a href="{!application.objApplication.VentureLinkdin}"
+                                       target="_blank">{!application.objApplication.VentureLinkdin}</a>
+                                </div>
+                            </td>
+                            <td role="gridcell" class="{!v.selectedColumnsInfo.ventureHeadquarters ? '' : 'hiddenColumn'}">
+                                <div class="{!v.selectedColumnsInfo.ventureHeadquarters ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">
+                                    <a href="{!'https://www.google.co.in/maps/place/' + application.objApplication.VentureHeadquarters}"
+                                       target="_blank">{!application.objApplication.VentureHeadquarters}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+        <div class="slds-align_absolute-center" style="{!not(empty(v.currentApplications)) ? 'padding: 10px;' : 'display:none;'}">
+            <div class="slds-button-group" role="group">
+                <button onclick="{!c.firstPage}" class="slds-button slds-button--neutral">
+                    First
+                </button>
+                <button onclick="{!c.prevPage}" class="slds-button slds-button--neutral">
+                    Prev
+                </button>
+                <button class="slds-button slds-button--neutral">
+                    {!v.currentPageNumber} / {!v.maxPageNumber}
+                </button>
+                <button onclick="{!c.nextPage}" class="slds-button slds-button--neutral">
+                    Next
+                </button>
+                <button onclick="{!c.lastPage}" class="slds-button slds-button--neutral">
+                    Last
+                </button>
+            </div>
+        </div>
+    </article>
+    
+    <!-- Modal/Popup Box starts here-->
+    <div aura:id="modal" class="customModal">
+        <aura:if isTrue="{!v.isModalOpen}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                     aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open picklist-modal">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close" onclick="{!c.closeLookupModal}"
+                                              alternativeText="close" variant="bare-inverse" class="slds-modal__close" />
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Filter By {!v.filterBy}</h2>
+                    </header>
+                    
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_small" id="modal-content-id-1">
+                        <div class="filterBox">
+                           <lightning:input aura:id="gSearch" placeholder="Search this list..." type="search"
+                                            value="{!v.fieldSearchTerm}" tabindex="0" onchange="{!c.onFieldSearch}"/> <!--class="gSearch-->
+         
+                             <lightning:checkboxGroup name="Checkbox Group"
+                             options="{! v.filterOptions }"
+                             value="{! v.filterValue }"
+                             onchange="{! c.handleChange }"/>
+
+                        </div>
+                    </div>
+                    
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral" label="Cancel" title="Cancel"
+                                          onclick="{!c.closeLookupModal}" />
+                        <lightning:button variant="brand" label="OK" title="OK" onclick="{!c.filterApplication}" />
+                    </footer>
+                </div>
+            </section>
+        </aura:if>
+    </div>
+    <aura:if isTrue="{!v.isModalOpen}">
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    
+    <!--  this tag sets modal width -->
+    <aura:html tag="style">
+        .slds-modal__container {
+        
+        width: 80% !important;
+        }
+    </aura:html>
+    
+</aura:component>

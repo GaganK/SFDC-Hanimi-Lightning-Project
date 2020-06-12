@@ -1,0 +1,114 @@
+<apex:page id="cdlApplicationSites" controller="cdlApplicationController" standardStylesheets="false"
+           showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" cache="false"
+           language="{!IF(language == 'English' || language == '', 'en_US', 'fr')}">
+  <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>CDL - Application Sites</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Import The Design System StyleSheet -->
+    <apex:slds />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"/>
+    <link type="text/css" rel="stylesheet"
+          href="{!URLFOR($Asset.SLDS, '/assets/styles/salesforce-lightning-design-system-ltng.min.css')}"/>
+    <!-- Import The CDL StyleSheet -->
+    <link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.cdlStyle)}"/>
+    <script language="JavaScript" type="text/javascript">
+    var i = 1;
+    function selectSite(btn)
+    {
+      if (document.getElementById("cdlApplicationSites:cdlApplication:preferredSites").value === "")
+      {
+        document.getElementById("cdlApplicationSites:cdlApplication:preferredSites").value = btn.value;
+      } else
+      {
+        document.getElementById("cdlApplicationSites:cdlApplication:preferredSites").value += ";" + btn.value;
+      }
+      btn.value = '(' + i + ') - ' + btn.value; i++;
+    }
+    function reset()
+    {
+      document.getElementById("cdlApplicationSites:cdlApplication:preferredSites").value = "";
+    }
+    </script>
+  </head>
+  <body id="body">
+  <apex:form id="cdlApplication">
+    <apex:inputHidden value="{!preferredSites}" id="preferredSites"/>
+    <div class="slds-scope">
+      <!-- PRIMARY CONTENT WRAPPER -->
+      <div class="slds-align_absolute-center"
+           style="border-radius : 15px; max-width : 1200px; background-color : #ffffff; padding : 0.5em; border : 0px solid #ffffff;">
+        <div class="slds-form slds-form_compound"
+             style="border-radius : 20px; max-width : 1024px; padding : 2.5em; background-color : #ffffff;">
+          <br></br>
+          <div class="slds-align_absolute-center">
+            <apex:pageMessages id="errorMsg"/>
+          </div>
+          <br></br>
+          <legend class="slds-form-element__label slds-text-title">{!$Label.Site_Selection}</legend>
+          <apex:pageBlock id="coldApplication">
+            <apex:pageBlock id="eList"
+                            rendered="{!IF(cdlSiteList != null && cdlSiteList.size > 0, true, false)}">
+              <apex:repeat id="cdlSiteList" value="{!cdlSiteList}" var="cdlSite">
+              <div class="slds-align_absolute-center" style="max-width : 1200px;">
+                <fieldset class="slds-form-element">
+                  <legend class="slds-form-element__label slds-text-title"><!--{!$Label.Site_Selection}--></legend>
+                  <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                      <div class="slds-form-element slds-size_1-of-2">
+                        <abbr class="slds-required" title="required"></abbr>
+                        <label class="slds-form-element__label" for="prefLanguage"><!--{!$Label.Verification_Code}--></label>
+                        <apex:commandButton styleClass="slds-button slds-button--neutral" style="margin-left : auto; margin-right : auto; width : 600px;"
+                                            onClick="javascript:selectSite(this);" value="{!cdlSite.Name}"
+                                            onComplete="javascript:this.disabled=true;" id="cdlSite"  reRender=""/>
+                        <!--<apex:outputLabel styleClass="slds-input slds-align_absolute-center"
+                                        id="verificationCode" value="{!cdlSite.Name}"
+                                        style="margin-left : auto; margin-right : auto; width : 600px;"/>
+                                        -->
+                        <!--
+                        <apex:actionStatus id="SaveButtonStatus">
+                          <apex:facet name="stop">
+                            <apex:outputPanel >
+                              <apex:commandButton onClick="javascript:selectSite(this);" value="{!cdlSite.Name}" immediate="true" status="SaveButtonStatus" rerender="cdlApplication" />
+                            </apex:outputPanel>
+                          </apex:facet>
+                          <apex:facet name="start">
+                            <apex:outputPanel >
+                              <apex:commandButton value="Saving..." disabled="true" />
+                            </apex:outputPanel>
+                          </apex:facet>
+                        </apex:actionStatus>
+                        -->
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              </apex:repeat>
+            </apex:pageBlock>
+          </apex:pageBlock>
+          <br></br>
+          <div class="slds-align_absolute-center" style="max-width : 1200px;">
+            <!--
+            <apex:commandButton styleClass="slds-button slds-button_brand" action="javascript:placeOrder();"
+                                onclick="javascript:this.disabled=true;javascript:ga('send', 'event', 'submit', 'click', 'Order_Dashlink');" value="Place Order" id="validateOrder"
+                                reRender="none"/>
+            <apex:actionFunction id="placeOrder" name="placeOrder" action="{!placeOrder}"
+                                 oncomplete="checkStatus();" reRender="nextPage"/>
+            -->
+            <apex:commandButton styleClass="slds-button slds-button--neutral"
+                                action="{!resetSites}" value="Reset" id="resetButton"/>
+            <apex:commandButton styleClass="slds-button slds-button--neutral"
+                                action="{!saveSites}" value="Save" id="saveButton" /> <!--immediate="true" disabled="true"/>-->
+          </div>
+          <!-- / PRIMARY CONTENT WRAPPER -->
+        </div>
+      </div>
+    </div>
+  </apex:form>
+  </body>
+  </html>
+</apex:page>

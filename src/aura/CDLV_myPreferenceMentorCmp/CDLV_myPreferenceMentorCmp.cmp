@@ -1,0 +1,307 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global" 
+                controller="CDLV_myMatchVentureListController">
+	<!-- call doInit method on component load -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	 <aura:attribute name="dayId" type="string"/>
+	<aura:attribute type="String" name="sortField" default="name"/>
+	<aura:attribute type="Boolean" name="sortAsc" default="false"/>
+	<aura:attribute name="listOfAllMentors" type="CDLV_myMatchVentureListController.mentorWrapper[]"/>
+    <aura:attribute name="UpdatedMentorsList" type="String[]" default="[]"/>
+    <aura:attribute name="selectedMentorList" type="String[]" default="[]"/>
+    <aura:attribute name="selectedVenturesMap" type="Map" default="{}"/>
+	<aura:attribute name="isSearching" type="boolean" default="false " />
+	<aura:attribute type="String" name="searchTerm" default=""/>
+	<aura:attribute name="isProcessing" type="boolean" default="true" />
+	<aura:attribute name="selectedCompany" type="List" default="[]"/>
+	<aura:attribute name="MentorsList" type="List" default="[]"/>
+	<aura:attribute name="showSpinner" type="Boolean" default="true" />
+	<aura:attribute name="bNoRecordsFound" type="boolean"/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+     <aura:attribute name="isdocModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="isConModalOpen" type="boolean" default="false"/>
+	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" description="flag for rendered save and cancel buttons in aura:if "/>
+	<aura:attribute name="MentorList" type="List" default="[]"/>
+	<aura:attribute name="selectedMentors" type="List" default="[]"/>
+	<aura:attribute name="IndustryList" type="List" default="[]"/>
+	<aura:attribute name="selectIndustryList" type="List" default="[]"/>
+    <aura:attribute name="RankingList" type="List" default="[]"/>
+	<aura:attribute name="selectRankingList" type="List" default="[]"/>
+     <aura:attribute name="existingRankingList" type="List" default="[]"/>
+    <aura:attribute name="fieldSearchTerm" type="String" default=""/>
+    <aura:attribute name="availableOptions" type="List" default="[]" />
+    <aura:attribute name="filteredOptions" type="List" default="[]" />
+    <aura:attribute name="CompanyList" type="List" default="[]"/>    
+    <aura:attribute name="filteredCompaniess" type="List" default="[]" />
+    <aura:attribute name="filterBy" type="String" default="" />
+    <aura:attribute name="selectedColumnsInfo" type="object" default="{}" />
+    <aura:attribute name="allAvailableOptions" type="List" default="[]" />
+    <aura:attribute name="filteredIndustries" type="List" default="[]" />
+    <aura:attribute name="filteredContacts" type="List" default="[]" />
+    <aura:attribute name="startPage" type="Integer" />
+	<aura:attribute name="endPage" type="Integer"/>
+	<aura:attribute name="totalRecordsCount" type="Integer"/>
+	<aura:attribute name="pageSize" type="Integer" default="10"
+                    description="number of records to be display on per page"/>
+	<aura:attribute name="currentPage" type="integer" default="1"/>
+	<aura:attribute name="totalPagesCount" type="integer"/>
+     <aura:attribute name="PaginationList" type="CDLV_myMatchVentureListController.mentorWrapper[]"/>
+  
+    <c:toastMsgCmp />
+	<aura:if isTrue="{!v.isProcessing}">
+		<div class="slds-spinner_container">
+			<div class="slds-spinner--brand slds-spinner slds-spinner--small" role="alert">
+				<span class="slds-assistive-text">Loading...</span>
+				<div class="slds-spinner__dot-a"></div>
+				<div class="slds-spinner__dot-b"></div>
+			</div>
+		</div>
+	</aura:if>
+		<aura:if isTrue="{!v.isModalOpen}">
+		<!-- Modal/Popup Box starts here-->
+		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container" style="height: 460px;width:50% !important;">
+				<!-- Modal/Popup Box Header Starts here-->
+				<header class="slds-modal__header">
+					<lightning:buttonIcon iconName="utility:close"
+                                          onclick="{!c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+					<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" >
+						<p style="color: rgba(156, 27, 83, 1) !important;">Filters</p>
+					</h2>
+				</header>
+				<!--Modal/Popup Box Body Starts here-->
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<div class="slds-grid">
+						<aura:if isTrue="{!v.clickedButtonId=='stream'}">
+							<lightning:dualListbox aura:id="StreamPicklist"
+                                                   name="Stream"
+                                                   label="Stream"
+                                                   options="{!v.StreamList}"
+                                                   value="{!v.selectedStreamList}"
+                                                   size="3" style="width: -webkit-fill-available;"
+                                                   />
+						</aura:if>
+						<aura:if isTrue="{!v.clickedButtonId=='industry'}">
+							<lightning:dualListbox aura:id="industry"
+                                                   name="industry"
+                                                   label="Industry"
+                                                   options="{!v.IndustryList}"
+                                                   value="{!v.selectIndustryList}"
+                                                   size="3" style="width: -webkit-fill-available;"
+                                                   />
+						</aura:if>
+					</div>
+                    <!-- Filter box -->
+                    <div class="filterBox">
+                        <lightning:input aura:id="gSearch" placeholder="Search this list..." type="search"
+                                         value="{!v.fieldSearchTerm}" tabindex="0" onchange="{!c.onFieldSearch}"/>
+                        
+                        <lightning:checkboxGroup options="{!v.availableOptions}" value="{!v.filteredOptions}"/>
+                        
+                    </div>                    
+				</div>
+				<!--Modal/Popup Box Footer Starts here-->
+				<footer class="slds-modal__footer">
+					<lightning:button variant="neutral"
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{! c.closeModel }"/>
+					<lightning:button variant="brand" label="Submit" onclick="{!c.getApplicationRecords}" />
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</aura:if>
+	<div class="slds-grid slds-wrap fonttype">
+		<div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12" style="padding-right:7px !important;">
+			   <div class="slds-text-body_regular">
+                	<p>To guide our matching process for Super Session 2020, we need your input.</p><br></br>
+                    <p>Below is a list of all remaining companies in the CDL network. Please rank the top 25 companies you are interested in meeting with at Super Session.</p><br></br>
+                    <p>Thank you for your input into our process to optimize matching for your Super Session 2020 experience.</p><br></br>
+
+                   <p>
+                    Note: This process does not guarantee that you will be scheduled to meet every company you have indicated interest in.
+                   </p> </div><br></br>
+            <article class="slds-card">
+				<div class="slds-card__header slds-grid">
+					<header class="slds-media slds-media_center slds-has-flexi-truncate">
+						<div class="gSearch slds-media__body" style="margin-right: var(--lwc-spacingSmall,0.75rem);">
+							<lightning:input
+                                             aura:id="gSearch" variant = "label-hidden"
+                                             placeholder="Search this list..."
+                                             type="search"
+                                             value="{!v.searchTerm}"
+                                             tabindex="0"
+                                             onchange="{!c.onSearch}"/>
+						</div>
+						<div class="slds-no-flex">
+							<lightning:buttonIcon iconName="utility:refresh"  variant="border-filled" onclick="{! c.resetView}" tooltip="Reset"/>
+                        </div>
+					</header>
+				</div>
+                <!-- Save & Cancel buttons -->
+                <aura:if isTrue="{!v.showSaveCancelBtn}">
+                    <div style="text-align:center">
+                    <!--button for save and cancel Record after Inline Edit-->
+                    <lightning:buttonGroup class="slds-m-around_medium">
+                        <lightning:button label="Cancel" onclick="{!c.cancel}"/>
+                        <lightning:button label="Save" onclick="{!c.Save}" variant="brand"/>                     
+                    </lightning:buttonGroup>
+                    </div>
+                </aura:if>
+				<div class="slds-card__body slds-card__body_inner" style="padding-left:0px !important;">
+					<div class="slds-illustration slds-illustration_small">
+						<!--<aura:if isTrue="{!v.isAppTypeSelSelf}">-->
+						<aura:if isTrue="{!v.bNoRecordsFound}">
+							<!--display error message if there is no records available -->
+							<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info" role="alert">
+								<span class="slds-assistive-text">error</span>
+								<h2>No records found.</h2>
+							</div>
+							<aura:set attribute="else">
+								<div style="overflow:auto;border: 1px solid #c1c1c1;">
+									<table aria-multiselectable="true"
+                class="slds-table slds-table_bordered slds-table_striped slds-table_col-bordered" role="grid">
+										<thead>
+											<tr class="slds-line-height_reset">
+												<th scope="col">
+													<div  class="slds-clearfix" style="display: inline-flex;" title="Ranking">Ranking
+						
+													</div>
+												</th>
+													<th scope="col">
+														<div  class="slds-clearfix"  title="Mentor Name">Name
+															<span onclick="{!c.sortByMentorName}">
+																<aura:if isTrue="{!v.sortAsc}">
+																	<lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+																	<aura:set attribute="else">
+																		<lightning:icon iconName="utility:arrowup" size="xx-small"/>
+																	</aura:set>
+																</aura:if>
+															</span>
+															<lightning:buttonIcon aura:id="ContactName" iconName="utility:filterList"
+                                                                                  onclick="{!c.openModel }"
+                                                                                  alternativeText="openFilter"
+                                                                                  class="filtericon" ariaLabel="ContactName"/>                    
+														</div>
+													</th>
+													<th scope="col" style="width:5%">
+														<div class="slds-clearfix" style="text-align: center;" title="Professional Title">Professional Title</div>
+													</th>
+													<th scope="col">
+														<div class="slds-clearfix"  title="company">Company 
+                                                            <lightning:buttonIcon aura:id="acctName" iconName="utility:filterList"
+                                                                                  onclick="{! c.openModel }"
+                                                                                  alternativeText="openFilter"
+                                                                                  class="filtericon" ariaLabel="Company"/>
+                                                          <!--  <div class="slds-float_right hideShowIcon">
+                                                                <lightning:buttonIcon
+                                                                    iconName="{!v.selectedColumnsInfo.Company ? 'utility:hide' : 'utility:preview'}"
+                                                                    variant="bare" onclick="{!c.showHideColumn}" ariaLabel="Company"
+                                                                    tooltip="{!v.selectedColumnsInfo.Company ? 'Hide Company' : 'Show Company'}" />
+                                                            </div>  -->                                                      	
+                                                        </div>
+													</th>
+                                               	<th scope="col" style="white-space: initial;">
+														<div class="slds-clearfix" style="display: inline-flex;" title="Hands Raised by Session">Hands Raised by Session </div>
+													</th>
+													<th scope="col" style="white-space: initial;">
+														<div class="slds-clearfix" style="display: inline-flex;" title="Mentor Bio">Mentor Bio</div>
+													</th>
+													<th scope="col">
+														<div class="slds-clearfix" title="Industry">
+                                                            Industry
+                                                            <lightning:buttonIcon aura:id="Industry" iconName="utility:filterList"
+                                                                                  onclick="{!c.openModel}"
+                                                                                  alternativeText="openFilter"
+                                                                                  class="filtericon" ariaLabel="Industry"/>                                                                                                              	
+                                                        </div>                                                       
+													</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											<aura:iteration items="{!v.PaginationList}" var="obj">
+												<tr class="slds-line-height_reset" data-record="{!obj.userObj.Id}" >
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.userObj.Name}">
+                                                               <c:CDLV_DynamicMatchRankingCmp listOfAllApplications="{!v.PaginationList}" currentApplication="{!obj}" showSaveCancelBtn="{!v.showSaveCancelBtn}" existingRankingList="{!v.existingRankingList}" selectedVenturesList="{!v.selectedMentorList}" 
+                                                                                          accesskey="{!obj.userObj.Id}"/>
+															</div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.userObj.Contact.Name}">
+																<a class="mouseHoverCls" href="{!obj.userObj.Contact.Account.Website}" target="_blank" style="color: #2894f3;"> {!obj.userObj.Contact.Name}</a>
+															</div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.userObj.Contact.Title}">
+                                                                {!obj.userObj.Contact.Title}
+                                                            </div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="">
+                                                             {!obj.userObj.Contact.Account.Name}
+                                                            
+                                                            </div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="">
+                                                             
+                                                         
+                                                            </div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate" title="{!obj.userObj.Contact.Biodata__c}" style="max-width: 250px !important;">
+                                                             {!obj.userObj.Contact.Biodata__c}
+                                                         
+                                                            </div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="">
+                                                             {!obj.userObj.Contact.Industry_Area_Focuses__c }
+                                                         
+                                                            </div>
+														</td>												
+												</tr>
+											</aura:iteration>
+										</tbody>
+									</table>
+								</div>
+									<!-- DataTable End -->
+								<br/>
+							</aura:set>
+                            
+						</aura:if>
+						<!--</aura:if>-->
+                        
+					</div>
+				</div>
+               
+			</article>
+            <br/><br/>
+              <div class="slds-align_absolute-center">
+                        <div class="slds-button-group" role="group">
+                            <button onclick="{!c.firstPage}" class="slds-button slds-button--neutral">
+                                First
+                            </button>
+                            <button onclick="{!c.prevPage}" class="slds-button slds-button--neutral">
+                                Prev
+                            </button>
+                            <button class="slds-button slds-button--neutral">
+                                {!v.currentPage} / {!v.totalPagesCount}
+                            </button>
+                            <button onclick="{!c.nextPage}" class="slds-button slds-button--neutral">
+                                Next
+                            </button>
+                            <button onclick="{!c.lastPage}" class="slds-button slds-button--neutral">
+                                Last
+                            </button>
+                        </div>
+                    </div>
+		</div>
+	</div>
+</aura:component>

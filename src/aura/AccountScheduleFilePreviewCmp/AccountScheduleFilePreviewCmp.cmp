@@ -1,0 +1,83 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global" controller="AccountSchedulerPDFCtrl">
+       <aura:attribute name="previewAttachment" type="Boolean" default="false"/>
+     <aura:attribute name="attachmentId" type="string"/> 
+    <aura:attribute name="selectTab" type="string" default="schedule"/>
+    <aura:handler name="init" value="this" action="{!c.myint}"/>
+   <lightning:tabset class="tabsetvariant" selectedTabId="{!v.selectTab}">
+        <lightning:tab label="Schedule" id="schedule">
+            <div class="boxClass"  >
+           <aura:if isTrue="{!v.attachmentId}">
+				   <c:IframeglobalCmp contentDocumentId="{!v.attachmentId}" width="600px" height="500px"/>
+				 </aura:if>
+            </div>
+            
+        </lightning:tab>
+       <lightning:tab label="Morning Programming" id="monitor">
+            <div class="boxClass"  >
+               <c:MorningProgram/>
+            </div>
+
+            
+        </lightning:tab>
+       
+       <lightning:tab label="Venture Information" id="venture">
+           <div class="boxClass" style="    width: 100%; display:block;">
+               <c:AccountInlineList/>
+           </div>
+        </lightning:tab>
+        <lightning:tab label="Partner Workbook" id="partner">
+           <div class="boxClass" style="    width: 100%;display: block;">
+            
+                <c:AccountInlineList isPartnerWorkbook="true" />
+           </div>
+        </lightning:tab>
+       <!--<lightning:tab label="Venture information (Previous Session)" id="Venture_Previous">
+           <div class="boxClass" style="    width: 100%;display: block;">
+            
+                <c:WorkbooksessionInlineCmp/>
+           </div>
+        </lightning:tab>
+        <lightning:tab label="Partner Workbook (Previous Session)" id="partner_Previous">
+           <div class="boxClass" style="    width: 100%;display: block;">
+            
+                <c:WorkbooksessionCmp/>
+           </div>
+        </lightning:tab>-->
+    </lightning:tabset>
+
+    
+    
+ 
+ <!--  <ul class="slds-has-dividers_bottom-space">
+	
+        <li class="slds-item">
+             <div class="slds-grid">
+				<div class="slds-col slds-size_1-of-5">
+                   <ul class="slds-has-dividers_bottom-space">
+					<li class="slds-item" >
+					<a style="font-size: medium;color: rgb(232, 32, 118);" onclick="{!c.openPreview}">Schedule</a>
+					</li>
+					 <li class="slds-item">
+					<p style="font-size: medium;color: rgb(232, 32, 118);">Morning Programming</p>
+					</li>
+					 <li class="slds-item">
+					<p style="font-size: medium;color: rgb(232, 32, 118);">Venture and Funding Info</p>
+					</li>
+					 <li class="slds-item">
+					<p style="font-size: medium;color: rgb(232, 32, 118);">Partner Workbook</p>
+					</li>
+					 </ul>
+				</div>
+				<div class="slds-col slds-size_1-of-2">
+                 <div style="width: 75%; margin: 0 auto; text-align: left">
+                      <aura:if isTrue="{!v.attachmentId}">
+				   <c:IframeglobalCmp contentDocumentId="{!v.attachmentId}" width="600px" height="500px"/>
+				 </aura:if>
+                     </div>
+                    </div>
+			</div>
+        </li>
+    </ul>-->
+    
+</aura:component>

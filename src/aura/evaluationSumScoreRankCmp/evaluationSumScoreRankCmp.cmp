@@ -1,0 +1,90 @@
+<aura:component controller="evaluationSummaryRankingCtrl" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">   
+   <!--Init handler which is call initRecords js function on component Load-->  
+
+    <!--declare aura attributes-->
+    <aura:attribute name="ApplicationList" type="Application__c[]" description="store Application records list"/>
+    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" description="flag for rendered save and cancel buttons in aura:if "/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="StreamPotentialList" type="List" default="[]"/>
+    <aura:attribute name="selectedStreamPotentialList" type="List" default="[]"/>
+        <aura:handler name="init" value="{!this}" action="{!c.initRecords}"/>
+    <aura:if isTrue="{!v.isModalOpen}">
+	<!-- Modal/Popup Box starts here-->
+	<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+		<div class="slds-modal__container" style="height: 460px;width:50% !important;">
+			<!-- Modal/Popup Box Header Starts here-->
+			<header class="slds-modal__header">
+				<lightning:buttonIcon iconName="utility:close"
+									  onclick="{! c.closeModel }"
+									  alternativeText="close"
+									  variant="bare-inverse"
+									  class="slds-modal__close"/>
+				<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" ><p style="color: rgba(156, 27, 83, 1) !important;">Evaluation Filters</p></h2>
+			</header>
+			<!--Modal/Popup Box Body Starts here-->
+			<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+				   <div class="slds-grid">
+		<lightning:dualListbox aura:id="StreamPotentialPicklist"
+                                   name="StreamPotential"
+                                   label="Stream Potential"
+                                   options="{!v.StreamPotentialList }"
+                                   value="{!v.selectedStreamPotentialList}"
+                                   size="3"
+                                   />
+	 
+		 </div>
+			</div>
+			<!--Modal/Popup Box Footer Starts here-->
+			<footer class="slds-modal__footer">
+				<lightning:button variant="neutral"
+								  label="Cancel"
+								  title="Cancel"
+								  onclick="{! c.closeModel }"/>
+			   <lightning:button variant="brand" label="Submit" onclick="{!c.getApplicationRecords}" />
+			</footer>
+		</div>
+	</section>
+	<div class="slds-backdrop slds-backdrop_open"></div>
+</aura:if>
+    <div class="slds-m-around_large">
+      
+ 		<b>Current Applications</b>
+        <!--Data Table-->     
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer" title="Current Applications">
+            <thead>
+                <tr class="slds-text-title--caps">
+                  <th scope="col"><div class="slds-truncate" title="appName">App #</div></th> 
+                  <th scope="col"><div class="slds-truncate" title="Venture">Venture</div></th>
+                   <th scope="col"><div class="slds-truncate" title="SP">Stream Potential<lightning:buttonIcon iconName="utility:filterList"
+                                              onclick="{! c.openModel }"
+                                              alternativeText="openFilter"
+                                              class="filtericon"/></div></th>
+				   <th scope="col"><div class="slds-truncate" title="Evaluator 1">Evaluator 1 Score</div></th>
+				    <th scope="col"><div class="slds-truncate" title="Evaluator 2">Evaluator 2 Score</div></th>
+					 <th scope="col"><div class="slds-truncate" title="Evaluator 3">Evaluator 3 Score</div></th>
+                     <th scope="col"><div class="slds-truncate" title="Average">Average</div></th>
+                     <th scope="col"><div class="slds-truncate" title="Master Ranking">Master Ranking</div></th>
+                     <th scope="col"><div class="slds-truncate" title="Ranking">Ranking</div></th>
+			     </tr>
+            </thead>
+            
+            <tbody>
+         
+                <aura:iteration items="{!v.ApplicationList}" var="app">
+                 
+                    <c:evaluationSumScoreRankChildCmp singleRec="{!app}"
+                                     showSaveCancelBtn="{!v.showSaveCancelBtn}"
+                                      />
+                </aura:iteration> 
+            </tbody>
+        </table>
+          <!-- use aura:if for show/hide buttons --> 
+        <aura:if isTrue="{!v.showSaveCancelBtn}">
+            <!--button for save and cancel Record after Inline Edit-->
+            <lightning:buttonGroup class="slds-m-around_medium">
+                <lightning:button label="Cancel" onclick="{!c.cancel}"/>
+                <lightning:button label="Save" onclick="{!c.Save}" variant="brand"/>
+            </lightning:buttonGroup>
+        </aura:if> 
+    </div>
+</aura:component>

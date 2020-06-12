@@ -1,0 +1,190 @@
+<aura:component implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller ="FinanceMemoCtrl" >	
+    <!-- call doInit method on component load -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+  <aura:attribute name="dayId" type="string"/>
+    <aura:attribute name="startPage" type="Integer" />
+	<aura:attribute name="endPage" type="Integer"/>
+	<aura:attribute name="totalRecordsCount" type="Integer"/>
+	<aura:attribute name="pageSize" type="Integer" default="8"
+                    description="number of records to be display on per page"/>
+	<aura:attribute name="currentPage" type="integer" default="1"/>
+	<aura:attribute name="totalPagesCount" type="integer"/>
+     <aura:attribute name="PaginationList" type="list"/>
+  
+    <aura:attribute name="listOfAllApplications" type="FinanceMemoCtrl.financeWrapper[]"/>
+   	<aura:attribute type="Boolean" name="sortAsc" default="false"/>
+	<aura:attribute type="String" name="searchTerm" default=""/>
+	<aura:attribute name="isProcessing" type="boolean" default="true" />
+    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
+     <aura:attribute name="isSelectAll" type="boolean" default="false"/>
+    <aura:if isTrue="{!v.isProcessing}">
+		<div class="slds-spinner_container">
+			<div class="slds-spinner--brand slds-spinner slds-spinner--small" role="alert">
+				<span class="slds-assistive-text">Loading...</span>
+				<div class="slds-spinner__dot-a"></div>
+				<div class="slds-spinner__dot-b"></div>
+			</div>
+		</div>
+	</aura:if>
+     <article class="slds-card">
+    <div class="slds-card__header slds-grid">
+    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+						<div class="gSearch slds-media__body" style="margin-right: var(--lwc-spacingSmall,0.75rem);">
+							<lightning:input
+                                             aura:id="gSearch" variant = "label-hidden"
+                                             placeholder="Search this list..."
+                                             type="search"
+                                             value="{!v.searchTerm}"
+                                             tabindex="0"
+                                             onchange="{!c.onSearch}"/>
+						</div>
+					<div class="slds-no-flex">
+               <lightning:buttonIcon iconName="utility:refresh"  variant="border-filled" onclick="{!c.resetView}" tooltip="Reset"/>        
+        </div>
+        </header>
+    </div>
+         <div style="overflow:auto;border: 1px solid #c1c1c1;">
+    <table aria-multiselectable="true"
+                class="slds-table slds-table_bordered slds-table_striped slds-table_col-bordered" role="grid">
+										<thead>
+											<tr class="slds-line-height_reset">
+											
+                                                <th>           
+                                                    <lightning:input type="checkbox" label="" onchange="{!c.handleSelectAllVenture}" aura:id="selectAll" checked="{!v.isSelectAll}"/>
+                                                    
+                                                </th>
+                                                <th scope="col" style="width: 25%;">
+														<div class="slds-clearfix" style="text-align: center;" title="Venture Name">Venture Name</div>
+													</th>
+                                                	<th scope="col" style="width: 25%;">
+														<div class="slds-clearfix" style="text-align: center;" title="Stream">Stream &amp; Site</div>
+													</th>
+								
+													<th scope="col" style="width: 25%;">
+														<div class="slds-clearfix" style="text-align: center;" title="Venture Description">Venture Description</div>
+													</th>
+                                                <th scope="col" style="width: 25%;">
+														<div class="slds-clearfix" style="text-align: center;" title="Primary Industry">Primary Industry</div>
+													</th>
+                                                     <th scope="col" style="width: 25%;">
+														<div class="slds-clearfix" style="text-align: center;" title="Amount Being Raised">Amount Being Raised</div>
+													</th>
+                                                     <th scope="col" style="width: 25%;">
+														<div class="slds-clearfix" style="text-align: center;" title="Amount Currently Committed">Amount Currently Committed</div>
+													</th>
+                                                 <th scope="col" style="width: 25%;">
+														<div class="slds-clearfix" style="text-align: center;" title="Terms ">Terms</div>
+													</th>
+
+                                              <th scope="col" style="width: 25%;">
+														<div class="slds-clearfix" style="text-align: center;" title="Committed Investors">Committed Investors</div>
+													</th>
+
+												
+											
+											</tr>
+                                           
+										</thead>
+										<tbody>
+											<aura:iteration items="{!v.PaginationList}" var="obj">
+														<tr class="slds-line-height_reset" data-record="{!obj.admVentObj.Id}" >
+															<th>
+															<lightning:input type="checkbox" label="" onchange="{!c.onSelAdmit}" aura:id="checkventure" checked="{!obj.isSelected}"/>
+
+															</th>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.admVentObj.Venture__r.Name}">
+															<aura:if isTrue="{!obj.admVentObj.Venture__c != null}">
+                                                                <lightning:formattedUrl value="{!'/mentorportal/s/cdlteamandproductinfo?ventureId='+obj.admVentObj.Id}" tooltip="{!obj.admVentObj.Venture__c}" label="{!obj.admVentObj.Venture__r.Name}" target="_blank" />
+                                                                </aura:if>
+                                                            </div>
+														</td>	
+                                                    <td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.admVentObj.Cohort_CDL_Site__c}">
+                                                             <aura:if isTrue="{!obj.admVentObj.Cohort_Stream__c != null}">
+                                                                 {!obj.admVentObj.Cohort_Stream__c},
+                                                            </aura:if>
+                                                              <aura:if isTrue="{!obj.admVentObj.Cohort_CDL_Site__c != null}">
+                                                                 {!obj.admVentObj.Cohort_CDL_Site__c}
+                                                            </aura:if>
+                                                            </div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.admVentObj.Venture__r.Description_Venture__c}">
+                                                                {!obj.admVentObj.Venture__r.Description_Venture__c}
+                                                            </div>
+														</td>
+														
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.admVentObj.Venture__r.Technology_Area__c}">
+                                                             {!obj.admVentObj.Venture__r.Technology_Area__c}
+                                                            
+                                                            </div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="">
+                                                              {!obj.financeEventsObj.Amount_raised__c}
+                                                            </div>
+														</td>
+                                                     <td role="gridcell" > 
+															<div class="slds-truncate removeWhiteSpace" title="">
+                                                              {!obj.financeEventsObj.Amount_raised__c}
+                                                            </div>
+                                                     </td>
+                                                     <td role="gridcell" > 
+														<div class="slds-truncate removeWhiteSpace" title="">
+                                                              <aura:if isTrue="{!obj.financeEventsObj.Instrument_used__c != null}">
+                                                                 {!obj.financeEventsObj.Instrument_used__c},
+                                                            </aura:if>
+                                                              <aura:if isTrue="{!obj.financeEventsObj.Terms_convertible_note__c != null}">
+                                                                 {!obj.financeEventsObj.Terms_convertible_note__c}
+                                                            </aura:if>
+                                                            </div>
+                                                     </td>
+                                                     <td role="gridcell" > 
+														<div class="slds-truncate removeWhiteSpace" title="">
+                                                            <aura:iteration items="{!obj.committInvList}" var="commObj">
+											
+                                                                 <div  class="slds-truncate removeWhiteSpace mouseHoverCls" title="" style="color: #2894f3;cursor: pointer;padding-bottom: inherit;">
+                                                                    {!commObj.Investor_Contact__r.Name}<br/>
+                                                                </div>
+															</aura:iteration>
+                                                        </div>
+                                                     </td>												
+												</tr>
+											</aura:iteration>
+										</tbody>
+									</table>
+								<br/>
+         </div>
+         <br/>
+         <br/>
+<div class="slds-align_absolute-center">
+				<div class="slds-button-group" role="group">
+					<button onclick="{!c.firstPage}" class="slds-button slds-button--neutral">
+						First
+					</button>
+					<button onclick="{!c.prevPage}" class="slds-button slds-button--neutral">
+						Prev
+					</button>
+					<button class="slds-button slds-button--neutral">
+						{!v.currentPage} / {!v.totalPagesCount}
+					</button>
+					<button onclick="{!c.nextPage}" class="slds-button slds-button--neutral">
+						Next
+					</button>
+					<button onclick="{!c.lastPage}" class="slds-button slds-button--neutral">
+						Last
+					</button>
+				</div>
+			</div>               
+    </article>
+        <aura:if isTrue="{!v.showSaveCancelBtn}">
+            <div style="text-align:center">
+                <lightning:buttonGroup class="slds-m-around_medium">
+                    <lightning:button label="Cancel" onclick="{!c.cancel}"/>
+                    <lightning:button label="Save" onclick="{!c.handleSelectedAdmits}" variant="brand"/>
+                </lightning:buttonGroup>
+            </div>
+        </aura:if>
+</aura:component>

@@ -1,0 +1,176 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"  controller="SlackDetailCtrl">
+    <aura:attribute name="loggedinUserSlackUrl" type="string"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <ltng:require styles="{!$Resource.cssresource+'/css-resources/css/style.css'}"/>
+    <ltng:require styles="{!$Resource.fontIcon+'/font-icons/css/font-awesome.min.css'}"/>
+    <div style="background-color: transparent; padding:20px 0px;">
+        
+        <div class="slds-grid slds-wrap">
+            <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_10-of-12" >
+                <div  class="forceCommunityTileMenu" data-aura-class="forceCommunityTileMenu">
+                    <div class="slds-grid slds-wrap slds-grid_align-center" >
+                        <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-p-around_medium slds-p-top_none   ">
+                            <a onclick="{!c.redirectCDLpi}">
+                                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                                    <article class="slds-card caption hovereffect">
+                                        <figure class="slds-image slds-image--card  ">
+                                            <img src="{! $Resource.partnerImg6}" alt="Description of the image" class="imgclass" />
+                                            <div class="overlay">
+                                            </div>
+                                        </figure>
+                                        <div class="course-detail">
+                                            <div class="course-info-box">
+                                                <div class="course-teacher"><a href="#"></a></div>
+                                                <a href="#">
+                                                    <h3 class="course-title">CDL - An Introduction</h3>
+                                                        <!--CDL Partners Program Introduction-->
+                                                </a>
+                                            </div>
+                                        </div>  
+                                    </article>
+                                </div></a>
+                        </div> 
+                        <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-p-around_medium slds-p-top_none">
+                            <a href="" onclick="{!c.redirecteduPage}">    <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                                <article class="slds-card caption hovereffect">
+                                    <figure class="slds-image slds-image--card ">
+                                        <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+                                        <div class="overlay">
+                                            <!--  <a href="javascript:void(0);" class="slds-image__crop- -3-by-2"></a>-->
+                                        </div>
+                                    </figure>
+                                    <div class="course-detail">
+                                        <div class="course-info-box">
+                                            <div class="course-teacher"><a href="#"></a></div>
+                                            <a href="#">
+                                                <h3 class="course-title">Exclusive Education Modules</h3>
+                                            </a> 
+                                        </div>
+                                    </div>
+                                </article>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-p-around_medium slds-p-top_none">
+                            <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                                <a href="" onclick="{!c.redirectCDLSession}">  
+                                    <article class="slds-card caption hovereffect">
+                                        <figure class="slds-image slds-image--card ">
+                                            <img src="{! $Resource.sessionImg}" alt="Description of the image" class="imgclass" />
+                                            <div class="overlay">
+                                            </div>
+                                        </figure>
+                                        <div class="course-detail">
+                                            <div class="course-info-box">
+                                                <div class="course-teacher"><a href="#"></a></div>
+                                                <a href="#">
+                                                    <h3 class="course-title">My Session Experience</h3>
+                                                </a>
+                                            </div>
+                                        </div> 
+                                    </article>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-grid_align-center  forceCommunityTileMenu">
+                        <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-p-around_medium slds-p-top_none ">
+                            <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                                <a href="" onclick="{!c.redirectfa}" class="slds-image__crop--4-by-3">
+                                    <article class="slds-card caption hovereffect"> 
+                                        <figure class="slds-image slds-image--card ">
+                                            <img src="{! $Resource.partnerImg7}" alt="Description of the image" class="imgclass" />
+                                            <div class="overlay">
+                                            </div>
+                                        </figure>
+                                        <div class="course-detail">
+                                            <div class="course-info-box">
+                                                <div class="course-teacher"><a href="#"></a></div>
+                                                <a href="#">
+                                                    <h3 class="course-title">Mentor Profiles</h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </a>
+                            </div>
+                        </div> 
+                        <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-p-around_medium slds-p-top_none ">
+                            <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                                <a href="" onclick="{!c.redirectPage}" class="slds-image__crop--4-by-3">
+                                    <article class="slds-card caption hovereffect"> 
+                                        <figure class="slds-image slds-image--card ">
+                                            <img src="{! $Resource.MLConference}" alt="Description of the image" class="imgclass" />
+                                            <div class="overlay">
+                                            </div>
+                                        </figure>
+                                        <div class="course-detail">
+                                            <div class="course-info-box">
+                                                <div class="course-teacher"><a href="#"></a></div>
+                                                <a href="#">
+                                                    <h3 class="course-title">Machine Learning and the Market for Intelligence Conference</h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-p-around_medium slds-p-top_none ">
+                            <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                                <a href="" onclick="{!c.redirectFn}" class="slds-image__crop--4-by-3">
+                                    <article class="slds-card caption hovereffect"> 
+                                        <figure class="slds-image slds-image--card ">
+                                            <img src="{! $Resource.FamilyNewsletter}" alt="Description of the image" class="imgclass" />
+                                            <div class="overlay">
+                                            </div>
+                                        </figure>
+                                        <div class="course-detail">
+                                            <div class="course-info-box">
+                                                <div class="course-teacher"><a href="#"></a></div>
+                                                <a href="#">
+                                                    <h3 class="course-title">CDL Family Newsletter</h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </a>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+            </div> 
+            <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_2-of-12">
+                <div class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-grid_align-center">
+                    <div style="display: block;"><p class="resourcecaption">Resources</p> 
+                        <div class="resource">
+                            <div>
+                                <a  href="{!v.loggedinUserSlackUrl}" target="_blank">
+                                    <i class="fa fa-slack" aria-hidden="true"></i><br/>
+                                   Join Slack 
+                                </a>
+                            </div>
+                            <div> <a href="https://creativedestructionlab.force.com/partners/s/scheduleinterface" target="_blank">
+                                <i class="fa fa-clock-o"></i><br/>
+                                <!-- View --> My Schedule 
+                                </a>
+                            </div>
+                            <div> <a onclick="{!c.redirectSchedule}" target="_blank">
+                                <i class="fa fa-book"></i> <br/>
+                              <!--Access My CDL Partner Workbook     -->
+                                My Workbook
+                                </a>
+                            </div>
+                            
+                            <div> <a onclick="{!c.redirectcdlPartner}" target="_blank">
+                                <i class="fa fa-users"></i> <br/>
+                               Connect with fellow CDL Partners  
+                                </a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,13 @@
+.THIS .slds-size_1-of-12{
+  
+   display: contents;
+}
+@media screen and (max-width: 400px){
+.THIS .slds-size_1-of-12{
+   width: 150px;
+    display: block;
+}
+ .THIS  .fixedtable {
+    font-size: 20px;
+}
+}

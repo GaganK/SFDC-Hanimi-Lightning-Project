@@ -1,0 +1,130 @@
+<aura:component controller="CompanyOverviewController" implements="forceCommunity:layout,force:appHostable,forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable" access="global">
+    <aura:attribute name="ventureData" type="object"/>
+    <aura:attribute name="showPrimaryContact" type="boolean" default="false"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <div class="slds-grid slds-grid_align-space">
+        <div class="slds-col slds-size_2-of-3">
+            <div class="slds-text-heading_medium internalContainer" style="margin-right:0.9rem;">
+                TEAM                                
+            </div>  
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-text-heading_medium internalContainer" style="margin-right:0.6rem;margin-left:0.6rem;">
+                PRODUCT                                
+            </div>  
+        </div>
+    </div>
+    
+    <div class="slds-grid slds-grid_align-space">
+        <div class="slds-col slds-size_2-of-3">
+            <div class="slds-grid slds-grid_align-space">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_medium" style="margin-right:0.9rem;">
+                        <div class="slds-m-vertical_medium"><span><strong>Team Size:</strong></span> <span>{!v.ventureData.teamSize}</span></div>
+                        <p>{!v.ventureData.TeamDescription}</p>
+                    </div>  
+                </div>
+                <div class="slds-col slds-size_1-of-2" style="margin: 10px 0px;">
+                    <div class="slds-grid slds-grid_align-space">
+                        <aura:iteration items="{!v.ventureData.teams}" var="teamMember" >
+                            <div class="slds-col slds-size_1-of-2" style="padding-left: 35px;">
+                                <img src="{!teamMember.strPhotoURL}" class="TeamImage"/>
+                                <div>{!teamMember.teamMember.Name}</div>
+                            </div>
+                        </aura:iteration>
+                    </div>  
+                </div>
+            </div>
+            
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-align_absolute-center" style="margin : 10px 0px;">
+                <img src="{!v.ventureData.productPhotoURL}" style="height: 100px;"/>
+            </div>  
+        </div>
+    </div>
+    <div class="slds-grid slds-grid_align-space">
+        <div class="slds-col slds-size_1-of-1">
+            <div class="slds-text-heading_medium internalContainer" style="margin-right:0.9rem;">
+                FINANCING INFORMATION                                
+            </div>  
+        </div>
+    </div>
+    <div class="slds-grid slds-grid_align-space" style="margin: 5px 0px;">
+        <div class="slds-col slds-size_2-of-3"> 
+            <div class="slds-grid slds-grid_align-space">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_medium" style="margin-right:0.9rem;">
+                        <strong>Amount Raising:</strong>&nbsp;<ui:outputCurrency value="{!v.ventureData.amountRaising}"/>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_medium" style="margin-right:0.9rem;">
+                        <strong>Terms:</strong>&nbsp;{!v.ventureData.terms}
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-grid_align-space">
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_medium" style="margin-right:0.9rem;">
+                        <strong>Amount Committed:</strong>&nbsp;<ui:outputCurrency value="{!v.ventureData.amountCommitted}"/>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <div class="slds-text-heading_medium" style="margin-right:0.9rem;">
+                        <strong>Committed Investors:</strong>&nbsp;
+                        <ul>
+                        <aura:iteration items="{!v.ventureData.committedInvestors}" var="inverstors" >
+                        	<li>{!inverstors}</li>
+                        </aura:iteration>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-text-heading_medium" style="margin-right:0.6rem;margin-left:0.6rem;">
+                <div class="slds-text-heading_medium" style="margin-right:0.9rem;">
+                    <strong>CDL Mentorship Hands:</strong>
+                    <ul>
+                        <aura:iteration items="{!v.ventureData.cdlMembershipHands}" var="membership" >
+                        	<li>{!membership}</li>
+                        </aura:iteration>
+                    </ul>
+                </div>
+            </div>  
+        </div>
+    </div>
+    <div class="slds-grid slds-grid_align-space" style="margin: 5px 0px;">
+        <div class="slds-col slds-size_1-of-1">
+            <div class="slds-align_absolute-center">
+                <button class="slds-button slds-button_outline-brand boxContainer boxWidth slds-text-heading_medium boxContainer" style="width: auto; border: 2px solid rgb(142,150,161);" onclick="{!c.openModel}">Connect me with this company</button>                 
+            </div>  
+        </div>
+    </div>
+    <aura:if isTrue="{!v.showPrimaryContact}">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.closeModel}">
+                        <!--svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg-->
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Primary Contact Detail</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-text-heading_medium">Name: {!v.ventureData.primaryContact.Name}</div>
+                    <div class="slds-text-heading_medium">Email: {!v.ventureData.primaryContact.Email}</div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.closeModel}">Close</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

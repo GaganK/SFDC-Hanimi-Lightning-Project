@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+ controller="speakersCtrl" access="global" >
+    <!-- Handler to call function when page is loaded initially -->
+    <aura:handler name="init" action="{!c.getContactsList}" value="{!this}" />
+    <!-- List of contacts stored in attribute -->
+    <aura:attribute name="contactList" type="List" />
+    <ul class="slds-has-dividers_bottom-space">
+		<aura:iteration items="{!v.contactList}" var="contact">
+        <li class="slds-item">
+             <div class="slds-grid">
+				<div class="slds-col slds-size_1-of-5">
+                    <p style="font-size: x-large;color: black;">{!contact.Name}</p>
+					<span class="slds-avatar slds-avatar_circle slds-avatar_large" style="width: 8rem !important;height: 8rem !important;;">
+						  <ui:outputRichText class="slds-text-longform" value="{!contact.Speaker_Profile_Photo__c}"/>
+					</span>
+				</div>
+				<div class="slds-col slds-size_1-of-2">
+                    <p style="font-size: x-large;color: black;">{!contact.Title}</p>
+			  <p style="font-size: x-large;color: black;">{!contact.Account.Name}</p>
+				  <p>{!contact.Biodata__c}</p>
+				</div>
+			</div>
+        </li>
+		</aura:iteration>
+    </ul>
+</aura:component>

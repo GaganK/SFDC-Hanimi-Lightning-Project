@@ -1,0 +1,173 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global" controller="accountListController_Temp">
+
+    <!--<aura:attribute name="PartnerQuestList" type="Partner_Questionnaire__c[]" description=""-->
+    />
+    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" description="flag for rendered save and cancel buttons in aura:if "
+    />
+          <aura:handler name="change" value="{!v.showSaveCancelBtn}" action="{!c.Save}"/>
+
+    <aura:attribute name="loggedinUserId" type="string" />
+    <aura:attribute name="listOfAllAccounts" type="accountListController.AccountWrapper"
+        default="[]" />
+    <aura:attribute name="mapVentureList" type="object" />
+      <aura:handler name="change" value="{!v.showSaveCancelBtn}" action="{!c.Save}"/>
+
+    <!-- call doInit method on component load -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+    <aura:attribute name="spEditMode" type="boolean" default="false" />
+    <aura:attribute name="isPartnerWorkbook" type="boolean" default="false" />
+    
+        <aura:attribute name="PartnerQuestList" type="Partner_Questionnaire__c[]" description=""/>
+
+    <aura:attribute name="PaginationList" type="list" />
+    <aura:attribute name="selectedCount" type="integer" default="0" description="selected Records Count"
+    />
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer" />
+    <aura:attribute name="totalRecordsCount" type="Integer" />
+    <aura:attribute name="pageSize" type="Integer" default="25" description="number of records to be display on per page"
+    />
+    <aura:attribute name="currentPage" type="integer" default="1" />
+    <aura:attribute name="totalPagesCount" type="integer" />
+    <aura:attribute name="bNoRecordsFound" type="boolean" />
+
+
+    <aura:attribute name="editIndex" type="integer" />
+    <aura:attribute name="editColumn" type="string" />
+    <!--<lightning:navigation aura:id="navigationService"/>-->
+
+
+    <div class="slds-grid slds-wrap fonttype">
+        <div class="" style="padding-right:7px !important; width: 100% !important;">
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-task" title="task">
+                            </span>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner" style="padding:0px !important;">
+                    <div class="slds-table--header-fixed_container">
+                        <div class="slds-scrollable_y" style="height:100%;">
+                            <aura:if isTrue="{!v.bNoRecordsFound}">
+                                <!--display error message if there is no records available -->
+                                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info"
+                                    role="alert">
+                                    <span class="slds-assistive-text">error</span>
+                                    <h2>No record found.</h2>
+                                </div>
+                                <aura:set attribute="else">
+                                    <lightning:tabset variant="scoped">
+                                        <aura:iteration items="{!v.mapVentureList}" var="key">
+                                            <lightning:tab label="{!key.name}">
+                                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-table--header-fixed">
+                                                        <thead>
+                                                            <tr class="slds-line-height_reset">
+                                                                <th scope="col" class="headerClr ">
+                                                                    <div class="slds-truncate " title="Venture Name">
+                                                                        <p class="slds-cell-wrap">Venture Name</p>
+                                                                    </div>
+                                                                </th>
+                                                                <th scope="col" class="headerClr ">
+                                                                    <div class="slds-truncate " title="Description">Description</div>
+                                                                </th>
+                                                                
+                                                                
+                                                                <aura:if isTrue="{!v.isPartnerWorkbook}">
+                                                                    <th scope="col" class="headerClr">
+                                                                        <div class="slds-truncate" title="Comments on venture's CDL Session"><p class="slds-cell-wrap">Comments on venture's CDL Session</p></div>
+                                                                    </th>
+                                                                    <th scope="col" class="headerClr">
+                                                                        <div class="slds-truncate" title="Is Venture Applicable to your Business?"><p class="slds-cell-wrap">Is Venture Applicable to your Business?</p></div>
+                                                                    </th>                     
+                                                                    <th scope="col" class="headerClr">
+                                                                        <div class="slds-truncate" title="If yes, please explain why?"><p class="slds-cell-wrap">If yes, please explain why?</p></div>
+                                                                    </th>
+                                                                    <th scope="col" class="headerClr">
+                                                                        <div class="slds-truncate" title="Do you want to be connected to the founders?"><p class="slds-cell-wrap">Do you want to be connected to the founders?</p></div>
+                                                                    </th>
+                                                                    
+                                                                    <aura:set attribute="else">
+                                                                        <th scope="col" class="headerClr ">
+                                                                            <div class="slds-truncate " title="Location">Location</div>
+                                                                        </th>
+                                                                        <th scope="col" class="headerClr">
+                                                                            <div class="slds-truncate" title="Core Technology">
+                                                                                <p class="slds-cell-wrap">Core Technology</p>
+                                                                            </div>
+                                                                        </th>
+                                                                        <th scope="col" class="headerClr ">
+                                                                            <div class="slds-truncate" title="Related_Streams">
+                                                                                Site &amp; Stream</div>
+                                                                        </th>
+                                                                    </aura:set>
+
+                                                                </aura:if>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <aura:iteration items="{!key.value}" var="obj" indexVar="indexNum">
+                                                                <tr class="RowBG">
+                                                                     <th scope="row">
+                                                                        <div class="  slds-truncate slds-cell-wrap  removeWhiteSpace" title="{!obj.VentureName}">
+                                                                            <a data-record="{!obj.VentureWebsite}" onclick="{!c.navigateToWebsite}">{!obj.VentureName}</a>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th scope="row">
+                                                                        <div class="  slds-truncate removeWhiteSpace slds-cell-wrap descriptionCell" title="{!obj.VentureDescription}">
+                                                                            {!obj.VentureDescription}
+                                                                        </div>
+                                                                    </th>
+                                                                    
+                                                                    <aura:if isTrue="{!v.isPartnerWorkbook}">
+                                                                        
+                                                                       
+                                                                        
+                                                                        <c:partnerQuestionsInlineEditCmp accountId="{!obj.VentureId}" singleRec="{!obj.objPartnerQuestionaire}"
+                                                                                 showSaveCancelBtn="{!v.showSaveCancelBtn}" PartnerQuestList="{!v.PartnerQuestList}" index="{!indexNum}"/>  
+                                                                                
+                                                                        <aura:set attribute="else">
+                                                                            <th scope="row">
+                                                                                <div class="  slds-truncate slds-cell-wrap  removeWhiteSpace" title="{!obj.VentureBillingState}">
+                                                                                    {!obj.VentureBillingState}
+                                                                                    <aura:if isTrue="{! and(not(empty(obj.VentureBillingState)),not(empty(obj.VentureBillingCountry)))}">
+                                                                                        ,&nbsp;
+                                                                                    </aura:if>
+                                                                                    {!obj.VentureBillingCountry}
+                                                                                </div>
+                                                                            </th>
+                                                                            <th scope="row">
+                                                                                <div class="slds-cell-wrap slds-truncate removeWhiteSpace" title="{!obj.VentureCoreTechnology}">
+                                                                                    {!obj.VentureCoreTechnology}
+                                                                                </div>
+                                                                            </th>
+                                                                            <th scope="row">
+                                                                                <div class=" slds-cell-wrap  slds-truncate removeWhiteSpace" title="{!obj.CohortName}">
+                                                                                    {!obj.CohortName}
+                                                                                </div>
+                                                                            </th>
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </tr>
+                                                            </aura:iteration>
+                                                        </tbody>
+                                                    </table>
+                                            </lightning:tab>
+                                        </aura:iteration>
+                                    </lightning:tabset>
+                                </aura:set>
+                            </aura:if>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+</aura:component>

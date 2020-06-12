@@ -1,0 +1,45 @@
+.THIS .selected{
+    color:orange;
+}
+.THIS .left-align {
+    text-align: left;
+     overflow: scroll;
+    overflow-x: hidden;
+    height: 300px;
+}
+.THIS .right-align {
+    text-align: right;
+     overflow: scroll;
+    overflow-x: hidden;
+    height: 300px;
+}
+.THIS .layoutScroll {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 200px;
+}
+.THIS .filtericon {
+    left: 96%;
+}.THIS .table {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+.THIS .th {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+.THIS .td {
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+.THIS .slds-form-element__control{
+    
+    
+}
+.THIS .appClass{
+    padding-left: inherit !important;
+}
+.THIS .analysis {
+    color: brown;
+    font-size: -webkit-xxx-large;
+}

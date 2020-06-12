@@ -1,0 +1,12 @@
+.THIS .mainContentArea{
+    min-height: 500px;
+}
+
+.THIS .profileMenuRegion{
+    padding-top: 1rem;
+}
+@media only screen and (min-width: 500px) and (max-width: 1140px){
+.THIS .profileMenuRegion{
+    padding-top: 2.5rem;
+}
+}

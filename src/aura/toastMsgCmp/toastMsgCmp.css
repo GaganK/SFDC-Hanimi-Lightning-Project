@@ -1,0 +1,7 @@
+.THIS .ToastMessagebg{
+     background-color: rgb(232, 32, 118) !important;
+    color: white;
+}
+.THIS .slds-icon .slds-icon_small .slds-icon-text-default{
+    fill:white;
+}

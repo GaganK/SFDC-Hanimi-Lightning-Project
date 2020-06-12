@@ -1,0 +1,80 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+   
+    <div>
+        <div class="slds-grid slds-wrap slds-grid_align-center forceCommunityTileMenu">
+            <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_medium slds-p-top_none ">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                   <a href="" onclick="{!c.redirectfa}" class="slds-image__crop--4-by-3">
+                       <article class="slds-card hovereffect"> 
+<figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg7}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+           <h2 class="titleLabel">Mentors</h2>
+         
+        </div>
+</figure>
+                       <div class="course-detail">
+<div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+<a href="#">
+<h3 class="course-title">Mentors</h3>
+</a>
+
+</div>
+</div>
+</article></a>
+                </div>
+            </div> 
+            <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_medium slds-p-top_none ">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                   <a href="" onclick="{!c.redirectPage}" class="slds-image__crop--4-by-3">
+                       <article class="slds-card hovereffect"> 
+<figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.MLConference}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+           <h2 class="titleLabel">Machine Learning and the Market for Intelligence Conference</h2>
+         
+        </div>
+</figure>
+                       <div class="course-detail">
+<div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+<a href="#">
+<h3 class="course-title">Machine Learning and the Market for Intelligence Conference</h3>
+</a>
+
+</div>
+</div>
+</article></a>
+                </div>
+            </div>
+            
+            <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_medium slds-p-top_none ">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                   <a href="" onclick="{!c.redirectFn}" class="slds-image__crop--4-by-3">
+                       <article class="slds-card hovereffect"> 
+<figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.FamilyNewsletter}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+           <h2 class="titleLabel">Family Newsletter</h2>
+         
+        </div>
+</figure>
+                       <div class="course-detail">
+<div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+<a href="#">
+<h3 class="course-title">Family Newsletter</h3>
+</a>
+
+</div>
+</div>
+</article></a>
+                </div>
+            </div> 
+            
+            
+        </div> 
+        
+    </div>
+</aura:component>

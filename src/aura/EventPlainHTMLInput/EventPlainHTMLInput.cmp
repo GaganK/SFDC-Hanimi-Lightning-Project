@@ -1,0 +1,8 @@
+<aura:component access="global" implements="EventApi:EditLightingCompInterface">
+    <aura:method name="validate" action="{!c.validate}" access="global"/>
+    <Framework:InputFields aura:id="plaintexthtml"
+                             label="Plain Text Accepts HTML"
+                             isRequired="true"
+                             value="{!v.pageComponent}"
+                             fieldType="codeeditorfield"/>
+</aura:component>

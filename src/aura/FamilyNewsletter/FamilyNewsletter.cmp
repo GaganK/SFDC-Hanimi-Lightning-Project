@@ -1,0 +1,358 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <div style="margin:0px 0px 40px 0px;">
+        <div style="background-color:#000000;justify-content: center;" class="section">
+            
+            <div class="item tall">
+                <img src="{! $Resource.logowhite}" alt="Description of the image" class="fnlogo" />
+            </div>
+            <div class="divider"></div>
+            <div class="item">
+                <p class="headingcaption slds-m-horizontal_x-largecaption slds-m-vertical_large" style="color:white;">Family Newsletter</p>
+            </div> 
+        </div>           
+    </div>
+    <!--slds-medium-size_1-of-4 slds-p-horizontal_medium-->
+    <div style="">
+	   <div class="subtitle hrline " style="font-size: xx-large; color: #e42076;"><div>Family Newsletter 2020</div></div>
+    <div class="slds-grid slds-wrap slds-m-horizontal_x-large slds-m-bottom_xx-large" style="align-items: center;
+    "> 
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium  slds-m-vertical_medium">
+            <a onclick="{!c.Jan2020newsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{!$Resource.fnjan2019}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">January</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+    </div>
+    <div class="subtitle hrline " style="font-size: xx-large; color: #e42076;"><div>Family Newsletter 2019</div></div>
+ 
+    <div class="slds-grid slds-wrap slds-m-horizontal_x-large slds-m-bottom_x-large " style="align-items: center;
+                                                                                          justify-content: center;">
+         <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium   slds-m-vertical_medium">
+            <a onclick="{!c.NovNewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                             <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnnovember}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                 <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">November</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium   slds-m-vertical_medium">
+            <a onclick="{!c.SepNewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                             <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnseptember}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                 <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">September</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium  slds-m-vertical_medium">
+            <a onclick="{!c.JunNewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnjuly}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">July</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium  slds-m-vertical_medium">
+            <a onclick="{!c.MayNewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnmay}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">May</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium  slds-m-vertical_medium">
+            <a onclick="{!c.AprNewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnapril}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">April</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium  slds-m-vertical_medium">
+            <a onclick="{!c.Marchnewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnmarch}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">March</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        
+        
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium  slds-m-vertical_medium">
+            <a onclick="{!c.Febnewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnfeb2019}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">February</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        
+        
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium  slds-m-vertical_medium">
+            <a onclick="{!c.Jannewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnjan2019}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">January</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div></div>
+    
+     <div class="subtitle hrline " style="font-size: xx-large; color: #e42076;"><div>Family Newsletter 2018</div></div>
+    <div class="slds-grid slds-wrap slds-m-horizontal_x-large slds-m-bottom_xx-large" style="align-items: center;
+    "> 
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium  slds-m-vertical_medium">
+            <a onclick="{!c.decnewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fndecember}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">December</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium  slds-m-vertical_medium">
+            <a onclick="{!c.novnewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnnovember}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">November</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium   slds-m-vertical_medium">
+            <a onclick="{!c.octnewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnoctober}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">October</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+        </div>
+        
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-p-horizontal_medium   slds-m-vertical_medium">
+            <a onclick="{!c.septnewsletter}">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+                        <figure class="slds-image slds-image--card imageCard">
+                            <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--4-by-3">
+                            <img src="{! $Resource.fnseptember2018}" alt="Description of the image" class="imgclass" />
+                            </a>
+                                <div class="overlay">      
+                            </div>
+                        </figure>
+                        <div class="course-detail slds-p-vertical_small">
+                            <div class="course-info-box">
+                                <div class="course-teacher"><a href="#"></a></div>
+                                <a href="#">
+                                    <h3 class="course-title">September</h3>
+                                </a>
+                                
+                            </div>
+                        </div>
+                        
+                    </article>
+                </div></a>
+            
+            
+        </div>
+        
+        
+        </div>
+    </div>
+    
+</aura:component>

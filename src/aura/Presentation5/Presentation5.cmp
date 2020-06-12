@@ -1,0 +1,25 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"> 
+
+      <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <section id="content">
+        Place the first image/slide here 
+         <img src="{!$Resource.Presentation5 + '/pptpreview/1.png'}" id="slidepic5"/>
+          
+       Place the caption for the first image/slide here  
+        <div class="slider-footer">  
+            <div class="nav-mid-section">     
+         <span id="slideshowBack5"><i class="previous"></i></span>
+         <span class="page-no"><i id="currentpage5">1</i> of <i id="totalpage5">0</i></span>
+         <span id="slideshowUp5"><i class="next"></i></span>
+         </div>
+         </div>
+      </section>-->
+<section>
+    <div class="slds-grid slds-wrap slds-grid_align-center">
+  <div class="slds-col slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_6-of-12 maindiv">
+    <div class="titlecaption">Module 5 Presentation Coming Soon</div>
+  </div>
+    </div>
+    </section> 
+          
+</aura:component>

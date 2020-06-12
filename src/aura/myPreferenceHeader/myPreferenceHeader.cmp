@@ -1,0 +1,27 @@
+<aura:component controller="currentUserDetailCtrl"  implements="forceCommunity:availableForAllPageTypes" access="global">
+   <aura:attribute name="userContactId" type="String"/>
+    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" />
+    <aura:handler event="c:MyPreferenceApplicationEvnt" action="{!c.handleApplicationEvent}"/>
+    <div class="navbar" style="background-color: rgb(232, 32, 118) !important;">
+     <a  title="Home" data-type="home" onclick="{!c.onClickHome}" >
+            <lightning:buttonIcon  iconName="utility:home" alternativeText=""
+                                  class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small homeMenu"
+                                  />
+           
+            </a>
+       <div class="dropdown">
+           
+            <button class="dropbtn">Menu 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a onclick="{!c.MenuItemThree}">My Preferences</a>
+              <a onclick="{!c.MenuItemOne}">CDL Mentors</a>
+              <a onclick="{!c.MenuItemTwo}">CDL Family Newsletter</a>
+              
+            </div>
+          </div>
+    </div>
+    
+
+	</aura:component>

@@ -1,0 +1,56 @@
+.THIS .sidegutters {
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-top:2em;
+ }
+
+.THIS .logoContainer {
+background-repeat: no-repeat;
+background-size: contain;
+z-index: 99;
+cursor: pointer;
+position: relative;
+display: block;
+outline: 0;
+height: 50px;
+margin-top: 10px;
+}
+
+.THIS .boxWidth {
+    width:100%;
+    color:black;
+    box-shadow: 0px 0px 5px 0px rgba(142,150,161,1);
+}
+
+.THIS .boxContainer {
+  box-sizing: border-box; 
+  border: 2px solid rgb(199,203,209);
+  border-radius: .25rem;
+  line-height: 1.875rem;
+  text-align: center;
+}
+
+.THIS .btnClass {
+  width:150px;
+  display:inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  margin:0px auto;
+  color:black;
+}
+
+.THIS .internalContainer {
+    text-align: center;
+    color:white;
+    background-color: rgb(232, 32, 118);
+}
+
+.THIS .TeamBlock {
+
+  display: inline;
+}
+
+.THIS .TeamImage {
+
+    height: 100px !important;
+}

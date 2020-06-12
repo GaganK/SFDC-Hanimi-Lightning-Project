@@ -1,0 +1,22 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+     <ltng:require styles="{!$Resource.cssresource+'/css-resources/css/style.css'}"/>
+    <lightning:tabset class="tabsetvariant" variant="vertical">
+        <lightning:tab label="Pre-readings Materials">
+            <div class="slds-box boxClass"  >
+            <c:cdlTiles/>
+            </div>
+            
+        </lightning:tab>
+        <lightning:tab label="Presentation">
+             <div class="slds-box boxClassa"  >
+            <c:iframebox/>
+            </div>  
+        </lightning:tab>
+        <lightning:tab label="Biography">
+             <div class="slds-box boxClassa"  >
+            
+            </div>  
+        </lightning:tab>
+      
+    </lightning:tabset>
+</aura:component>

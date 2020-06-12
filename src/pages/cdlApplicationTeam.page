@@ -1,0 +1,123 @@
+<apex:page id="cdlApplicationTeam" controller="cdlApplicationController" standardStylesheets="false" showHeader="false"
+           sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" cache="false"
+           language="{!IF(language == 'English', 'en_US', 'fr')}">
+  <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>CDL - Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Import The Design System StyleSheet -->
+    <apex:slds />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"/>
+    <link type="text/css" rel="stylesheet"
+          href="{!URLFOR($Asset.SLDS, '/assets/styles/salesforce-lightning-design-system-ltng.min.css')}"/>
+    <link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.cdlStyle)}" />
+    <script language="JavaScript" type="text/javascript">
+    $(document).ready(function ()
+    {
+      $(".phone-mask").mask("(999) 999-9999 ?x9999");
+    });
+    </script>
+  </head>
+  <body>
+  <apex:form id="cdlApplication">
+    <div class="slds-align_absolute-center">
+      <apex:pageMessages id="errorMsg"/>
+    </div>
+    <div class="slds-scope">
+      <!-- PRIMARY CONTENT WRAPPER -->
+      <div class="slds-align_absolute-center"
+           style="border-radius : 15px; max-width : 1200px; background-color : #f5f5f5; padding : 0.5em; border : 0px solid #54698d">
+        <div class="slds-form slds-form_compound"
+             style="border-radius : 20px; max-width : 1024px; padding : 2.5em; background-color : #f5f5f5;">
+          <div align="center">
+            <apex:image url="{!$Resource.cdlLogo}" width="200" height="200"/>
+          </div>
+          <div align="center">
+            <b>{!application.Name} {!application.Venture__r.Name}</b>
+          </div>
+          <br></br>
+          <div align="center">
+            <!--  {!$Label[applicationHeader]}<br></br> -->
+            <!-- {!$Label.AI_Note} -->
+          </div>
+          <br></br>
+          <div class="slds-align_absolute-center" style="max-width : 1200px;">
+            <fieldset class="slds-form-element">
+              <legend class="slds-form-element__label slds-text-title"></legend>
+              <div class="slds-form-element__group">
+                <div class="slds-form-element__row">
+                  <div class="slds-form-element slds-size_1-of-2">
+                    <abbr class="slds-required" title="required"></abbr>
+                    <label class="slds-form-element__label"
+                           for="numberOfFounders">{!$Label.Number_Of_Key_Co_Founders}</label>
+                    <apex:inputText label="Number Of Founders" styleClass="slds-input" id="numberOfFounders"
+                                    html-placeholder="# Of Founders" maxLength="80" required="false"
+                                    value="{!numberOfFounders}">
+                      <apex:actionSupport event="onchange" rerender="cdlApplication,fList"/>
+                    </apex:inputText>
+                  </div>
+                  <div class="slds-form-element slds-size_1-of-2">
+                    <abbr class="slds-required" title="required"></abbr>
+                    <label class="slds-form-element__label"
+                           for="numberOfEmployees">{!$Label.Number_Of_Other_Employees}</label>
+                    <apex:inputText label="Number Of Founders" styleClass="slds-input" id="numberOfEmployees"
+                                    html-placeholder="# Of Employees" maxLength="80" required="false"
+                                    value="{!numberOfEmployees}"/>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <apex:pageBlock id="fList" rendered="{!IF(founderList != null && founderList.size > 0, true, false)}">
+            <legend class="slds-form-element__label slds-text-title">Co-Founder Information:</legend>
+            <apex:variable value="{!0}" var="rowNum"/>
+            <apex:repeat id="founderList" value="{!founderList}" var="founder">
+              <div class="slds-align_absolute-center" style="max-width : 1200px;">
+                <fieldset class="slds-form-element">
+                  <legend class="slds-form-element__label slds-text-title"></legend>
+                  <div class="slds-form-element__group">
+                    <div class="slds-form-element__row">
+                      <div class="slds-form-element slds-size_1-of-3">
+                        <abbr class="slds-required" title="required"></abbr>
+                        <label class="slds-form-element__label" for="firstName">{!$Label.First_Name}</label>
+                        <apex:inputText label="First Name" styleClass="slds-input" id="firstName"
+                                        html-placeholder="First Name" maxLength="80" required="false"
+                                        value="{!founder.FirstName}"/>
+                      </div>
+                      <div class="slds-form-element slds-size_1-of-3">
+                        <abbr class="slds-required" title="required"></abbr>
+                        <label class="slds-form-element__label" for="lastName">{!$Label.Last_Name}</label>
+                        <apex:inputText label="Last Name" styleClass="slds-input" id="lastName"
+                                        html-placeholder="Last Name"
+                                        maxlength="80" required="false" value="{!founder.LastName}"/>
+                      </div>
+                      <div class="slds-form-element slds-size_1-of-3">
+                        <abbr class="slds-required" title="required"></abbr>
+                        <label class="slds-form-element__label" for="email">{!$Label.Email}</label>
+                        <apex:inputText label="Email" styleClass="slds-input" id="email" html-placeholder="Email"
+                                        maxlength="80" required="false" value="{!founder.Email}"/>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </apex:repeat>
+          </apex:pageBlock>
+          <br></br>
+          <div class="slds-align_absolute-center" style="max-width : 1200px;">
+            <apex:commandButton styleClass="slds-button slds-button_brand"
+                                action="{!venturePage}" value="Previous" id="previousButton"/>
+            <apex:commandButton styleClass="slds-button slds-button_brand"
+                                action="{!previousPage}" value="Save" id="saveButton"/>
+          </div>
+          <!-- / PRIMARY CONTENT WRAPPER -->
+        </div>
+      </div>
+    </div>
+  </apex:form>
+  </body>
+  </html>
+</apex:page>

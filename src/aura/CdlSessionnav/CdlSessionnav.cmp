@@ -1,0 +1,30 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    
+    <lightning:tabset class="tabsetvariant" variant="vertical">
+        <lightning:tab label="Schedule">
+            <div class="slds-box boxClass"  >
+            
+            </div>
+            
+        </lightning:tab>
+        <lightning:tab label="Morning Programming">
+            <div class="slds-box boxClass"  >
+            <c:iframebox/>
+            </div>
+
+            
+        </lightning:tab>
+        <lightning:tab label="Cohort Summary">
+            <div class="slds-box boxClass"  >
+            <c:iframebox/>
+            </div>
+</lightning:tab>
+        
+        <lightning:tab label="Venture Info &amp; Partner Workbook">
+            <div class="slds-box boxClass"  >
+            <c:iframebox/>
+            </div>  
+        </lightning:tab>
+      
+    </lightning:tabset>
+</aura:component>

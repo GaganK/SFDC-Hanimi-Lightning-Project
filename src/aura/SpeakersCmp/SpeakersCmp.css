@@ -1,0 +1,240 @@
+.THIS .hrline {
+    line-height: 0.5;
+    text-align: center;
+}
+.THIS .hrline div:before {
+    right: 100%;
+    margin-right: 15px;
+}
+.THIS .hrline div:before, .THIS .hrline div:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-bottom: 1px solid #e42076;
+    border-top: 1px solid rgba(228, 32, 118, 0.5);
+    top: 8px;
+    width: 200px;
+}
+.THIS .hrline div {
+    display: inline-block;
+    position: relative;
+}
+.THIS .subtitle {
+    margin: 1em;
+}
+.THIS .hrline div:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+
+.THIS h3{
+    font-size: x-large;
+    color: #e42076;
+}
+.THIS .titleLabel {
+    width: 100%;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 1rem;
+    text-transform: none;
+    background-color: rgb(250, 250, 249);
+    color: #0c1e44;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all .8s ease;
+    border-radius: 2px;
+}
+.THIS span{
+    background: #fff;
+    color: #222;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    left: -25px;
+    right: -25px;
+    padding: 5px 7px;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+.THIS span:before{
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fff;
+    position: absolute;
+    bottom: -5px;
+    left: 40px;
+}
+.THIS .swap-on-hover:hover span{
+    bottom: 50px;
+    visibility: visible;
+    opacity: 1;
+}
+.THIS .fig{
+    padding: 0rem !important; 
+}
+.THIS.image-wrapper {
+    margin: 0 auto;
+    overflow: hidden;
+    font-size: 0;
+}
+.THIS .imgclass {
+    max-width: 100%;
+    transition: transform 0.9s ease-in-out;
+}
+.THIS .image-wrapper:hover .imgclass {
+    transform: scale(2.1)!important;
+}
+/*new cess*/
+.THIS .hovereffect {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    position:relative;
+    text-align:center;
+    cursor:default;
+}
+
+.THIS .overlay {
+    width:100%;
+    height:100%;
+    position:absolute;
+    overflow:hidden;
+    top:0;
+    left:0;
+    opacity: 0.5;
+    background-color: rgb(228, 32, 118);
+    -webkit-transition:all .4s ease-in-out;
+    transition:all .4s ease-in-out
+}
+
+
+
+.THIS .hovereffect img {
+    display:block;
+    position:relative;
+    -webkit-transition:all .4s linear;
+    transition:all .4s linear;
+}
+
+
+
+.THIS .hovereffect h2 {
+    color:#fff;
+    text-align:center;
+    position:absolute; 
+    top: auto;
+    bottom: 0px;
+    background:rgba(0,0,0,0.6);
+    -webkit-transform:translatey(-100px);
+    -ms-transform:translatey(-100px);
+    transform:translatey(-100px);
+    -webkit-transition:all .2s ease-in-out;
+    transition:all .2s ease-in-out;
+    padding:10px;
+}
+
+
+
+.THIS .hovereffect a.info {
+    text-decoration:none;
+    display:inline-block;
+    text-transform:uppercase;
+    color:#fff;
+    border:1px solid #fff;
+    background-color:transparent;
+    opacity:0;
+    filter:alpha(opacity=0);
+    -webkit-transition:all .2s ease-in-out;
+    transition:all .2s ease-in-out;
+    margin:50px 0 0;
+    padding:7px 14px;
+}
+.THIS .hovereffect a.info:hover {
+    -webkit-box-shadow: 0 0 30px 0 rgba(32,32,32,.15);
+    box-shadow: 0 0 30px 0 rgba(32,32,32,.15);
+}
+.THIS .hovereffect:hover img {
+    -ms-transform:scale(1.0);
+    -webkit-transform:scale(1.0);
+    transform:scale(1.0);
+}
+
+.THIS  .hovereffect:hover h2,.THIS  .hovereffect:hover a.info {
+    opacity:1;
+    filter:alpha(opacity=100);
+    -ms-transform:translatey(0);
+    -webkit-transform:translatey(0);
+    transform:translatey(0);
+}
+.THIS .hovereffect:hover a.info {
+    -webkit-transition-delay:.2s;
+    transition-delay:.2s;
+}
+.THIS .course-info-box {
+    padding: 20px;
+}
+.THIS .course-teacher {
+    margin-bottom: 10px;
+    text-align: left;
+}
+.THIS .course-title {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 5px;
+    padding: 0;
+    line-height: 26px;
+    text-align: left;
+    color: #0a0a0a;
+}
+.THIS .course-teacher a {
+    text-transform: uppercase;
+    color: #7e7e7e;
+    text-align: left;
+    font-size: 15px;
+}
+
+.THIS .pd-tp{
+    padding-top:30px;
+}
+.THIS  .pd-br {
+    width: 200px!important;
+    /* box-shadow: 1px 2px 5px #cac8c8; */
+    margin: 1%;
+    
+    color: #fff;
+    box-shadow: 1px 2px 5px #e4e4e4;
+    min-height: 240px;
+}
+.THIS  .pd-br:hover {
+   background: rgb(228, 32, 118);
+     transition:all .9s ease-in-out
+    
+}
+.THIS  .pd-br:hover .contactdetails{
+    color: white;
+}
+.THIS .contactdetails{
+    font-size: medium;
+    color: black;
+    text-align: center;
+    font-weight:bold;
+    margin-top: 3%;
+     transition:all .9s ease-in-out
+}
+.THIS ul{
+    
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}

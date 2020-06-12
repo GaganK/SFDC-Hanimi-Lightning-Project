@@ -1,0 +1,16 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_4-of-12 pdall">
+            <img src="{! $Resource.peterT}" alt="Description of the image"/>
+        </div>
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_8-of-12 pdall ">
+            <div class="hr-bio">
+                <h1 class="title">Peter Tertzakian</h1>
+                <p class="subtitle">Chief Energy Strategist</p>
+                <p class="descriptiontitle">Peter Tertzakian is an economist, investment strategist, author, and public speaker on issues vital to the future of energy. He has clocked over 30 years of experience in the business of energy, spanning all systems from oil and gas to renewables. His passion is studying how society evolves its energy use and applying the lessons of the past into today’s strategic business issues. His holistic knowledge of physics, innovation, finance, and economics allows him to give audiences thought-provoking advice on pressing issues on the future of energy systems.</p>
+                <p class="descriptiontitle">An accomplished author, Peter’s two best-selling books, A Thousand Barrels a Second (McGraw-Hill, NY 2005) and The End of Energy Obesity (John Wiley &amp; Sons, NY 2009) provide insight into the dynamic world of energy transitions through a thoughtful and highly readable examination of economic, environmental, and geopolitical pressures. He has written over 600 weekly columns, current issues of which are distributed through various media channels.</p>
+                <p class="descriptiontitle">Peter has an undergraduate degree in geophysics from the University of Alberta, a graduate degree in econometrics from the University of Southampton UK, and an MSc in the management of technology from the Sloan School of Management at MIT. In addition to his principal roles at the ARC Energy Research Institute and ARC Financial, he is an adjunct professor at the University of Calgary and has lectured at many leading universities and conferences around the world.</p>
+            </div>
+        </div>
+    </div>
+</aura:component>

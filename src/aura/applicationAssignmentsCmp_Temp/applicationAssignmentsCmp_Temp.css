@@ -1,0 +1,103 @@
+.THIS .myIconClass svg {
+    width: 1.3rem;
+    height: 1.3rem;
+    cursor: pointer;
+}
+/*
+.THIS label.slds-form-element__label {
+
+    display: none !important;
+}
+
+.THIS .slds-table th, .slds-table td {
+
+    padding: 2px 5px !important;
+}
+*/
+.THIS .slds-form-element_stacked {
+
+    margin-bottom: 0px !important;
+}
+
+.THIS .searchPanel{
+    
+    padding:10px;
+    background-color: #f1f1f1;
+    opacity: 1;
+    height: auto;
+    max-height: 250px;
+    transition: opacity 0.5s linear, max-height 0.5s linear, padding 0.5s linear;
+}
+
+.THIS.customModal{
+    
+    opacity: 1;
+    transition: opacity 0.25s linear;
+    height: auto;
+    max-height: 600px;
+}
+
+.THIS.hideModal{
+    
+    opacity: 0 !important;
+    transition: opacity 0.25s linear;
+    height: auto;
+    max-height: 0;
+}
+
+.THIS .gSearch label {
+
+    display: none !important;
+}
+
+.THIS .hiddenColumn{
+
+    padding : 0px !important;
+    -webkit-transition-property: padding; /* Safari */
+    -webkit-transition-duration: 1s; /* Safari */
+    transition-property: padding;
+    transition-duration: 1s;
+}
+
+.THIS .hiddenColumn:hover{
+
+    padding : 0px 2px !important;
+}
+
+.THIS .slds-template_default {
+
+    padding: 2px !important;
+}
+
+.THIS .tableContainer {
+
+    height:calc(100vh - 250px);
+    overflow:auto;
+    margin-top : 0px;
+}
+
+.THIS .copyEstimator {
+
+    padding: 6px 0px 0px 2px !important;
+}
+
+.THIS .hideShowIcon {
+
+    /*padding-left:2px;*/
+}
+
+.THIS .filterBox {
+
+    width: 90%;
+    margin: auto;
+}
+
+.THIS .selectedFilter {
+
+    color: #ed047b !important;
+}
+
+.THIS .slds-card__body {
+
+    margin-bottom : 0px !important;
+}

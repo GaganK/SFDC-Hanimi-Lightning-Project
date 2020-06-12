@@ -1,0 +1,56 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+   <aura:attribute name="name" type="String" default="name here" />
+    <div  class="forceCommunityTileMenu" data-aura-class="forceCommunityTileMenu">
+     
+        <div  class="slds-grid slds-wrap slds-grid_align-center">
+              
+       
+            <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-m-around_large slds-m-top_none">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+<figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg10}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+           <h2 class="titleLabel">Module 1</h2>
+          <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+        </div>
+</figure>
+                        <div class="course-detail">
+<div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+<a href="#">
+<h3 class="course-title">The Simple Economics of AI</h3>
+</a>
+
+</div>
+</div>
+</article>
+                </div>
+            </div>
+            
+            
+           <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-m-around_large slds-m-top_none">
+                <div class="slds-text-align_center slds-m-around_x-small course-entry" >
+                    <article class="slds-card caption hovereffect">
+<figure class="slds-image slds-image--card ">
+    <img src="{! $Resource.partnerImg1}" alt="Description of the image" class="imgclass" />
+    <div class="overlay">
+           <h2 class="titleLabel">Module 2</h2>
+          <a href="javascript:void(0);" class="slds-image__crop--4-by-3"></a>
+        </div>
+</figure>
+ <div class="course-detail">
+<div class="course-info-box">
+    <div class="course-teacher"><a href="#"></a></div>
+<a href="#">
+<h3 class="course-title">The Simple Economics of AI</h3>
+</a>
+
+</div>
+</div></article>
+                </div>
+            </div>
+        
+        </div> 
+    </div>
+</aura:component>

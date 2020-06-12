@@ -1,0 +1,174 @@
+<aura:component controller="CompanyOverviewController" implements="forceCommunity:layout,force:appHostable,forceCommunity:availableForAllPageTypes">
+    <ltng:require styles="{!$Resource.font_awesomecss}"/>
+    <aura:attribute name="recordId" type="String" default=""/>
+    <aura:attribute name="isSuccess" type="Boolean" default="true" />
+    <aura:attribute name="wrapperList" type="List" default="[]" />
+    <aura:attribute name="wrappersList" type="List" default="[]" />
+    <aura:attribute name="isTechVal1" type="boolean" default="false"/>
+	<aura:attribute name="isTechVal2" type="boolean" default="false"/>
+	<aura:attribute name="isIndVal1" type="boolean" default="false"/>
+	<aura:attribute name="isIndVal2" type="boolean" default="false"/>
+    <aura:attribute name="isSiteVal" type="boolean" default="false"/>
+	<aura:attribute name="isStreamVal" type="boolean" default="false"/>
+    <aura:attribute name="updateFlag" type="boolean" default="false"/>
+	<aura:attribute name="overviewFlag" type="boolean" default="false"/>
+	<aura:attribute name="pitchDeckFlag" type="boolean" default="false"/>
+    <aura:attribute name="updateURL" type="String" default=""/>
+	<aura:attribute name="overviewURL" type="String" default=""/>
+    <aura:attribute name="pitchDeckURL" type="String" default=""/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.getAdmittedVentureInfo}" />
+    <aura:if isTrue="{! !v.isSuccess}">
+        <div class="slds-text-heading_large" style = "text-align: center;">
+            {!v.wrapperList[0].message}
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.isSuccess}">
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+            <span class="slds-text-heading_large">
+                <span>
+                    <a href="{!v.wrapperList[0].website}" target="_blank" style="color:blue">{!v.wrapperList[0].companyName}</a>
+                    	
+                </span>&nbsp;
+                
+                <span style="color:#ed047b">{!v.wrapperList[0].billingAddress}</span>
+               
+              </span>  
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_3-of-12">
+                    <span>
+                        <aura:if isTrue = "{! !v.updateFlag}">
+                            <a style = "border: 2px solid rgb(142,150,161);" class="slds-button slds-button_outline-brand boxContainer boxWidth slds-text-heading_medium boxContainer" href = "{!v.updateURL}" target="_blank">
+                                Update
+                            </a>
+                        </aura:if>
+                        <aura:if isTrue = "{! v.updateFlag}">
+                            <button style = "border: 2px solid rgb(142,150,161);" class="slds-button slds-button_outline-brand boxContainer boxWidth slds-text-heading_medium boxContainer"  onclick="{!c.showToast}">
+                                Update
+                            </button>
+                        </aura:if>
+                    </span>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_3-of-12" >
+                    <span>
+                        <aura:if isTrue = "{! !v.overviewFlag}">
+                        <a style = "border: 2px solid rgb(142,150,161);" class="slds-button slds-button_outline-brand boxContainer boxWidth slds-text-heading_medium boxContainer" href = "{!v.overviewURL}" target="_blank">
+                            Overview
+                        </a>
+                        </aura:if>
+                        <aura:if isTrue = "{! v.overviewFlag}">
+                            <button style = "border: 2px solid rgb(142,150,161);" class="slds-button slds-button_outline-brand boxContainer boxWidth slds-text-heading_medium boxContainer"  onclick="{!c.showToast}">
+                                Overview
+                            </button>
+                        </aura:if>
+                    </span>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_3-of-12">
+                    <span>
+                        <aura:if isTrue = "{! !v.pitchDeckFlag}">
+                        <a style = "border: 2px solid rgb(142,150,161);" class="slds-button slds-button_outline-brand boxContainer boxWidth slds-text-heading_medium boxContainer" href = "{!v.pitchDeckURL}" target="_blank">
+                            Pitch Deck
+                        </a>
+                        </aura:if>
+                        <aura:if isTrue = "{! v.pitchDeckFlag}">
+                            <button style = "border: 2px solid rgb(142,150,161);" class="slds-button slds-button_outline-brand boxContainer boxWidth slds-text-heading_medium boxContainer" onclick="{!c.showToast}">
+                               Pitch Deck
+                            </button>
+                        </aura:if>
+                    </span>
+                </div>
+                <div class="slds-col">
+                    <div class="slds-medium-size_2-of-6 btnClass" >
+                    <c:logoImg></c:logoImg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-text-heading_small">
+            <strong><p>{!v.wrapperList[0].description}</p></strong>
+        </div>
+    </div>
+    <br/>
+    <div>
+    <div class="slds-grid slds-grid_align-space">
+       <div class="slds-col slds-size_1-of-3">
+            <div class="slds-text-heading_medium internalContainer" style="margin-right:0.9rem;">
+               SITE AND STREAM                                
+            </div>  
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-text-heading_medium internalContainer" style="margin-right:0.6rem;margin-left:0.6rem;">
+               TECHNOLOGY                                
+            </div>  
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-text-heading_medium internalContainer" style="margin-left:0.9rem;">
+               INDUSTRY                               
+            </div>  
+        </div>
+    </div>
+        <br></br>
+    <div class="slds-grid slds-gutters">
+       <div class="slds-col slds-size_1-of-3">
+           <div class="slds-grid slds-gutters">
+               <div class="slds-col">
+                   <aura:if isTrue="{!v.isSiteVal}">
+                   <div class="slds-text-heading_medium boxContainer">
+                       {!v.wrapperList[0].site}
+                   </div>
+                   </aura:if>
+               </div>
+               <div class="slds-col">
+                   <aura:if isTrue="{!v.isStreamVal}">
+                   <div class="slds-text-heading_medium boxContainer">
+                       {!v.wrapperList[0].stream}
+                   </div>
+                   </aura:if>
+               </div>
+           </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+           <div class="slds-grid slds-gutters">
+               <div class="slds-col">
+                   <aura:if isTrue="{!v.isTechVal1}">
+                   <div class="slds-text-heading_medium boxContainer">
+                       {!v.wrapperList[0].companyCoreTechnology1}
+                   </div>
+                   </aura:if>
+               </div>
+               <div class="slds-col">
+                   <aura:if isTrue="{!v.isTechVal2}">
+                   <div class="slds-text-heading_medium boxContainer">
+                       {!v.wrapperList[0].companyCoreTechnology2}
+                   </div>
+                   </aura:if>
+               </div>
+           </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+           <div class="slds-grid slds-gutters">
+               <div class="slds-col">
+                  <aura:if isTrue="{!v.isIndVal1}">
+                   <div class="slds-text-heading_medium boxContainer">
+                       {!v.wrapperList[0].companyIndustry1}
+                   </div>
+                   </aura:if>
+               </div>
+               <div class="slds-col">
+                   <aura:if isTrue="{!v.isIndVal2}">
+                   <div class="slds-text-heading_medium boxContainer">
+                       {!v.wrapperList[0].companyIndustry2}
+                   </div>
+                   </aura:if>
+               </div>
+           </div>
+        </div>
+    </div>
+    </div>
+        </aura:if>  
+</aura:component>

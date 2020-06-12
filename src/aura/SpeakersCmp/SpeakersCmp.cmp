@@ -1,0 +1,69 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                controller="speakersCtrl" access="global" >
+    <!-- Handler to call function when page is loaded initially -->
+    <aura:handler name="init" action="{!c.getContactsList}" value="{!this}" />
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="SpeakerDetail" type="speakersCtrl.speakerWrapper[]"/>
+    <aura:attribute name="NewSpeakersList" type="List"/>
+    <div>
+        
+        <div class="subtitle hrline " style="font-size: xx-large; color: #e42076;"><div> F&amp;A bios<!--{!speakerWrapper.key}--></div></div>   
+        <ul class="slds-grid">
+            <aura:iteration items="{!v.NewSpeakersList}" var="wrapper">            
+                <li onclick="{! c.openModel }" data-value="{!wrapper.conObj.Id}" class="slds-item slds-col slds-p-around_medium slds-size_1-of-5 pd-br" >
+                    <div class="slds-avatar slds-avatar_circle slds-avatar_large hovereffect slds-align_absolute-center" style="width: 8rem !important;height: 8rem !important;;">
+                        <img class="slds-text-longform clbimg" src="{!wrapper.profilePicURL}" />
+                        <div class="overlay"></div>				
+                    </div>
+                    <p class="slds-cell-wrap contactdetails" style="">{!wrapper.conObj.Name}</p>
+                    <p class="slds-cell-wrap contactdetails" style="">{!wrapper.conObj.Account.Name}</p>
+                    <p class="slds-cell-wrap contactdetails" style="font-weight:100;margin-top: 0%;">{!wrapper.conObj.Title}</p>
+                </li>                
+            </aura:iteration>
+        </ul>
+    </div>
+    <aura:if isTrue="{!v.isModalOpen}">            
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Speaker Detail</h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <aura:iteration items="{!v.SpeakerDetail}" var="speakerDe">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_1-of-3">
+                                <div class="slds-avatar slds-avatar_circle slds-avatar_large hovereffect slds-align_absolute-center" style="width: 8rem !important;height: 8rem !important;;">
+                                    
+                                    <img class="slds-text-longform clbimg" src="{!speakerDe.profilePicURL}" />
+                                    <div class="overlay"></div>	
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_2-of-3">
+                                <p class="slds-cell-wrap contactdetails" style="">{!speakerDe.conObj.Name}</p>
+                                <p class="slds-cell-wrap contactdetails" style="font-weight:100;margin-top: 0%;">{!speakerDe.conObj.Title}</p>
+                            </div>
+                        </div>
+                        <p class="slds-cell-wrap contactdetails" style="font-weight:100;margin-top: 0%;">{!speakerDe.conObj.Biodata__c}</p>
+                        
+                    </aura:iteration>
+                </div>
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="brand"
+                                      label="OK"
+                                      title="OK"
+                                      onclick="{!c.submitDetails}"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

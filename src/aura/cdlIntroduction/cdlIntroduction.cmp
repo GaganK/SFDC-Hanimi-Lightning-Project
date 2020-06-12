@@ -1,0 +1,27 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <div class="holder">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/UfodFwuErUA?autoplay=1&amp;modestbranding=0&amp;autohide=0&amp;showinfo=0&amp;controls=0&amp;rel=0loop=1&amp;playlist=UfodFwuErUA" frameborder="0" ></iframe>
+            <div id="">
+                <h3>
+                    <div class="section">
+                        <div class="item tall">
+                            <img src="{! $Resource.logowhite}" alt="Description of the image" class="" />
+                        </div>
+                        <div class="divider"></div>
+                        <div class="item">
+                            <p style="color: #ffffff;
+                                      font-size: 23px;
+                                      font-family: Tw Cen MT !important;
+                                      letter-spacing:1.5px;
+                                      font-weight:600;
+                                      word-spacing: 3px;
+                                      line-height: 30px;
+                                      margin-top: 20px;">CDL: An <br></br>Introduction</p>
+                        </div> 
+                    </div>
+                </h3>
+            </div>
+        </div>
+    </div> 
+</aura:component>

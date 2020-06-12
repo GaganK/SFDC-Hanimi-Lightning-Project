@@ -1,0 +1,124 @@
+.THIS body {
+
+    color: black !important;
+    font-family: 'Tw Cen MT'!important;
+}
+
+.THIS .mentor-contact-block:hover {
+    
+    -webkit-box-shadow: 0 0 30px 0 rgba(32,32,32,.15);
+    box-shadow: 0 0 30px 0 rgba(32,32,32,.15);
+    border: 3px solid rgba(240, 18, 114, 0.9); 
+}
+
+.THIS .mentor-contact-block {
+
+    overflow: hidden;
+    border: 3px solid #eee;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.THIS a {
+
+    text-decoration: none;
+}
+
+.THIS ul {
+
+    font-size: 12px !important;
+}
+
+.THIS .lowerPanel {
+
+    border-left: 2px solid rgba(228, 32, 118, 0.9) !important;
+}
+
+.THIS .contactName {
+    
+    font-size: 20px !important;
+    font-weight: bold !important;
+}
+
+.THIS .lowerPanelTitle {
+
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+
+.THIS .image-div {
+
+    height: 100px !important;
+    width: 100px !important;
+}
+
+.THIS label {
+
+    font-weight: 700 !important;
+    font-size: .75rem !important;
+}
+
+.THIS .image-modal-div {
+
+    height: 150px !important;
+    width: 150px !important;
+    margin-right: 30px;
+    border: 1px solid grey;
+    overflow: hidden;
+    border-radius: 5%;
+}
+
+.THIS .chartdiv {
+    
+    padding-top: 50px;
+    background-color: white !important;
+    /*#ededed;*/
+    overflow: hidden;
+    border-radius: 5%;
+}
+
+.THIS.searchPanel{
+    
+    padding:10px;
+    opacity: 1;
+    height: auto;
+    max-height: 250px;
+    transition: opacity 0.5s linear, max-height 0.5s linear, padding 0.5s linear;
+}
+
+.THIS.hideFilterPanel{
+    
+    padding:0px;
+    opacity: 0;
+    height: auto;
+    max-height: 0;
+    transition: opacity 0.5s linear, max-height 0.5s linear, padding 0.5s linear;
+}
+
+.THIS .tabContent {
+
+    padding: 0px !important;
+}
+
+.THIS .searchInputBox > .slds-form-element__label {
+
+    display: none !important;
+}
+
+.THIS.pageTitle {
+
+    color: #ed047b;
+    font-weight: bold;
+    padding: 0px 10px;
+}

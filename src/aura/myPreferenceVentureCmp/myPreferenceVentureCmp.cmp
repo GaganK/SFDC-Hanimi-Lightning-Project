@@ -1,0 +1,410 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global" 
+                controller="myPreferenceVentureListController">
+	<!-- call doInit method on component load -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="loggedinUserId" type="string"/>
+	<aura:attribute type="String" name="sortField" default="name"/>
+	<aura:attribute type="Boolean" name="sortAsc" default="false"/>
+	<aura:attribute name="listOfAllApplications" type="myPreferenceVentureListController.ventureWrapper[]"/>
+	<aura:attribute name="selectedVenturesList" type="String[]" default="[]"/>
+    <aura:attribute name="selectedVenturesMap" type="Map" default="{}"/>
+	<aura:attribute name="isSearching" type="boolean" default="false " />
+    <aura:attribute name="isdocModalOpen" type="boolean" default="false"/>
+    	<aura:attribute name="selectedDocumentId" type="string"/>
+	<aura:attribute type="String" name="searchTerm" default=""/>
+	<aura:attribute name="isProcessing" type="boolean" default="true" />
+	<aura:attribute name="selectedApplications" type="List" default="[]"/>
+	<aura:attribute name="ApplicationList" type="List" default="[]"/>
+       <aura:attribute name="conDetail" type="myPreferenceVentureListController.conWrapper[]"/>
+	<aura:attribute name="selectedCount" type="integer" default="0"
+                    description="selected Records Count"/>
+	<aura:attribute name="showSpinner" type="Boolean" default="true" />
+	<aura:attribute name="bNoRecordsFound" type="boolean"/>
+	<aura:attribute name="numberOfApplicants" type="Integer" default="0"/>
+	<aura:attribute name="clickedButtonId" type="string" default=""/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="isConModalOpen" type="boolean" default="false"/>
+	<aura:attribute name="showSaveCancelBtn" type="boolean" default="false" description="flag for rendered save and cancel buttons in aura:if "/>
+	
+	<aura:attribute name="VentureList" type="List" default="[]"/>
+	<aura:attribute name="selectedVentures" type="List" default="[]"/>
+	<aura:attribute name="StreamList" type="List" default="[]"/>
+	<aura:attribute name="selectedStreamList" type="List" default="[]"/>
+	<aura:attribute name="SiteList" type="List" default="[]"/>
+	<aura:attribute name="selectSiteList" type="List" default="[]"/>
+	<aura:attribute name="techList" type="List" default="[]"/>
+	<aura:attribute name="selecttechList" type="List" default="[]"/>
+	<aura:attribute name="IndustryList" type="List" default="[]"/>
+	<aura:attribute name="selectIndustryList" type="List" default="[]"/>
+    <aura:attribute name="RankingList" type="List" default="[]"/>
+	<aura:attribute name="selectRankingList" type="List" default="[]"/>
+     <aura:attribute name="existingRankingList" type="List" default="[]"/>
+    
+
+            <aura:if isTrue="{!v.isProcessing}">
+		<div class="slds-spinner_container">
+			<div class="slds-spinner--brand slds-spinner slds-spinner--small" role="alert">
+				<span class="slds-assistive-text">Loading...</span>
+				<div class="slds-spinner__dot-a"></div>
+				<div class="slds-spinner__dot-b"></div>
+			</div>
+		</div>
+	</aura:if>
+		<aura:if isTrue="{!v.isModalOpen}">
+		<!-- Modal/Popup Box starts here-->
+		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container" style="height: 460px;width:50% !important;">
+				<!-- Modal/Popup Box Header Starts here-->
+				<header class="slds-modal__header">
+					<lightning:buttonIcon iconName="utility:close"
+                                          onclick="{!c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+					<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" >
+						<p style="color: rgba(156, 27, 83, 1) !important;">Evaluation Filters</p>
+					</h2>
+				</header>
+				<!--Modal/Popup Box Body Starts here-->
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<div class="slds-grid">
+						<aura:if isTrue="{!v.clickedButtonId=='stream'}">
+							<lightning:dualListbox aura:id="StreamPicklist"
+                                                   name="Stream"
+                                                   label="Stream"
+                                                   options="{!v.StreamList}"
+                                                   value="{!v.selectedStreamList}"
+                                                   size="3" style="width: -webkit-fill-available;"
+                                                   />
+						</aura:if>
+						<aura:if isTrue="{!v.clickedButtonId=='siteStream'}">
+							<lightning:dualListbox aura:id="siteStream"
+                                                   name="SiteStream"
+                                                   label="Site&amp;Stream"
+                                                   options="{!v.VentureList }"
+                                                   value="{!v.selectedVentures}"
+                                                   size="3" style="width: -webkit-fill-available;"
+                                                   />
+						</aura:if>
+						<aura:if isTrue="{!v.clickedButtonId=='site'}">
+							<lightning:dualListbox aura:id="site"
+                                                   name="site"
+                                                   label="Site"
+                                                   options="{!v.SiteList}"
+                                                   value="{!v.selectSiteList}"
+                                                   size="3" style="width: -webkit-fill-available;"
+                                                   />
+						</aura:if>
+						<aura:if isTrue="{!v.clickedButtonId=='tech'}">
+							<lightning:dualListbox aura:id="tech"
+                                                   name="tech"
+                                                   label="Tech"
+                                                   options="{!v.techList}"
+                                                   value="{!v.selecttechList}"
+                                                   size="3" style="width: -webkit-fill-available;"
+                                                   />
+						</aura:if>
+						<aura:if isTrue="{!v.clickedButtonId=='industry'}">
+							<lightning:dualListbox aura:id="industry"
+                                                   name="industry"
+                                                   label="Industry"
+                                                   options="{!v.IndustryList}"
+                                                   value="{!v.selectIndustryList}"
+                                                   size="3" style="width: -webkit-fill-available;"
+                                                   />
+						</aura:if>
+					</div>
+				</div>
+				<!--Modal/Popup Box Footer Starts here-->
+				<footer class="slds-modal__footer">
+					<lightning:button variant="neutral"
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{! c.closeModel }"/>
+					<lightning:button variant="brand" label="Submit" onclick="{!c.getVentureRecords}" />
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</aura:if>
+	<div class="slds-grid slds-wrap fonttype">
+		<div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12" style="padding-right:7px !important;">
+			   <div class="slds-text-body_regular">
+                	<p>We want to optimize matching for your Super Session 2020 experience. We have set-up this portal to 
+                    gather your Preferences. Below is a list of all remaining companies in CDL 2019/20 (post Session #3).
+					You have been given 20 coins to express your interest. Note that this process doest not guarantee that you
+                   will be scheduled to meet every compny you've indicated interest in.</p><br></br>
+                   <p>
+                    This information will be used to guide our matching process for Super Session 2020.
+                   </p> </div><br></br>
+            <article class="slds-card">
+				<div class="slds-card__header slds-grid">
+					<header class="slds-media slds-media_center slds-has-flexi-truncate">
+						<div class="gSearch slds-media__body" style="margin-right: var(--lwc-spacingSmall,0.75rem);">
+							<lightning:input
+                                             aura:id="gSearch" variant = "label-hidden"
+                                             placeholder="Search this list..."
+                                             type="search"
+                                             value="{!v.searchTerm}"
+                                             tabindex="0"
+                                             onchange="{!c.onSearch}"/>
+						</div>
+						<div class="slds-no-flex">
+							<lightning:buttonIcon iconName="utility:refresh"  variant="border-filled" onclick="{! c.resetView}" tooltip="Reset"/>
+                        </div>
+					</header>
+				</div>
+    
+
+				<div class="slds-card__body slds-card__body_inner" style="padding-left:0px !important;">
+					<div class="slds-illustration slds-illustration_small">
+						<!--<aura:if isTrue="{!v.isAppTypeSelSelf}">-->
+						<aura:if isTrue="{!v.bNoRecordsFound}">
+							<!--display error message if there is no records available -->
+							<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info" role="alert">
+								<span class="slds-assistive-text">error</span>
+								<h2>No records found.</h2>
+							</div>
+							<aura:set attribute="else">
+								<div style="overflow:auto;border: 1px solid #c1c1c1;">
+									<table aria-multiselectable="true"
+                class="slds-table slds-table_bordered slds-table_striped slds-table_col-bordered" role="grid">
+										<thead>
+											<tr class="slds-line-height_reset">
+												<th scope="col">
+													<div  class="slds-clearfix" style="display: inline-flex;" title="Ranking">Ranking
+
+													</div>
+												</th>
+													<th scope="col">
+														<div  class="slds-clearfix"  title="Venture Name">Venture
+															<span onclick="{!c.sortByVentureName}">
+																<aura:if isTrue="{!v.sortAsc}">
+																	<lightning:icon iconName="utility:arrowdown" size="xx-small"/>
+																	<aura:set attribute="else">
+																		<lightning:icon iconName="utility:arrowup" size="xx-small"/>
+																	</aura:set>
+																</aura:if>
+															</span>
+
+														</div>
+													</th>
+													<th scope="col" style="width: 25%;">
+														<div class="slds-clearfix" style="text-align: center;" title="Venture Description">Venture Description</div>
+													</th>
+													<!--	<th scope="col">
+														<div class="slds-truncate" title="Site">Site <lightning:buttonIcon aura:id="site" iconName="utility:filterList"
+                                                                                  onclick="{! c.openModel }"
+                                                                                  alternativeText="openFilter"
+                                                                                  class="filtericon"/></div>
+													</th>
+											
+													<th scope="col">
+														<div class="slds-truncate" title="STREAM">STREAM <lightning:buttonIcon aura:id="stream" iconName="utility:filterList"
+                                                                                  onclick="{! c.openModel }"
+                                                                                  alternativeText="openFilter"
+                                                                                  class="filtericon"/></div>
+													</th>-->
+													<th scope="col">
+														<div class="slds-clearfix" title="Tech">Tech <lightning:buttonIcon aura:id="tech" iconName="utility:filterList"
+                                                                                  onclick="{! c.openModel }"
+                                                                                  alternativeText="openFilter"
+                                                                                  class="filtericon"/></div>
+													</th>
+													<th scope="col" style="text-align: center;">
+														<div class="slds-clearfix" style="display: inline-flex;" title="Site&amp;Stream">Site &amp; Stream
+                                                        <lightning:buttonIcon aura:id="siteStream" iconName="utility:filterList"
+                                                                                  onclick="{! c.openModel }"
+                                                                                  alternativeText="openFilter"
+                                                                                  class="filtericon"/>
+                                                        </div>
+													</th>
+													<th scope="col" colspan="4">
+														<div class="slds-clearfix"  title="Past Mentor Support" style="text-align: center !important;">Past Mentor Support</div>
+                                                       
+													</th>
+                                               
+													<th scope="col" style="white-space: initial;">
+														<div class="slds-clearfix" style="display: inline-flex;" title="Summary (PDF)">Summary (PDF)</div>
+													</th>
+												
+											</tr>
+                                             <tr>
+                                                 <th colspan="5" ></th>                                              
+                                                 <th>Session 1</th>
+                                                 <th>Session 2</th>
+                                                 <th>Session 3</th>
+                                                 <th >Session 4</th>
+                                                  <th colspan="1" ></th>   
+                                            </tr>
+										</thead>
+										<tbody>
+											<aura:iteration items="{!v.listOfAllApplications}" var="obj">
+												<tr class="slds-line-height_reset" data-record="{!obj.acctObj.Id}" >
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.Selranking}">
+																{!obj.Selranking}														
+															</div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.acctObj.Venture__r.Name}">
+																<a href="{!obj.acctObj.Venture__r.Website}" target="_blank" style="color: #2894f3;" class="mouseHoverCls"> {!obj.acctObj.Venture__r.Name}</a>
+															</div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="{!obj.acctObj.Venture__r.Description_Venture__c}">
+                                                                {!obj.acctObj.Venture__r.Description_Venture__c}
+                                                            </div>
+														</td>
+														<!--<th scope="row">
+															<div class="slds-truncate removeWhiteSpace" title="">
+                                                             {!obj.acctObj.Venture__r.Related_CDL_Site__c}
+                                                            
+                                                            </div>
+														</th>
+														<th scope="row">
+															<div class="slds-truncate removeWhiteSpace" title="">
+                                                              {!obj.acctObj.Venture__r.Related_Stream_s__c}
+                                                            
+                                                            </div>
+														</th>-->
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="">
+                                                             {!obj.acctObj.Venture__r.Technology_Area__c}
+                                                            
+                                                            </div>
+														</td>
+														<td role="gridcell">
+															<div class="slds-truncate removeWhiteSpace" title="">
+                                                             
+                                                          {!obj.acctObj.Cohort_Name__c}
+                                                            </div>
+														</td>
+                                                 
+                                                   
+                                                    	<aura:iteration items="{!obj.acctObj.Hand_Raised_Mentors__r}" var="handRaisedCon" indexVar="key">
+                                                            <td role="gridcell" onclick="{! c.openContactModel }" data-value="{!handRaisedCon.Contact__r.Id}">
+                                                                <div class="slds-truncate removeWhiteSpace mouseHoverCls" title="" style="color: #2894f3;cursor: pointer;">
+                                                                    {!handRaisedCon.Contact__r.Name}
+                                                                </div>
+                                                            </td>
+                                                        </aura:iteration>
+                                                               	<aura:if isTrue="{!not(empty(obj.handRaisedList))}">
+                                                             <aura:iteration aura:id="iteration"
+                                                                items="{!obj.handRaisedList}"
+                                                                var="var"
+                                                                indexVar="idx">
+                                                            <td role="gridcell">
+                                                                <div class="slds-truncate removeWhiteSpace mouseHoverCls" title="" style="color: #2894f3;cursor: pointer;">
+                                                                    
+                                                                </div>
+                                                            </td>
+                                                           </aura:iteration>
+                                                            
+                                                        </aura:if>
+														<td role="gridcell" style="text-align: center;">
+															<div class="slds-truncate" title="">
+                                                            <aura:if  isTrue="{!obj.contentVersionObj.Id!=null}">
+                                                             <!--   <a href="{!'/mentorportal/sfc/servlet.shepherd/version/download/'+obj.contentVersionObj.Id}">
+                                                                 <lightning:buttonIcon  iconName="utility:download" alternativeText="Click here to download"
+													   class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  /></a> -->
+                                                         <a onclick="{!c.OpenFile}" id="{!obj.contentVersionObj.ContentDocumentId}">
+                                                      <lightning:buttonIcon  iconName="utility:preview" alternativeText="Click here to Preview and download"
+													   class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  /></a>
+
+															</aura:if>
+                                                            
+                                                            </div>
+														</td>
+													
+												</tr>
+											</aura:iteration>
+										</tbody>
+									</table>
+								</div>
+								<aura:if isTrue="{!v.showSaveCancelBtn}">
+									<!--button for save and cancel Record after Inline Edit-->
+									<lightning:buttonGroup class="slds-m-around_medium">
+										<lightning:button label="Cancel" onclick="{!c.cancel}"/>
+										<lightning:button label="Save" onclick="{!c.Save}" variant="brand"/>
+									</lightning:buttonGroup>
+								</aura:if>
+								<!-- DataTable End -->
+								<br/>
+							</aura:set>
+						</aura:if>
+						<!--</aura:if>-->
+					</div>
+				</div>
+			</article>
+		</div>
+	</div>
+    <aura:if isTrue="{!v.isConModalOpen}">
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" 
+                class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-clearfix">
+                        <div class="slds-float_right">
+                            <lightning:buttonIcon iconName="utility:close"
+                                                  onclick="{! c.closeModel }"
+                                                  alternativeText="close"
+                                                  variant="brand"/>
+                        </div>
+                    </div>
+                   	<aura:iteration items="{!v.conDetail}" var="speakerDe">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_1-of-3 slds-m-around_x-small image-modal-div">
+                                <figure class="slds-image slds-image--card">
+                                    <a href="javascript:void(0);" class="slds-image__crop slds-image__crop--1-by-1">
+                                       <img style="max-width: 110%;!important;" class="slds-text-longform clbimg" src="{!'/mentorportal/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&amp;versionId='+speakerDe.conDocId}" />
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="slds-col slds-size_2-of-3 slds-p-vertical_medium"
+                                style="color: black;font-family: 'Tw Cen MT'!important;">
+                                <div class="slds-text-heading_large contactName">
+                                    {!speakerDe.conObj.Name}
+                                </div>
+                                <div class="slds-text-heading_small">
+                                    {!speakerDe.conObj.Title}
+                                </div>
+                                <div class="slds-text-heading_small">
+                                    {!speakerDe.conObj.Affiliations__c}
+                                </div>
+                                <div class="slds-text-heading_large contactName">
+                                    Bio
+                                </div>
+                                <div class="slds-text-heading_small">
+                                   {!speakerDe.conObj.Biodata__c}
+                                </div>
+                            </div>
+                        </div>
+                   </aura:iteration>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+        <aura:if isTrue="{!v.isdocModalOpen}">
+        <section onclick="{!c.closeModel}"
+                 role="dialog"
+                 aria-modal="true"
+                 class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__content slds-p-around_medium slds-text-align_center"
+                     style="background: transparent;">
+                    <div style="width: 50%; margin: 0 auto; text-align: left">
+                        <!--<lightning:fileCard> to preview file using content document Id -->
+                        <lightning:fileCard fileId="{!v.selectedDocumentId}"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

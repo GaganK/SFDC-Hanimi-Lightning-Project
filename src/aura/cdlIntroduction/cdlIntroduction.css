@@ -1,0 +1,64 @@
+.THIS .video-container {
+  position: relative;
+  padding-bottom: 31.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+.THIS .video-container iframe,
+.THIS .video-container object,
+.THIS .video-container #overlay,
+.THIS .video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.THIS #overlay {
+  background: #000;
+  opacity: 0.5;
+  /*background:rgba(255,255,255,0.8); or just this*/
+  z-index: 50;
+  color: #fff;
+}
+.THIS #overlay h3{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.THIS .section {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin: 0 -8px;
+}
+
+.THIS .section > * {
+  margin: 0 8px;
+}
+
+.THIS .tall {
+  max-width: 190px;
+}
+
+.THIS img {
+  display: block;
+}
+
+.THIS .divider {
+  width: 2px;
+  margin: 10px 0;
+background: #e81f76;
+}
+
+.THIS .item {
+  flex: 0 1 auto;
+ 
+}
+@media (min-width: 320px) and (max-width: 480px) {
+   .THIS .video-container {
+  height:67vh; 
+    }
+}

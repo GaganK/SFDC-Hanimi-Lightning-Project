@@ -1,0 +1,5 @@
+<aura:component description="newApplicationInterview" controller="applicationInterviewController" access="global"
+                implements="flexipage:availableForRecordHome,lightning:actionOverride,force:lightningQuickAction,force:hasRecordId,force:hasSObjectName">
+  <aura:attribute name="recordId" type="Id"/>
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+</aura:component>

@@ -1,0 +1,141 @@
+<aura:component controller="accountListController">
+    
+    <aura:attribute name="accountId" type="string"/>
+    <aura:attribute name="index" type="integer"/>
+    <aura:attribute name="showErrorClass" type="boolean" default="false"/>
+    <aura:attribute name="singleRec" type="sobject" default="{'sobjectType' : 'Partner_Questionnaire__c',
+                                                             'Name' : '',
+                                                             'CommentsonventuresCDLSession__c' : '',
+                                                             'IsVentureApplicabletoyourBusiness__c': '',
+                                                             'Ifyespleaseexplainwhy__c': '',
+                                                             'Wouldyouwantmoreinfo__c': '',
+                                                             'Ifyeswhatinfowouldyoulike__c': '',
+                                                             'Doyouwanttoconnectwithfounders__c': '',
+                                                             'Ifyespleaseexplainwhyfounders__c': '',
+                                                             'Anyotheradditionalcomments__c': '',
+                                                             'Account_Name__c':''
+                                                             }"/>
+    
+    <aura:attribute name="commentsonventure" type="boolean" default="false" />
+    <aura:attribute name="isVentureEditMode" type="boolean" default="false" />
+    <aura:attribute name="isAnyInterestEditMode" type="boolean" default="false" />
+    <aura:attribute name="commentsEditMode" type="boolean" default="false" />
+    <aura:attribute name="wouldyouwantmoreinfo" type="boolean" default="false" />
+    <aura:attribute name="whatinfowouldyoulike" type="boolean" default="false" />
+    <aura:attribute name="wanttoconnect" type="boolean" default="false" />
+    <aura:attribute name="whyfounders" type="boolean" default="false" />
+    <aura:attribute name="AdditionalCommentsEditMode" type="boolean" default="false" />
+    <aura:attribute name="commentsSession" type="string"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!--Table Row Start-->  
+    <td ondblclick="{!c.inlineEditCommentsOnVenture}"  data-value="{!index}" data-row-index="{!index}" class="slds-cell-edit">
+        <span class="slds-grid slds-grid_align-spread">
+            <aura:if isTrue="{!v.commentsonventure == false}">
+                <span class="removeWhiteSpace slds-cell-wrap  slds-truncate descriptionCell" title="ms"> {!v.singleRec.CommentsonventuresCDLSession__c}</span>
+                <button onclick="{!c.inlineEditCommentsOnVenture}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="">
+                    <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                </button>
+                <aura:set attribute="else">
+                    <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+                        <div class="slds-popover__body">
+                            <div class="slds-form-element slds-grid slds-wrap">
+                                <div class="slds-form-element__control slds-grow">
+                                    <lightning:input type="text"   value="{!v.singleRec.CommentsonventuresCDLSession__c}" name="input1" label="" aura:id="commentsOnVenture" onblur="{!c.closecommentsonVentureBox}"/>   
+                                </div>
+                            </div>
+                        </div>
+                        <span id="form-end" tabindex="0"></span>
+                    </section>  
+                </aura:set>  
+            </aura:if> 
+        </span>
+    </td>
+    <td ondblclick="{!c.inlineEditIsVenture}" class="slds-cell-edit">
+        <span class="slds-grid slds-grid_align-spread">
+            <!-- show input and output section based on boolean flag --> 
+            <aura:if isTrue="{!v.isVentureEditMode == false}">
+                <span class="removeWhiteSpace slds-cell-wrap  slds-truncate descriptionCell" title="Sp"> {!v.singleRec.IsVentureApplicabletoyourBusiness__c}</span>
+                <button onclick="{!c.inlineEditIsVenture}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="">
+                    <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                </button>
+                <!-- Inline Edit Section in else case-->  
+                <aura:set attribute="else">
+                    <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+                        <div class="slds-popover__body">
+                            <div class="slds-form-element slds-grid slds-wrap">
+                                <div class="slds-form-element__control slds-grow">
+                                    <!-- <label class="slds-form-element__label">Stream Potential</label>-->
+                                    <ui:inputSelect aura:id="isVentureApplicable"
+                                                    class="slds-select inputFieldWidth"
+                                                    blur="{!c.closeIsVentureBox}"       
+                                                    value="{!v.singleRec.IsVentureApplicabletoyourBusiness__c}">
+                                        <ui:inputSelectOption text=""/>
+                                        <ui:inputSelectOption text="Yes"/>
+                                        <ui:inputSelectOption text="No"/>
+                                    </ui:inputSelect>
+                                </div>
+                            </div>
+                        </div>
+                        <span id="form-end" tabindex="0"></span>
+                    </section>  
+                </aura:set>  
+            </aura:if> 
+        </span>
+    </td>
+    <td ondblclick="{!c.inlineEditComments}" class="slds-cell-edit">
+        <span class="slds-grid slds-grid_align-spread">
+            <!-- show input and output section based on boolean flag --> 
+            <aura:if isTrue="{!v.commentsEditMode == false}">
+                <span class="removeWhiteSpace slds-cell-wrap  slds-truncate descriptionCell" title="ms"> {!v.singleRec.Ifyespleaseexplainwhy__c}</span>
+                <button onclick="{!c.inlineEditComments}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit MS">
+                    <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                </button>                
+                <!-- Inline Edit Section in else case-->  
+                <aura:set attribute="else">
+                    <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+                        <div class="slds-popover__body">
+                            <div class="slds-form-element slds-grid slds-wrap">
+                                <div class="slds-form-element__control slds-grow">
+                                    <lightning:input type="text"   value="{!v.singleRec.Ifyespleaseexplainwhy__c}" name="input1" label="" aura:id="commentsBox" onblur="{!c.closeCommentsBox}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <span id="form-end" tabindex="0"></span>
+                    </section>  
+                </aura:set>  
+            </aura:if> 
+        </span>
+    </td>
+    <td ondblclick="{!c.inlineEditwouldyouwantmoreinfo}" class="slds-cell-edit">
+        <span class="slds-grid slds-grid_align-spread">
+            <aura:if isTrue="{!v.wouldyouwantmoreinfo == false}">
+                <span class="removeWhiteSpace slds-cell-wrap  slds-truncate descriptionCell" title="Sp"> {!v.singleRec.Wouldyouwantmoreinfo__c}
+                </span>
+                <button onclick="{!c.inlineEditwouldyouwantmoreinfo}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="">
+                    <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                </button>
+                <aura:set attribute="else">
+                    <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+                        <div class="slds-popover__body">
+                            <div class="slds-form-element slds-grid slds-wrap">
+                                <div class="slds-form-element__control slds-grow">  
+                                    <ui:inputSelect aura:id="wouldyouwantmoreinfo"
+                                                    class="slds-select inputFieldWidth"
+                                                    blur="{!c.closewouldyouwantmoreinfo}"
+                                                    value="{!v.singleRec.Wouldyouwantmoreinfo__c}">
+                                        <ui:inputSelectOption text=""/>
+                                        <ui:inputSelectOption text="Yes"/>
+                                        <ui:inputSelectOption text="No"/>
+                                    </ui:inputSelect>
+                                </div>
+                            </div>
+                        </div>
+                        <span id="form-end" tabindex="0"></span>
+                    </section>  
+                </aura:set>  
+            </aura:if> 
+        </span>
+    </td>
+</aura:component>

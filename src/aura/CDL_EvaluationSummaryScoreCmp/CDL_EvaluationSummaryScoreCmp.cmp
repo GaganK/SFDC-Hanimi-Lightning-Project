@@ -1,0 +1,1177 @@
+<aura:component controller="CDL_evaluationSummaryScoreCtrl" implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable">
+    <!--Init handler which is call initRecords js function on component Load-->
+    <aura:attribute name="availableColumns" type="List" default="[]" />
+    <aura:attribute name="selectedColumns" type="List" default="[]" />
+    <aura:attribute name="requiredColumns" type="List" default="[]" />
+    <aura:attribute name="selectedColumnsInfo" type="object" default="{}" />
+    <aura:attribute name="columnMapping" type="object" default="{}" />
+    <aura:handler name="init" value="{!this}" action="{!c.initRecords}"/>
+    <aura:attribute name="UpdatedApp" type="Application__c"/>
+    <aura:attribute name="isSearching" type="boolean" default="false " />
+    <aura:attribute type="String" name="searchTerm" default=""/>
+    <aura:attribute name="isProcessing" type="boolean" default="false" />
+    <!--declare aura attributes-->
+    <aura:attribute type="String" name="sortField" default="name"/>
+    <aura:attribute type="Boolean" name="sortAsc" default="false"/>
+    <aura:attribute type="Boolean" name="sortAscFirstSitePreference" default="false"/>
+    <aura:attribute name="PaginationList" type="Application__c[]"/>
+    <aura:attribute name="ApplicationList" type="Application__c[]" description="store Application records list"/>
+    <aura:attribute name="selectedApplications" type="List" default="[]"/>
+    <aura:attribute name="showSaveCancelBtn" type="boolean" default="false" description="flag for rendered save and cancel buttons in aura:if "/>
+    <aura:handler name="selectedAppId" event="c:evaluationSummaryScoreEvent" action="{!c.selectedRow}"/>
+    <aura:handler name="UpdatedRecs" event="c:evaluationSummaryScoreUpdateEvnt" action="{!c.setUpdateRecords}"/>
+    <aura:attribute name="iscolumnsSelOpen" type="boolean" default="false"/>
+    <aura:attribute name="clickedButtonId" type="string" default=""/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="ApplList" type="List" default="[]"/>
+    <aura:attribute name="firstsitepreferenceList" type="List" default="[]"/>
+    <aura:attribute name="selectfirstsitepreference" type="List" default="[]"/>
+    <aura:attribute name="secondsitepreferenceList" type="List" default="[]"/>
+    <aura:attribute name="selectedsecondsitepreference" type="List" default="[]"/>
+    <aura:attribute name="VentureList" type="List" default="[]"/>
+    <aura:attribute name="selectedVentures" type="List" default="[]"/>
+    <aura:attribute name="FounderNameList" type="List" default="[]"/>
+    <aura:attribute name="selectedFounderName" type="List" default="[]"/>
+    <aura:attribute name="FounderEmailList" type="List" default="[]"/>
+    <aura:attribute name="selectedFounderEmail" type="List" default="[]"/>
+    <aura:attribute name="streamRecommendationList" type="List" default="[]"/>
+    <aura:attribute name="selectstreamRecommendation" type="List" default="[]"/>
+    <aura:attribute name="SubStreamCategoryList" type="List" default="[]"/>
+    <aura:attribute name="selectSubStreamCategory" type="List" default="[]"/>
+    
+    <aura:attribute name="InterviewAlignmentList" type="List" default="[]"/>
+    <aura:attribute name="selectedInterviewAlignment" type="List" default="[]"/>
+    <aura:attribute name="Interviewer1NameList" type="List" default="[]"/>
+    <aura:attribute name="selectedInterviewer1Name" type="List" default="[]"/>
+    <aura:attribute name="Interviewer1ScoreList" type="List" default="[]"/>
+    <aura:attribute name="selectInterviewer1Score" type="List" default="[]"/>
+    <aura:attribute name="Interviewer1DecisionList" type="List" default="[]"/>
+    <aura:attribute name="selectInterviewer1Decision" type="List" default="[]"/>
+    <aura:attribute name="Interviewer1CommentsList" type="List" default="[]"/>
+    <aura:attribute name="selectInterviewer1Comments" type="List" default="[]"/>
+    <aura:attribute name="Interviewer2NameList" type="List" default="[]"/>
+    <aura:attribute name="selectInterviewer2Name" type="List" default="[]"/>
+    <aura:attribute name="Interviewer2ScoreList" type="List" default="[]"/>
+    <aura:attribute name="selectInterviewer2Score" type="List" default="[]"/>
+    <aura:attribute name="Interviewer2DecisionList" type="List" default="[]"/>
+    <aura:attribute name="selectInterviewer2Decision" type="List" default="[]"/>
+    <aura:attribute name="Interviewer2CommentsList" type="List" default="[]"/>
+    <aura:attribute name="selectInterviewer2Comments" type="List" default="[]"/>
+    <aura:attribute name="PreInterviewRankList" type="List" default="[]"/>
+    <aura:attribute name="selectPreInterviewRank" type="List" default="[]"/>
+    <aura:attribute name="PostInterviewRankList" type="List" default="[]"/>
+    <aura:attribute name="selectPostInterviewRank" type="List" default="[]"/>
+    <aura:attribute name="PostInterviewAcceptanceDecisionList" type="List" default="[]"/>
+    <aura:attribute name="selectPostInterviewAcceptanceDecision" type="List" default="[]"/>
+    <aura:attribute name="TechAssessmentList" type="List" default="[]"/>
+    <aura:attribute name="selectTechAssessment" type="List" default="[]"/>
+    <aura:attribute name="TechAssessmentScientistList" type="List" default="[]"/>
+    <aura:attribute name="selectTechAssessmentScientist" type="List" default="[]"/>
+    <aura:attribute name="TechAssessmentScientistSuitedtoReviewList" type="List" default="[]"/>
+    <aura:attribute name="selectTechAssessmentScientistSuitedtoReview" type="List" default="[]"/>
+    <aura:attribute name="TechAssessmentOutcomeList" type="List" default="[]"/>
+    <aura:attribute name="selectTechAssessmentOutcome" type="List" default="[]"/>
+    <aura:attribute name="TechAssessmentFollowUpRequiredList" type="List" default="[]"/>
+    <aura:attribute name="selectTechAssessmentFollowUpRequired" type="List" default="[]"/>
+    
+    
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecordsCount" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer" default="8"
+                    description="number of records to be display on per page"/>
+    <aura:attribute name="currentPage" type="integer" default="1"/>
+    <aura:attribute name="totalPagesCount" type="integer"/>
+    <aura:attribute name="isAppTypeSelSelf" type="boolean" default="false"/>
+    <aura:attribute name="currentselectedAppType" type="string" default="All"/>
+    <aura:attribute name="allApplicationNumbers" type="List" default="[]" />
+    <aura:attribute name="allAvailableOptions" type="List" default="[]" />
+    <aura:attribute name="availableOptions" type="List" default="[]" />
+    <aura:attribute name="filteredOptions" type="List" default="[]" />
+    <aura:attribute name="filterBy" type="String" default="" />
+    <aura:attribute name="fieldSearchTerm" type="String" default=""/>
+    <aura:attribute name="filteredApplicationNumbers" type="List" default="[]" />
+    <aura:attribute name="filteredFirstSitePreference" type="List"  default="[]"/>
+    <aura:attribute name="filteredSecondSitePreference" type="List" default="[]" />
+    <aura:attribute name="filteredVentures" type="List" default="[]" />
+    <aura:attribute name="filteredPreInterviewRank" type="List" default="[]" />
+    <aura:attribute name="filteredPostInterviewRank" type="List" default="[]" />
+    <aura:attribute name="filteredInterviewer1Score" type="List" default="[]" />
+    <aura:attribute name="filteredInterviewer2Score" type="List" default="[]" />
+    
+      
+    <aura:if isTrue="{!v.isProcessing}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--small" role="alert">
+                <span class="slds-assistive-text">Loading...</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.isModalOpen}">
+        <!-- Modal/Popup Box starts here-->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container" style="height: 460px;width:50% !important;">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{!c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" >
+                        <p style="color: rgba(156, 27, 83, 1) !important;">Evaluation Filters</p>
+                    </h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="filterBox">
+                        <lightning:input aura:id="gSearch" placeholder="Search this list..." type="search"
+                                         value="{!v.fieldSearchTerm}" tabindex="0" onchange="{!c.onFieldSearch}"/>
+                        
+                        <lightning:checkboxGroup options="{!v.availableOptions}" value="{!v.filteredOptions}"/>
+                        
+                    </div>
+                </div>
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{! c.closeModel }"/>
+                    <lightning:button variant="brand" label="Submit" onclick="{!c.getApplicationRecords}" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <div aura:id="columnSelectionModal" class="customModal hideModal">
+        <aura:if isTrue="{!v.iscolumnsSelOpen}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                     aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open picklist-modal">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close" onclick="{!c.closeLookupModal}"
+                                              alternativeText="close" variant="bare-inverse" class="slds-modal__close" />
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Select columns to
+                            display</h2>
+                    </header>
+                    
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_small" id="modal-content-id-1">
+                        <div style="width: 90%;margin: auto;">
+                            <lightning:dualListbox name="multipleOptions" sourceLabel="Available"
+                                                   selectedLabel="Selected" options="{!v.availableColumns}" value="{!v.selectedColumns}"
+                                                   requiredOptions="{!v.requiredColumns}" disableReordering="true"
+                                                   onchange="{!c.onColumnChange}" />
+                        </div>
+                    </div>
+                    
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral" label="Cancel" title="Cancel"
+                                          onclick="{!c.closeColumnsModel}" />
+                        <lightning:button variant="brand" label="OK" title="OK" onclick="{!c.updateColumns}" />
+                    </footer>
+                </div>
+            </section>
+        </aura:if>
+    </div>
+    <div class="slds-grid slds-wrap fonttype">
+        <div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12" style="padding-right:7px !important;">
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-combobox_container slds-size_small" style="margin-right: var(- -lwc-spacingSmall,0.75rem);">
+                            <lightning:select  label="filter" variant ="label-hidden" name="select application" onchange="{!c.appTypeSelection}">
+                                <option value="All">All Applications</option>
+                                <option value="Self">My Applications</option>
+                            </lightning:select>
+                        </div>
+                        <div class="gSearch slds-media__body" style="margin-right: var(--lwc-spacingSmall,0.75rem);">
+                            <lightning:input variant = "label-hidden"
+                                             aura:id="gSearch"
+                                             placeholder="Search this list..."
+                                             type="search"
+                                             value="{!v.searchTerm}"
+                                             tabindex="0"
+                                             onchange="{!c.onSearch}"/>
+                        </div>
+                        <div class="slds-no-flex">
+                            <lightning:buttonIcon alternativeText="settings" iconName="utility:settings"  variant="border-filled" onclick="{! c.openColumnsModel}" tooltip="Configure columns to display"/>
+                            <lightning:buttonIcon alternativeText="refresh" iconName="utility:refresh"  variant="border-filled" onclick="{! c.resetView}" tooltip="Reset"/>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body tableContainer">
+                    <div class="slds-illustration slds-illustration_small">
+                        <!--<aura:if isTrue="{!v.isAppTypeSelSelf}">-->
+                        <aura:if isTrue="{!v.bNoRecordsFound}">
+                            <!--display error message if there is no records available -->
+                            <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_info" role="alert">
+                                <span class="slds-assistive-text">error</span>
+                                <h2>No record found.</h2>
+                            </div>
+                            <aura:set attribute="else">
+                                <div >
+                                    <table aria-multiselectable="true"
+                                           class="slds-table slds-table_bordered slds-table_striped slds-table_col-bordered" role="grid" title="Current Applications">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <th scope="col">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByApplicationNumber}"
+                                                             class="slds-truncate"
+                                                             title="Application Number" style="cursor: pointer;">
+                                                            App#
+                                                            <aura:if isTrue="{!v.sortField=='name'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                                
+                                                            </aura:if>
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="appId" iconName="utility:filterList"
+                                                                              onclick="{!c.openModel}"
+                                                                              alternativeText="openFilter" class="filtericon" 
+                                                                              ariaLabel="Application Number"                    
+                                                                              />
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.applicationNumber ? 'utility:hide' : 'utility:preview'}"
+                                                                                  alternativeText="openFilter" variant="bare" onclick="{!c.showHideColumn}" ariaLabel="applicationNumber"
+                                                                                  tooltip="{!v.selectedColumnsInfo.applicationNumber ? 'Hide Application Number' : 'Show Application Number'}" />
+                                                        </div>
+                                                    </div> 
+                                                </th>	
+                                                
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.firstSitePreference ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="{!v.selectedColumnsInfo.firstSitePreference ? 'slds-truncate' : 'slds-hide'}"
+                                                             title="First Site Preference" style="cursor: pointer;">
+                                                            First Site Preference
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="firstsitepreference" iconName="utility:filterList" ariaLabel="First Site Preference"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.firstSitePreference ? 'utility:hide' : 'utility:preview'}" alternativeText="openFilter"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="firstSitePreference"
+                                                                                  tooltip="{!v.selectedColumnsInfo.firstSitePreference ? 'Hide First Site Preferance' : 'Show First Site Preferance'}" />
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.secondSitePreference ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortBySecondSitePreference}"
+                                                             class="{!v.selectedColumnsInfo.secondSitePreference ? 'slds-truncate' : 'slds-hide'}"
+                                                             title="Second Site Preference" style="cursor: pointer;">
+                                                            Second Site Preference
+                                                            <aura:if isTrue="{!v.sortField=='X2nd_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="secondsitepreference" iconName="utility:filterList" ariaLabel="Second Site Preference"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.secondSitePreference ? 'utility:hide' : 'utility:preview'}" alternativeText="openFilter"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="secondSitePreference"
+                                                                                  tooltip="{!v.selectedColumnsInfo.secondSitePreference ? 'Hide Second Site Preferance' : 'Show Second Site Preferance'}" />
+                                                        </div>
+                                                    </div>
+                                                </th>
+							 
+                                                
+                                                
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.firstSitePreference ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Venture Name" style="cursor: pointer;">
+                                                            Venture Name
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="ventureNames" iconName="utility:filterList" ariaLabel="Venture Name"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.ventureName ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="ventureName" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.ventureNames ? 'Hide Venture Name' : 'Show Venture Name'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.founderName ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Founder Name" style="cursor: pointer;">
+                                                            Founder Name
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="founderName" iconName="utility:filterList" ariaLabel="Founder Name"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.founderName ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="founderName" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.founderName ? 'Hide Founder Name' : 'Show Founder Email'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.founderEmail ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Founder Email" style="cursor: pointer;">
+                                                            Founder Email
+                                                          <!--  <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>-->
+                                                            
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="founderEmail" iconName="utility:filterList" ariaLabel="Founder Email"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.founderEmail ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="founderEmail" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.founderEmail ? 'Hide Founder Email' : 'Show Founder Email'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.streamRecommendation ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Stream Recommendation" style="cursor: pointer;">
+                                                            Stream Recommendation
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+-->
+                                                            
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="streamRecommendation" iconName="utility:filterList" ariaLabel="Stream Recommendation"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.streamRecommendation ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="streamRecommendation" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.streamRecommendation ? 'Hide Stream Recommendation' : 'Show Stream Recommendation'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.subStreamCategory ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Sub-Stream Category" style="cursor: pointer;">
+                                                            Sub-Stream Category
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+-->
+                                                            
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="subStreamCategory" iconName="utility:filterList" ariaLabel="Sub-Stream Category"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.subStreamCategory ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="subStreamCategory" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.subStreamCategory ? 'Hide Sub-Stream Category' : 'Show Sub-Stream Category'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.interviewAlignment ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Interview Alignment " style="cursor: pointer;">
+                                                            Interview Alignment 
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="interviewAlignment" iconName="utility:filterList" ariaLabel="Interview Alignment"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.interviewAlignment ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="interviewAlignment" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.interviewAlignment ? 'Hide Interview Alignment' : 'Show Interview Alignment'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.interviewer1Name ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Interviewer 1 Name" style="cursor: pointer;">
+                                                            Interviewer 1 Name
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="interviewer1Name" iconName="utility:filterList" ariaLabel="Interviewer 1 Name"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.interviewer1Name ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="interviewer1Name" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.interviewer1Name ? 'Hide Interviewer 1 Name' : 'Show Interviewer 1 Name'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.interviewer1Score ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Interviewer 1 Score" style="cursor: pointer;">
+                                                            Interviewer 1 Score
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="interviewer1Score" iconName="utility:filterList" ariaLabel="Interviewer 1 Score"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.interviewer1Score ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="interviewer1Score" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.interviewer1Score ? 'Hide Interviewer 1 Score' : 'Show Interviewer 1 Score'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.interviewer1Decision ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Interviewer 1 Decision" style="cursor: pointer;">
+                                                            Interviewer 1 Decision
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="interviewer1Decision" iconName="utility:filterList" ariaLabel="Interviewer 1 Decision"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.interviewer1Decision ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="interviewer1Decision" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.interviewer1Decision ? 'Hide Interviewer 1 Decision' : 'Show Interviewer 1 Decision'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.interviewer1Comments ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Interviewer 1 Comments" style="cursor: pointer;">
+                                                            Interviewer 1 Comments
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="interviewer1Comments" iconName="utility:filterList" ariaLabel="Interviewer 1 Comments"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.interviewer1Comments ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="interviewer1Comments" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.interviewer1Comments ? 'Hide Interviewer 1 Comments' : 'Show Interviewer 1 Comments'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.interviewer2Name ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Interviewer 2 Name" style="cursor: pointer;">
+                                                            Interviewer 2 Name
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="interviewer2Name" iconName="utility:filterList" ariaLabel="Interviewer 2 Name"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.interviewer2Name ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="interviewer2Name" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.interviewer2Name ? 'Hide First Site Preferance' : 'Show First Site Preferance'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.interviewer2Score ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Interviewer 2 Score" style="cursor: pointer;">
+                                                            Interviewer 2 Score
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="interviewer2Score" iconName="utility:filterList" ariaLabel="Interviewer 2 Score"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.interviewer2Score ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="interviewer2Score" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.interviewer2Score ? 'Hide Interviewer 2 Score' : 'Show Interviewer 2 Score'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.interviewer2Decision ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Interviewer 2 Decision" style="cursor: pointer;">
+                                                            Interviewer 2 Decision
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                           --> 
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="interviewer2Decision" iconName="utility:filterList" ariaLabel="Interviewer 2 Decision"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.interviewer2Decision ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="interviewer2Decision" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.interviewer2Decision ? 'Hide Interviewer 2 Decision' : 'Show Interviewer 2 Decision'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.interviewer2Comments ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Interviewer 2 Comments" style="cursor: pointer;">
+                                                            Interviewer 2 Comments
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="interviewer2Comments" iconName="utility:filterList" ariaLabel="Interviewer 2 Comments"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.interviewer2Comments ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="interviewer2Comments" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.interviewer2Comments ? 'Hide Interviewer 2 Comments' : 'Show Interviewer 2 Comments'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.FAReviewer1Name ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="FA Reviewer 1 Name" style="cursor: pointer;">
+                                                            FA Reviewer 1 Name
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="FAReviewer1Name" iconName="utility:filterList" ariaLabel="FA Reviewer 1 Name"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.FAReviewer1Name ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="FAReviewer1Name" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.FAReviewer1Name ? 'Hide FA Reviewer 1 Name' : 'Show FA Reviewer 1 Name'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.firstSitePreference ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="FA Reviewer 1 In/Out/Too Early" style="cursor: pointer;">
+                                                            FA Reviewer 1 In/Out/Too Early
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="FAReviewer1InOutTooEarly" iconName="utility:filterList" ariaLabel="FA Reviewer 1 In/Out/Too Early"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.FAReviewer1InOutTooEarly ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="FAReviewer1InOutTooEarly" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.FAReviewer1InOutTooEarly ? 'Hide FA Reviewer 1 In/Out/Too Early' : 'Show FA Reviewer 1 In/Out/Too Early'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.FAReviewer1Comments ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="FA Reviewer 1 Comments" style="cursor: pointer;">
+                                                            FA Reviewer 1 Comments
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                         -->   
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="FAReviewer1Comments" iconName="utility:filterList" ariaLabel="FA Reviewer 1 Comments"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.FAReviewer1Comments ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="FAReviewer1Comments" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.FAReviewer1Comments ? 'Hide FA Reviewer 1 Comments' : 'Show FA Reviewer 1 Comments'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.FAReviewer2Name ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="FA Reviewer 2 Name" style="cursor: pointer;">
+                                                            FA Reviewer 2 Name
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="FAReviewer2Name" iconName="utility:filterList" ariaLabel="FA Reviewer 2 Name"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.FAReviewer2Name ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="FAReviewer2Name" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.FAReviewer2Name ? 'Hide FA Reviewer 2 Name' : 'Show FA Reviewer 2 Name'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.FAReviewer2InOutTooEarly ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="FA Reviewer 2 In/Out/Too Early" style="cursor: pointer;">
+                                                            FA Reviewer 2 In/Out/Too Early
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="FAReviewer2InOutTooEarly" iconName="utility:filterList" ariaLabel="FA Reviewer 2 In/Out/Too Early"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.FAReviewer2InOutTooEarly ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="FAReviewer2InOutTooEarly" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.FAReviewer2InOutTooEarly ? 'Hide FA Reviewer 2 In/Out/Too Early' : 'Show FA Reviewer 2 In/Out/Too Early'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.FAReviewer2Comments ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="FA Reviewer 2 Comments" style="cursor: pointer;">
+                                                            FA Reviewer 2 Comments
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                         -->   
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="FAReviewer2Comments" iconName="utility:filterList" ariaLabel="FA Reviewer 2 Comments"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.FAReviewer2Comments ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="FAReviewer2Comments" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.FAReviewer2Comments ? 'Hide FA Reviewer 2 Comments' : 'Show FA Reviewer 1 Comments'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.PreInterviewRank ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Pre Interview Rank" style="cursor: pointer;">
+                                                            Pre Interview Rank
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="PreInterviewRank" iconName="utility:filterList" ariaLabel="Pre Interview Rank"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.PreInterviewRank ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="PreInterviewRank" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.PreInterviewRank ? 'Hide Pre Interview Rank' : 'Show Pre Interview Rank'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.PostInterviewAcceptanceDecision ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Post Interview Acceptance Decision" style="cursor: pointer;">
+                                                            Post Interview Acceptance Decision
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="PostInterviewAcceptanceDecision" iconName="utility:filterList" ariaLabel="Post Interview Acceptance Decision"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.PostInterviewAcceptanceDecision ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="PostInterviewAcceptanceDecision" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.PostInterviewAcceptanceDecision ? 'Hide Post Interview Acceptance Decision' : 'Show Post Interview Acceptance Decision'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.TechAssessment ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Tech Assessment" style="cursor: pointer;">
+                                                            Tech Assessment 
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="TechAssessment" iconName="utility:filterList" ariaLabel="Tech Assessment"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.TechAssessment ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="TechAssessment" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.TechAssessment ? 'Hide Tech Assessment' : 'Show Tech Assessment'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.TechAssessmentScientist ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Tech Assessment Scientist" style="cursor: pointer;">
+                                                            Tech Assessment Scientist
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="TechAssessmentScientist" iconName="utility:filterList" ariaLabel="Tech Assessment Scientist"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.TechAssessmentScientist ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="TechAssessmentScientist" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.TechAssessmentScientist ? 'Hide Tech Assessment Scientist' : 'Show Tech Assessment Scientist'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.TechAssessmentScientistSuitedtoReview ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title=" Tech Assessment Scientist- Suited to Review?" style="cursor: pointer;">
+                                                            Tech Assessment Scientist- Suited to Review?
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="TechAssessmentScientistSuitedtoReview" iconName="utility:filterList" ariaLabel="Tech Assessment Scientist- Suited to Review?"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.TechAssessmentScientistSuitedtoReview ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="TechAssessmentScientistSuitedtoReview" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.TechAssessmentScientistSuitedtoReview ? 'Hide Tech Assessment Scientist- Suited to Review?' : 'Show Tech Assessment Scientist- Suited to Review?'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.TechAssessmentOutcome ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title="Tech Assessment Outcome" style="cursor: pointer;">
+                                                            Tech Assessment Outcome 
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="TechAssessmentOutcome" iconName="utility:filterList" ariaLabel="Tech Assessment Outcome"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.TechAssessmentOutcome ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="TechAssessmentOutcome" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.TechAssessmentOutcome ? 'Hide Tech Assessment Outcome' : 'Show Tech Assessment Outcome'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                                <th scope="col"
+                                                    class="{!v.selectedColumnsInfo.TechAssessmentFollowUpRequired ? 'showColumn' : 'hiddenColumn'}">
+                                                    <div class="slds-clearfix" style="display: inline-flex;">
+                                                        <div onclick="{!c.sortByfirstsitepreference}"
+                                                             class="slds-truncate"
+                                                             title=" Tech Assessment Follow Up Required?" style="cursor: pointer;">
+                                                            Tech Assessment Follow Up Required?
+                                                            <!--
+                                                            <aura:if isTrue="{!v.sortField=='X1st_Preference_CDL_Location__c'}">
+                                                                <span>
+                                                                    <aura:if isTrue="{!v.sortAsc}">
+                                                                        <lightning:icon iconName="utility:arrowdown" size="xx-small" />
+                                                                        <aura:set attribute="else">
+                                                                            <lightning:icon iconName="utility:arrowup" size="xx-small" />
+                                                                        </aura:set>
+                                                                    </aura:if>
+                                                                </span>
+                                                            </aura:if>
+                                                            -->
+                                                        </div>
+                                                        <lightning:buttonIcon aura:id="TechAssessmentFollowUpRequired" iconName="utility:filterList" ariaLabel="Tech Assessment Follow Up Required?"
+                                                                              onclick="{! c.openModel }" alternativeText="openFilter" class="filtericon"/>
+                                                        <div class="slds-float_right hideShowIcon">
+                                                            <lightning:buttonIcon
+                                                                                  iconName="{!v.selectedColumnsInfo.TechAssessmentFollowUpRequired ? 'utility:hide' : 'utility:preview'}"
+                                                                                  variant="bare" onclick="{!c.showHideColumn}" ariaLabel="TechAssessmentFollowUpRequired" alternativeText="openFilter"
+                                                                                  tooltip="{!v.selectedColumnsInfo.TechAssessmentFollowUpRequired ? 'Hide Tech Assessment Follow Up Required?' : 'Show Tech Assessment Follow Up Required?'}" />
+                                                        </div>
+                                                    </div>
+                                                </th> 
+                                            </tr>
+                                            
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.PaginationList}" var="app">
+                                                <c:CDL_evaluationSummaryScoreChildcmp singleEva="{!app.Evaluations__r}" singleRec="{!app}" selectedColumnsOptions="{!v.selectedColumnsInfo}"
+                                                                                      showSaveCancelBtn="{!v.showSaveCancelBtn}"
+                                                                                      />
+                                            </aura:iteration>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </div>
+                <aura:if isTrue="{!!v.bNoRecordsFound}">
+                    <aura:if isTrue="{!v.showSaveCancelBtn}">
+                        <div class="slds-align_absolute-center">
+                            <!--button for save and cancel Record after Inline Edit-->
+                            <lightning:buttonGroup class="slds-m-around_medium">
+                                <lightning:button label="Cancel" onclick="{!c.cancel}"/>
+                                <lightning:button label="Save" onclick="{!c.Save}" variant="brand"/>
+                            </lightning:buttonGroup>
+                        </div>
+                    </aura:if>
+                    <br/>
+                    <div class="slds-align_absolute-center">
+                        <div class="slds-button-group" role="group">
+                            <button onclick="{!c.firstPage}" class="slds-button slds-button--neutral">
+                                First
+                            </button>
+                            <button onclick="{!c.prevPage}" class="slds-button slds-button--neutral">
+                                Prev
+                            </button>
+                            <button class="slds-button slds-button--neutral">
+                                {!v.currentPage} / {!v.totalPagesCount}
+                            </button>
+                            <button onclick="{!c.nextPage}" class="slds-button slds-button--neutral">
+                                Next
+                            </button>
+                            <button onclick="{!c.lastPage}" class="slds-button slds-button--neutral">
+                                Last
+                            </button>
+                        </div>
+                    </div>
+                </aura:if>
+            </article>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,7 @@
+<aura:component controller="currentUserDetailCtrl"  implements="forceCommunity:availableForAllPageTypes" access="global">
+   <aura:attribute name="userContactId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<p style="background-color: #e81f76;
+    text-align: center;
+    padding: 7px 0px;" ><a href="{!'https://www.creativedestructionlab.com/cdl-session-feedback-survey-partnersurvey-day2/?contactId='+v.userContactId}" target="_blank" class="hideheader">We value your feedback.  Please submit a survey on your Session experience here.</a></p>
+</aura:component>

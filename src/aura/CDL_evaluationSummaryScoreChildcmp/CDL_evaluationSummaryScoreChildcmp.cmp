@@ -1,0 +1,420 @@
+<aura:component controller="evaluationSummaryScoreCtrl">
+	<aura:registerEvent name="UpdatedRecs" type="c:evaluationSummaryScoreUpdateEvnt"></aura:registerEvent>
+	<!-- on component load, fetch picklist values dynamically from apex controller -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<aura:attribute name="method" type="Aura.action"/>
+    <aura:attribute name="totalScore" type="integer" default="0"/>
+	<aura:attribute name="contacts" type="Contact[]" access="public"/>
+	<!--declare aura attributes-->
+	<aura:attribute name="objInfoForPicklistValues" type="Application__c" default="{sobjectType : 'Application__c'}" description="object information to fetch picklist values"/>
+	<aura:attribute name="StreamPotenPicklistOpts" type="Object[]" description="store picklist options values"/>
+	<aura:attribute name="teamInterviewRecommdoptions" type="Object[]" description="store picklist options values"/>
+    <aura:attribute name="teamStreamRecommdoptions" type="Object[]" description="store picklist options values"/>
+    <aura:attribute name="teamSubStreamRecommdoptions" type="Object[]" description="store picklist options values"/>
+    <aura:attribute name="techStreamRecommdoptions" type="Object[]" description="store picklist options values"/>
+
+    <aura:attribute name="showSaveCancelBtn" type="boolean"/>
+	<aura:attribute name="showErrorClass" type="boolean" default="false"/>
+	<aura:attribute name="sNo" type="string" />
+	<aura:attribute name="selectedEvaluationId" type="string" access="public"/>
+	<aura:attribute name="selectedEvalID" type="sObject" default="{'sobjectType' : 'User','Id' : ''}"/>
+	<aura:attribute name="selectedEval2ID" type="sObject" default="{'sobjectType' : 'User','Id' : ''}"/>
+	<aura:attribute name="selectedEval3ID" type="sObject" default="{'sobjectType' : 'User','Id' : ''}"/>
+	<aura:attribute name="selectedColumnsOptions" type="List" default="[]"/>
+	<aura:attribute name="contentVersionObj" type="ContentVersion" />
+	<aura:attribute name="singleEva" type="Evaluation__c[]" default="{'sobjectType' : 'Evaluation__c',
+                                                             'Name' : '',
+                                                             'EvaluatorsRanking__c' : ''
+                                                             }"/>
+    <aura:attribute name="evalutor1Rec" type="Evaluation__c" default="{'sobjectType' : 'Evaluation__c',
+                                                             'Name' : '',
+                                                             'EvaluatorsRanking__c' : ''
+                                                             }"/>
+   <aura:attribute name="evalutor2Rec" type="Evaluation__c" default="{'sobjectType' : 'Evaluation__c',
+                                                             'Name' : '',
+                                                             'EvaluatorsRanking__c' : ''
+                                                             }"/>
+   <aura:attribute name="evalutor3Rec" type="Evaluation__c" default="{'sobjectType' : 'Evaluation__c',
+                                                             'Name' : '',
+                                                             'EvaluatorsRanking__c' : ''
+                                                             }"/>
+	<aura:attribute name="singleRec" type="Application__c" default="{'sobjectType' : 'Application__c',
+                                                               'Name' : '',
+															   'X1st_Preference_CDL_Location__c' : '',
+															   'X2nd_Preference_CDL_Location__c' : '',
+                                                               'Venture__r.Name' : '',
+                                                               'Venture__c' : '',
+															   'Venture_Overview_Briefly_describe_your__c' : '',
+															   'Application_Referral_Name__c' : '',
+                                                               'Tech_Specialization__c': '',
+															    'Application_Primary_Contact__r.LinkedIn_URL__c': '',
+																'Venture__r.Website': '',
+																'Venture__r.BillingStreet': '',
+                                                             'Venture__r.BillingCity': '',
+                                                             'Venture__r.BillingState': '',
+                                                             'Venture__r.BillingCountry': '',
+																'Application_Primary_Contact__r.FirstName': '',
+																'Application_Primary_Contact__r.LastName': '',
+																'Application_Primary_Contact__r.Phone': '',
+																'Application_Primary_Contact__r.Email': '',
+															   'Owner.Name': '',
+															    'Evaluator_1__r.Name': '',
+																 'Evaluator_2__r.Name': '',
+																  'Evaluator_3__r.Name': '',
+																   'Evaluator_1_Score__c': '',
+																 'Evaluator_2_Score__c': '',
+																  'Evaluator_3_Score__c': '',
+                                                             'Cohort__r.Name':'',
+                                                             'Evaluator_1_Recommendation_Reasonsing__c':'',
+                                                             'Evaluator_2_Recommendation_Reasonsing__c':'',
+                                                             'Evaluator_3_Recommendation_Reasonsing__c':'',
+                                                             'ShouldCDLInterviewthisVenture__c':'',
+                                                             'FinalRank__c':''
+                                                               }"/>
+	<aura:attribute name="eval1EditMode" type="boolean" default="false" />
+	<aura:attribute name="eval2EditMode" type="boolean" default="false" />
+	<aura:attribute name="eval3EditMode" type="boolean" default="false" />
+	<aura:attribute name="streamPotenList" type="string[]" />
+	<aura:attribute name="spEditMode" type="boolean" default="false" />
+	<aura:attribute name="RankEditMode" type="boolean" default="false" />
+    <aura:attribute name="teamSPSScoreEditMode" type="boolean" default="false" />
+    <aura:attribute name="teamTRSScoreEditMode" type="boolean" default="false" />
+    <aura:attribute name="teamBRSScoreEditMode" type="boolean" default="false" />
+    <aura:attribute name="teamInterviewDecisionEditMode" type="boolean" default="false" />
+      <aura:attribute name="teamSREditMode" type="boolean" default="false" />
+    <aura:attribute name="teamSSREditMode" type="boolean" default="false" />
+     <aura:attribute name="techSREditMode" type="boolean" default="false" />
+    <aura:attribute name="commentEditMode" type="boolean" default="false" />
+	<aura:attribute name="cdlEditMode" type="boolean" default="false" />
+	<!--Table Row Start-->
+	<tr class="slds-line-height_reset" data-record="{!v.singleRec.Id}">
+        <td role="gridcell" class="{!v.selectedColumnsOptions.applicationNumber ? '' : 'hiddenColumn'}">
+            <div class="{!v.selectedColumnsOptions.applicationNumber ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">    
+                <a href="{!'/'+v.singleRec.Id}" target="_blank"> {!v.singleRec.Name}</a>
+                <aura:if isTrue="{!v.contentVersionObj.Id != null}">
+                    <a href="{!'/sfc/servlet.shepherd/version/download/'+v.contentVersionObj.Id}">
+                        <span class="slds-icon_container" style="display:inline-block;padding-left:5%">
+                            <lightning:icon iconName="doctype:pdf" size="x-small" class="myIconClass"/>
+                        </span>                                                                  </a>
+                </aura:if>
+            </div>
+        </td>
+        <td role="gridcell" class="{!v.selectedColumnsOptions.firstSitePreference ? '' : 'hiddenColumn'}">
+            <div class="{!v.selectedColumnsOptions.firstSitePreference ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">  
+                {!v.singleRec.X1st_Preference_CDL_Location__c}</div>
+        </td>
+        <td role="gridcell" class="{!v.selectedColumnsOptions.secondSitePreference ? '' : 'hiddenColumn'}">
+            <div class="{!v.selectedColumnsOptions.secondSitePreference ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">  
+                {!v.singleRec.X2nd_Preference_CDL_Location__c}</div>
+        </td>
+        <td role="gridcell" class="{!v.selectedColumnsOptions.ventureName ? '' : 'hiddenColumn'}">
+            <div class="{!v.selectedColumnsOptions.ventureName ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">  
+                <a href="{!v.singleRec.Venture__r.Website}" target="_blank"> {!v.singleRec.Venture__r.Name}</a>
+            </div>
+        </td>
+        <td role="gridcell" class="{!v.selectedColumnsOptions.founderName ? '' : 'hiddenColumn'}">
+            <div class="{!v.selectedColumnsOptions.founderName ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+                <a href="{!v.singleRec.Application_Primary_Contact__r.Name}" target="_blank"> {!v.singleRec.Application_Primary_Contact__r.Name}</a>
+            </div>
+        </td>        <td role="gridcell" class="{!v.selectedColumnsOptions.founderEmail ? '' : 'hiddenColumn'}">
+            <div class="{!v.selectedColumnsOptions.founderEmail ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+                <a href="{!v.singleRec.Application_Primary_Contact__r.Email}" target="_blank"> {!v.singleRec.Application_Primary_Contact__r.Email}</a>
+            </div>
+        </td>
+        <!--
+			<td role="gridcell" class="{!v.selectedColumnsOptions.firstSitePreference ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.firstSitePreference ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">  
+				{!v.singleRec.X1st_Preference_CDL_Location__c}</div>
+			</td>
+			<td role="gridcell" class="{!v.selectedColumnsOptions.secondSitePreference ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.secondSitePreference ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">  
+			{!v.singleRec.X2nd_Preference_CDL_Location__c}</div>
+			</td>-->
+
+			<td role="gridcell" class="{!v.selectedColumnsOptions.ventureOverview ? '' : 'hiddenColumn'}">
+                <div title="{!v.singleRec.Venture_Overview_Briefly_describe_your__c}" class="{!v.selectedColumnsOptions.ventureOverview ? 'slds-truncate' : 'slds-hide'}" style="max-width: 250px !important;">  
+				{!v.singleRec.Venture_Overview_Briefly_describe_your__c}</div>
+			</td>
+			<td role="gridcell" class="{!v.selectedColumnsOptions.streamPotential ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.streamPotential ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> {!v.singleRec.Tech_Specialization__c}</div>
+
+				<!--<span class="slds-truncate" title="Sp">
+                    <aura:iteration items="{!v.streamPotenList}" var="item">
+                        <span style="border: solid 1px #a0a0a0;margin:1px;float: left;height: 30px;padding: 3px;">{!item}</span>
+                    </aura:iteration>
+				</span>	-->		
+            </td>
+			<!--<td role="gridcell" class="{!v.selectedColumnsOptions.pdfApplication ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.pdfApplication ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+					<a href="{!'/sfc/servlet.shepherd/version/download/'+v.contentVersionObj.Id}">{!v.contentVersionObj.Title}</a>
+				</div>
+			</td>-->
+			<td role="gridcell" class="{!v.selectedColumnsOptions.referral ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.referral ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+				{!v.singleRec.Application_Referral_Name__c}</div>
+			</td>
+           <td   role="gridcell" class="{!v.selectedColumnsOptions.finalRank ? 'slds-cell-edit' : 'hiddenColumn'}">
+	<span class="{!v.selectedColumnsOptions.finalRank ? 'slds-grid slds-grid_align-spread' : 'slds-hide'}">
+		<aura:if isTrue="{!v.RankEditMode == false}">
+			<div class="slds-truncate">{!v.singleRec.FinalRank__c}</div>
+			<!--<button onclick="{!c.inlineEditRank}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rank">
+				<lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+			</button>-->
+			  <lightning:buttonIcon aura:id="finalRanking" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+			<aura:set attribute="else">
+				<section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" onmouseout="{!c.closeInlineEditIcon}">
+					<div class="slds-popover__body">
+						<div class="slds-form-element slds-grid slds-wrap">
+							<div class="slds-form-element__control slds-grow">
+								<lightning:input type="number" name="finalRanking" aura:id="finalRanking"  onblur="{!c.closeInlineEditIcon}" label="" value="{!v.singleRec.FinalRank__c}" onchange="{!c.onValueChange}"/>
+							</div>
+						</div>
+					</div>
+					<span id="form-end" tabindex="0"></span>
+				</section>
+			</aura:set>
+		</aura:if>
+	</span>
+</td>
+        <td role="gridcell" class="{!v.selectedColumnsOptions.totalScore ? '' : 'hiddenColumn'}">
+            <div class="{!v.selectedColumnsOptions.totalScore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}">   
+                {!v.totalScore}
+            </div>
+        </td>
+        	<td   role="gridcell" class="{!v.selectedColumnsOptions.score ? 'slds-cell-edit' : 'hiddenColumn'}">
+	<span class="{!v.selectedColumnsOptions.score ? 'slds-grid slds-grid_align-spread' : 'slds-hide'}">
+		<aura:if isTrue="{!v.teamSPSScoreEditMode == false}">
+			<div class="slds-truncate">{!v.singleRec.Team_Superstar_Potential_Score__c}</div>
+			<!--<button onclick="{!c.inlineEditRank}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rank">
+				<lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+			</button>-->
+			  <lightning:buttonIcon aura:id="teamSPSScore" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+			<aura:set attribute="else">
+				<section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" onmouseout="{!c.closeInlineEditIcon}">
+					<div class="slds-popover__body">
+						<div class="slds-form-element slds-grid slds-wrap">
+							<div class="slds-form-element__control slds-grow">
+								<lightning:input type="number" name="teamSPSScore" aura:id="teamSPSScore"  onblur="{!c.closeInlineEditIcon}" label="" value="{!v.singleRec.Team_Superstar_Potential_Score__c}" onchange="{!c.onValueChange}"/>
+							</div>
+						</div>
+					</div>
+					<span id="form-end" tabindex="0"></span>
+				</section>
+			</aura:set>
+		</aura:if>
+	</span>
+</td>
+        <td   role="gridcell" class="{!v.selectedColumnsOptions.score ? 'slds-cell-edit' : 'hiddenColumn'}">
+	<span class="{!v.selectedColumnsOptions.score ? 'slds-grid slds-grid_align-spread' : 'slds-hide'}">
+		<aura:if isTrue="{!v.teamTRSScoreEditMode == false}">
+			<div class="slds-truncate">{!v.singleRec.Team_Tech_Review_Score__c}</div>
+			<!--<button onclick="{!c.inlineEditRank}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rank">
+				<lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+			</button>-->
+			  <lightning:buttonIcon aura:id="teamTRSScore" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+			<aura:set attribute="else">
+				<section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" onmouseout="{!c.closeInlineEditIcon}">
+					<div class="slds-popover__body">
+						<div class="slds-form-element slds-grid slds-wrap">
+							<div class="slds-form-element__control slds-grow">
+								<lightning:input type="number" name="teamTRSScore" aura:id="teamTRSScore"  onblur="{!c.closeInlineEditIcon}" label="" value="{!v.singleRec.Team_Tech_Review_Score__c}" onchange="{!c.onValueChange}"/>
+							</div>
+						</div>
+					</div>
+					<span id="form-end" tabindex="0"></span>
+				</section>
+			</aura:set>
+		</aura:if>
+	</span>
+</td>
+ <td   role="gridcell" class="{!v.selectedColumnsOptions.score ? 'slds-cell-edit' : 'hiddenColumn'}">
+	<span class="{!v.selectedColumnsOptions.score ? 'slds-grid slds-grid_align-spread' : 'slds-hide'}">
+		<aura:if isTrue="{!v.teamBRSScoreEditMode == false}">
+			<div class="slds-truncate">{!v.singleRec.Team_Business_Review_Score__c}</div>
+			<!--<button onclick="{!c.inlineEditRank}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rank">
+				<lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+			</button>-->
+			  <lightning:buttonIcon aura:id="teamBRSScore" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+			<aura:set attribute="else">
+				<section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" onmouseout="{!c.closeInlineEditIcon}">
+					<div class="slds-popover__body">
+						<div class="slds-form-element slds-grid slds-wrap">
+							<div class="slds-form-element__control slds-grow">
+								<lightning:input type="number" name="teamBRSScore" aura:id="teamBRSScore"  onblur="{!c.closeInlineEditIcon}" label="" value="{!v.singleRec.Team_Business_Review_Score__c}" onchange="{!c.onValueChange}"/>
+							</div>
+						</div>
+					</div>
+					<span id="form-end" tabindex="0"></span>
+				</section>
+			</aura:set>
+		</aura:if>
+	</span>
+</td>
+        	<td role="gridcell" class="{!v.selectedColumnsOptions.evalOneScore ? '' : 'hiddenColumn'}">
+                <div title="{!v.evalutor1Rec.Evaluator_Name__c}" class="{!v.selectedColumnsOptions.evalOneScore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+                    {!v.evalutor1Rec.Evaluator_Name__c} - {!v.evalutor1Rec.Superstar_Potential__c}
+                </div>
+			</td>
+        	<td role="gridcell" class="{!v.selectedColumnsOptions.evalOneScore ? '' : 'hiddenColumn'}">
+                <div title="{!v.evalutor1Rec.Evaluator_Name__c}" class="{!v.selectedColumnsOptions.evalOneScore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+				
+                {!v.evalutor1Rec.Tech_Review__c}
+                </div>
+			</td>
+           <td role="gridcell" class="{!v.selectedColumnsOptions.evalOneScore ? '' : 'hiddenColumn'}">
+                <div title="{!v.evalutor1Rec.Evaluator_Name__c}"  class="{!v.selectedColumnsOptions.evalOneScore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+				{!v.evalutor1Rec.Business_Review__c}
+               </div>
+			</td>
+            <td role="gridcell" class="{!v.selectedColumnsOptions.evalTwoscore ? '' : 'hiddenColumn'}">
+                <div title="{!v.evalutor2Rec.Evaluator_Name__c}"  class="{!v.selectedColumnsOptions.evalTwoscore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+				{!v.evalutor2Rec.Evaluator_Name__c} - {!v.evalutor2Rec.Superstar_Potential__c}
+                </div>
+			</td>
+        	<td role="gridcell" class="{!v.selectedColumnsOptions.evalTwoscore ? '' : 'hiddenColumn'}">
+                <div title="{!v.evalutor2Rec.Evaluator_Name__c}"  class="{!v.selectedColumnsOptions.evalTwoscore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+					{!v.evalutor2Rec.Tech_Review__c}
+                </div>
+			</td>
+           <td role="gridcell" class="{!v.selectedColumnsOptions.evalTwoscore ? '' : 'hiddenColumn'}">
+                <div title="{!v.evalutor2Rec.Evaluator_Name__c}"  class="{!v.selectedColumnsOptions.evalTwoscore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+				{!v.evalutor2Rec.Business_Review__c}
+               </div>
+			</td>
+         <td role="gridcell" class="{!v.selectedColumnsOptions.evalThreescore ? '' : 'hiddenColumn'}">
+                <div title="{!v.evalutor3Rec.Evaluator_Name__c}"  class="{!v.selectedColumnsOptions.evalThreescore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+					{!v.evalutor3Rec.Evaluator_Name__c} - {!v.evalutor3Rec.Superstar_Potential__c}	
+             </div>
+			</td>
+        	<td role="gridcell" class="{!v.selectedColumnsOptions.evalThreescore ? '' : 'hiddenColumn'}">
+                <div title="{!v.evalutor3Rec.Evaluator_Name__c}" class="{!v.selectedColumnsOptions.evalThreescore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+					{!v.evalutor3Rec.Tech_Review__c}
+                </div>
+			</td>
+           <td role="gridcell" class="{!v.selectedColumnsOptions.evalThreescore ? '' : 'hiddenColumn'}">
+                <div title="{!v.evalutor3Rec.Evaluator_Name__c}" class="{!v.selectedColumnsOptions.evalThreescore ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+				{!v.evalutor3Rec.Business_Review__c}
+               </div>
+			</td>
+			<!--<td ondblclick="{!c.inlineEditRank}"  role="gridcell" class="{!v.selectedColumnsOptions.finalRank ? 'slds-cell-edit' : 'hiddenColumn'}">
+				<span class="{!v.selectedColumnsOptions.finalRank ? 'slds-grid slds-grid_align-spread' : 'slds-hide'}">
+					<aura:if isTrue="{!v.RankEditMode == false}">
+						<div class="slds-truncate">{!v.singleEva[0].EvaluatorsRanking__c}</div>
+						<button onclick="{!c.inlineEditRank}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rank">
+							<lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+						</button>
+						<aura:set attribute="else">
+							<section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+								<div class="slds-popover__body">
+									<div class="slds-form-element slds-grid slds-wrap">
+										<div class="slds-form-element__control slds-grow">
+											<lightning:input type="number" name="finalRanking" aura:id="finalRanking" label="" value="{!v.singleEva[0].EvaluatorsRanking__c}" onchange="{!c.onRankChange}"/>
+										</div>
+									</div>
+								</div>
+								<span id="form-end" tabindex="0"></span>
+							</section>
+						</aura:set>
+					</aura:if>
+				</span>
+			</td>-->
+		<td   role="gridcell" class="{!v.selectedColumnsOptions.teamInterviewDecision ? 'slds-cell-edit' : 'hiddenColumn'}">
+	<span class="{!v.selectedColumnsOptions.teamInterviewDecision ? 'slds-grid slds-grid_align-spread' : 'slds-hide'}">
+		<aura:if isTrue="{!v.teamInterviewDecisionEditMode == false}">
+			<div class="slds-truncate">{!v.singleRec.Team_Interview_Recommendations__c}</div>
+			<!--<button onclick="{!c.inlineEditRank}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rank">
+				<lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+			</button>-->
+			  <lightning:buttonIcon aura:id="teamInterviewDecision" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+			<aura:set attribute="else">
+				<section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" onmouseout="{!c.closeInlineEditIcon}">
+					<div class="slds-popover__body">
+						<div class="slds-form-element slds-grid slds-wrap">
+							<div class="slds-form-element__control slds-grow">
+							 <lightning:select   class="slds-input inputFieldWidth"  onblur="{!c.closeInlineEditIcon}" onchange="{!c.onValueChange}" value="{!v.singleRec.Team_Interview_Recommendations__c}">
+                                 <aura:iteration items="{!v.teamInterviewRecommdoptions}" var="item">
+                                     <option text="{!item.label}" value="{!item.value}" selected="{!v.singleRec.Team_Interview_Recommendations__c}"/>
+                                 </aura:iteration>
+                                </lightning:select>
+                            </div>
+						</div>
+					</div>
+					<span id="form-end" tabindex="0"></span>
+				</section>
+			</aura:set>
+		</aura:if>
+	</span>
+</td>
+			<td role="gridcell" class="{!v.selectedColumnsOptions.evaluator1InterviewRecommendation ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.evaluator1InterviewRecommendation ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+                {!v.evalutor1Rec.Recommend_Interview_2__c}
+                </div>
+			</td>
+        	<td role="gridcell" class="{!v.selectedColumnsOptions.evaluator2InterviewRecommendation ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.evaluator2InterviewRecommendation ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+                 {!v.evalutor2Rec.Recommend_Interview_2__c}
+                </div>
+			</td>
+       		 <td role="gridcell" class="{!v.selectedColumnsOptions.evaluator3InterviewRecommendation ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.evaluator3InterviewRecommendation ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+                 {!v.evalutor3Rec.Recommend_Interview_2__c}
+                 </div>
+			</td>
+        <td   role="gridcell" class="{!v.selectedColumnsOptions.teamStreamRecommendation ? 'slds-cell-edit' : 'hiddenColumn'}">
+	<span class="{!v.selectedColumnsOptions.teamStreamRecommendation ? 'slds-grid slds-grid_align-spread' : 'slds-hide'}">
+		<aura:if isTrue="{!v.teamSREditMode == false}">
+			<div class="slds-truncate">{!v.singleRec.Team_Stream_Recommendation__c}</div>
+			<!--<button onclick="{!c.inlineEditRank}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Rank">
+				<lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+			</button>-->
+			  <lightning:buttonIcon aura:id="teamSR" iconName="utility:edit"
+													  onclick="{!c.inlineEditClick}"
+													  alternativeText="openInlineEdit" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small"
+													  />
+			<aura:set attribute="else">
+				<section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="top: 0px" onmouseout="{!c.closeInlineEditIcon}">
+					<div class="slds-popover__body">
+						<div class="slds-form-element slds-grid slds-wrap">
+							<div class="slds-form-element__control slds-grow">
+								 <lightning:select   class="slds-input inputFieldWidth"  onblur="{!c.closeInlineEditIcon}" onchange="{!c.onValueChange}" value="{!v.singleRec.Team_Stream_Recommendation__c}">
+                                 <aura:iteration items="{!v.teamStreamRecommdoptions}" var="item">
+                                     <option text="{!item.label}" value="{!item.value}" selected="{!v.singleRec.Team_Stream_Recommendation__c}"/>
+                                 </aura:iteration>
+                                </lightning:select>
+                            </div>
+						</div>
+					</div>
+					<span id="form-end" tabindex="0"></span>
+				</section>
+			</aura:set>
+		</aura:if>
+	</span>
+</td>
+        	<td role="gridcell" class="{!v.selectedColumnsOptions.evaluator1StreamRecommendation ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.evaluator1StreamRecommendation ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+                 {!v.evalutor1Rec.Stream_Recommendation__c}
+                </div>
+			</td>
+        	<td role="gridcell" class="{!v.selectedColumnsOptions.evaluator2StreamRecommendation ? '' : 'hiddenColumn'}">
+                <div class="{!v.selectedColumnsOptions.evaluator2StreamRecommendation ? 'slds-cell-wrap slds-truncate' : 'slds-hide'}"> 
+                  {!v.evalutor2Rec.Stream_Recommendation__c}
+                </div>
+			</td>
+
+	</tr>
+</aura:component>

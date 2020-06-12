@@ -1,0 +1,11 @@
+.THIS .inputFieldWidth {
+    width:100%;
+}
+.THIS .alignValues{
+    text-align: center;
+}
+.THIS .myIconClass svg {
+    /*width: 1.3rem;
+    height: 1.3rem;*/
+    cursor: pointer;
+}

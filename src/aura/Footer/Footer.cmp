@@ -1,0 +1,33 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+	<div class="cp-text">
+    <div class="slds-grid slds-wrap slds-grid_align-center">
+            
+        <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_12-of-12">
+           <div class="">
+  <a href="https://www.facebook.com/creativedestructionlab/" target="_blank"><figure class="swap-on-hover">
+  <img class="swap-on-hover__back-image"  src="{! $Resource.fbIconhover}"/>
+</figure>
+</a>
+  <a href="https://www.linkedin.com/company/2982502" target="_blank"><figure class="swap-on-hover">
+  <img class="swap-on-hover__back-image"  src="{! $Resource.LinkOnHover}"/>
+</figure>
+</a>
+  <a href="https://twitter.com/creativedlab" target="_blank"><figure class="swap-on-hover">
+  <img class="swap-on-hover__back-image"  src="{! $Resource.twittOnHover}"/>
+</figure>
+</a>
+  <a href="https://www.instagram.com/creativedestructionlab/?hl=en" target="_blank"><figure class="swap-on-hover">
+  <img class="swap-on-hover__back-image"  src="{! $Resource.youtubeOnHover}"/>
+</figure>
+</a>
+   
+</div>
+        </div>
+        <div>
+        <div class="slds-size_1-of-1 slds-small-size_1-of-2 slds-medium-size_12-of-12">
+        <p class=""><a class="link" href="https://www.creativedestructionlab.com/" target="_blank">creativedestructionlab.com</a></p>
+        </div>
+        </div>
+    </div>
+        </div>
+</aura:component>

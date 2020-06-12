@@ -1,0 +1,81 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+        <!-- force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction --> 
+       <!--<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">-->
+        
+        <aura:attribute name="isFlowLaunched" type="boolean" default="false" />
+                <div class="slds-grid slds-wrap">
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.canadiantire.ca/en.html" target="_blank"><img src="{!$Resource.CanadianTire}"/></a></span>
+                    </div>
+					  <div class="slds-col slds-size_1-of-4" >
+                          <span ><a href="http://corporate.comcast.com/" target="_blank"><img src="{!$Resource.ComCast}"/></a></span>
+                    </div>
+					 <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="http://www.cppib.com/en/" target="_blank"><img src="{!$Resource.CPP}"/></a></span>
+                    </div>
+					 <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.bankofcanada.ca/" target="_blank"><img src="{!$Resource.BankofCanada}"/></a></span>
+                    </div>
+					 <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.bdc.ca/en/pages/home.aspx" target="_blank"><img src="{!$Resource.BDC}"/></a></span>
+                    </div>
+					  <div class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.canada.ca/en/special-operations-forces-command.html" target="_blank"><img src="{!$Resource.ConsOfCom}"/></a></span>
+                    </div>
+					  <div class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.globalive.com/" target="_blank"><img src="{!$Resource.GlobalLive}"/></a></span>
+                    </div>
+					  <div class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.gm.com/" target="_blank"><img src="{!$Resource.GM}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://georgianpartners.com/" target="_blank"><img src="{!$Resource.GP}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.greatwestlife.com/you-and-your-family.html" target="_blank"><img src="{!$Resource.GreatWestLife}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="http://www.hondainnovations.com/" target="_blank"><img src="{!$Resource.Honda}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://home.kpmg.com/ca/en/home.html" target="_blank"><img src="{!$Resource.KPMG}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.mastercard.ca/en-ca.html" target="_blank"><img src="{!$Resource.MasterCard}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://mbd.utoronto.ca/" target="_blank"><img src="{!$Resource.MedByDes}"/></a></span>
+                    </div>
+                <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.microsoft.com/en-ca" target="_blank"><img src="{!$Resource.Microsoft}"/></a></span>
+                    </div>
+                     <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.nbc.ca/en/personal.html" target="_blank"><img src="{!$Resource.NationalBank}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.osler.com/en/home" target="_blank"><img src="{!$Resource.Osler}"/></a></span>
+                    </div>
+                     <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://pilotpmr.com/" target="_blank"><img src="{!$Resource.Pilot}"/></a></span>
+                    </div>
+                     <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.rbcroyalbank.com/personal.html" target="_blank"><img src="{!$Resource.RBC}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="http://www.rotman.utoronto.ca/Connect/AboutRotman/JosephLRotman" target="_blank"><img src="{!$Resource.RCF}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="http://www.navy-marine.forces.gc.ca/en/index.page" target="_blank"><img src="{!$Resource.RCN}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.scotiabank.com/global/en/global-site.html#about" target="_blank"><img src="{!$Resource.Scotiabank}"/></a></span>
+                    </div>
+                  <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://www.td.com/corporate-responsibility/ready-commitment/index.jsp" target="_blank"><img src="{!$Resource.TD}"/></a></span>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-4" >
+                        <span ><a href="https://about.vanguard.com/" target="_blank"><img src="{!$Resource.Vanguard}"/></a></span>
+                    </div>
+                </div>
+             
+    </aura:component>

@@ -1,0 +1,192 @@
+<apex:page standardController="Account" extensions="PartnerQuestionnaireController"  >
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>SLDS ResponsiveDesign Visualforce Page in Salesforce Mobile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <!-- Import the Design System style sheet -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        
+        <style>
+            input, textarea, select, .multiSelectPicklistTable, .dateOnlyInput, .btn-group, .multiselect, .dropdown-menu {
+            width: 100% !important;
+            }
+            .input-required{
+            color: red;
+            padding-right: 5px;
+            font-size: 20px;
+            }
+            .page-header{
+            margin: 0px !important;
+            margin-bottom: 25px !important;
+            margin-top: 10px !important;
+            padding: 10px !important;
+            padding-left: 0px !important;
+            border-bottom: 1px solid rgb(243, 13, 224) !important;
+            font-size: 18px !important;
+            }
+            .dateFormat{
+            display:none;
+            }
+            
+            .top-buffer { margin-top:10px; }
+            
+            fieldset > table {
+            table-layout: fixed;
+            width: 100% !important;
+            }
+            
+            input[type=radio]{
+            width: 30px !important;
+            }
+            
+            input[type=submit]{
+            margin-top: 15px;
+            }
+            
+            input[type=checkbox]{
+            width: 15px !important;
+            }
+            input[type=text], textarea{
+            padding: 5px !important;
+            }
+            .btn.new-PartnerQuestionnaire{
+                background: none;
+                background-color: white;
+                color: rgb(243, 13, 224);
+                font-weight: 100;
+                border: 1px solid rgb(212, 212, 212);
+            }
+            .btn.save{
+                background: none;
+                background-color: white;
+                color: rgb(243, 13, 224);
+                font-weight: 300;
+                border: 1px solid rgb(212, 212, 212);
+                margin-top: 10px;
+            }
+            .bg-primary
+            {
+                background-color: white;
+                color: rgb(243, 13, 224);
+                text-decoration: underline;
+            }
+            
+            html body.sfdcBody
+            {
+                color: rgb(105, 105, 105);
+            }
+            
+            .PartnerQuestionnaire{
+                background-color: white !important;
+            }
+            iframe
+            {
+                background-color: white !important;
+            }
+            
+            html .brandQuaternaryBgr{
+                margin-top: 45% !important;
+                background-color: white !important;
+            }
+            
+        </style>
+        
+        <script>
+        
+        window.onload = function() {
+            var iframes = document.getElementsByTagName('body');
+            console.log('iframe: ' + iframes.length)
+            for(var iframe of iframes)
+            {
+                console.log('iframe: ' + iframe)
+                iframe.style.background = 'white !important';
+                iframe.style.backgroundColor = 'white !important';
+            }
+        }
+        
+        </script>
+    </head>
+    
+    <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 PartnerQuestionnaire">
+        
+        <apex:outputPanel id="PartnerQuestionnaire">
+            <span style="color:red"><apex:messages /></span>
+            <apex:form >
+                <apex:outputPanel rendered="{!isNewPartnerQuestionnaire}">
+                    <div class="col-lg-12">
+                        <div class="page-header bg-primary col-lg-12" data-toggle="collapse" data-target="#Account Name"><span class="align-middle">Partner Workbook</span></div>
+                        <div class="row top-buffer">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label class="slds-form-element__label" for="form-element-05">Account Name</label>
+                                <apex:inputField value="{!PartnerQuestionnaire.Account_Name__c}" />
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="row top-buffer">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label class="slds-form-element__label" for="form-element-05">Comments on Venture's CDL Sessions</label><br/>
+                                <apex:inputField value="{!PartnerQuestionnaire.CommentsonventuresCDLSession__c}" />
+                            </div>
+                        </div>
+                        <div class="row top-buffer">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label class="slds-form-element__label" for="form-element-05">Is this venture applicable to your business?</label>
+                                <apex:inputField value="{!PartnerQuestionnaire.IsVentureApplicabletoyourBusiness__c}" />
+                            </div>
+                        </div>
+                    
+                    <div class="row top-buffer">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label class="slds-form-element__label" for="form-element-05">Explain how this venture's product or service is applicable to your business</label><br/>
+                                <apex:inputField value="{!PartnerQuestionnaire.HowwillVentureproductservicehelp__c}" />
+                            </div>
+                        </div>
+                        <div class="row top-buffer">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label class="slds-form-element__label" for="form-element-05">Would you like additional information about this Venture?</label><br/>
+                                <apex:inputField value="{!PartnerQuestionnaire.Wouldyouwantmoreinfo__c}" />
+                            </div>
+                        </div>
+                        <div class="row top-buffer">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label class="slds-form-element__label" for="form-element-05">If yes, please explain what you would like to know</label><br/>
+                                <apex:inputField value="{!PartnerQuestionnaire.Ifyeswhatinfowouldyoulike__c}" />
+                            </div>
+                        </div>
+                        <div class="row top-buffer">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label class="slds-form-element__label" for="form-element-05">Do you want to be connected with the founders?</label><br/>
+                                <apex:inputField value="{!PartnerQuestionnaire.Doyouwanttoconnectwithfounders__c}" />
+                            </div>
+                        </div>
+                        <div class="row top-buffer">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <label class="slds-form-element__label" for="form-element-05">If "Yes", please explain you would like to be connected to the founders</label><br/>
+                                <apex:inputField value="{!PartnerQuestionnaire.Ifyespleaseexplainwhyfounders__c}" />
+                            </div>
+                        </div>
+                        </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 align-center" draggable="false" >
+                        <apex:commandButton value="Save" action="{!savePartnerQuestionnaire}"  styleClass="save" rerender="PartnerQuestionnaire"/>
+                    </div>
+                </apex:outputPanel>
+                
+               <!-- <apex:outputPanel rendered="{!IsVenture}"> -->
+                    <apex:outputPanel rendered="{!isNewPartnerQuestionnaire = false}">
+                        <div class="col-sm-12 col-md-12 col-lg-12 align-center" draggable="false" >
+                            <apex:commandButton value="CDL Partner Workbook" action="{!openPartnerQuestionnaireForm}" styleClass="new-PartnerQuestionnaire"  rerender="PartnerQuestionnaire"/>
+                        </div>
+                    </apex:outputPanel>
+               <!-- </apex:outputPanel> -->
+            </apex:form>
+        </apex:outputPanel>
+    </div>
+    
+</html>
+</apex:page>
